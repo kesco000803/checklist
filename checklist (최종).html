@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사용전검사 자가점검 체크리스트</title>
+<style>
+  :root{
+    --navy:#0f1f3d;
+    --navy-deep:#0a1628;
+    --gold:#c9a227;
+    --gold-soft:#e8d9a8;
+    --bg:#f6f5f1;
+    --card:#ffffff;
+    --line:#e2e1dc;
+    --text:#1c2230;
+    --muted:#6b7280;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    font-family:'Malgun Gothic','맑은 고딕',sans-serif;
+    color:var(--text);
+    line-height:1.55;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 0 60px;}
+  header{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);
+    color:#fff;
+    padding:32px 20px 24px;
+    border-bottom:4px solid var(--gold);
+  }
+  header .eyebrow{color:var(--gold-soft);font-size:13px;letter-spacing:.12em;font-weight:600;margin-bottom:8px;}
+  header h1{margin:0 0 6px;font-size:22px;font-weight:700;}
+  header p{margin:0;font-size:13.5px;color:#cdd6e8;}
+
+  .notice{
+    margin:16px 16px 0;
+    background:#fff9e8;
+    border:1px solid var(--gold-soft);
+    border-left:4px solid var(--gold);
+    border-radius:6px;
+    padding:12px 14px;
+    font-size:12.5px;
+    color:#5a4a16;
+  }
+  .notice b{display:block;margin-bottom:4px;}
+
+  .tabs{
+    display:flex;
+    gap:6px;
+    margin:18px 16px 0;
+    overflow-x:auto;
+  }
+  .tabBtn{
+    flex:1;
+    min-width:78px;
+    padding:10px 6px;
+    font-size:13px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:#fff;
+    color:var(--muted);
+    cursor:pointer;
+    font-family:inherit;
+    white-space:nowrap;
+  }
+  .tabBtn.active{
+    background:var(--navy);
+    color:#fff;
+    border-color:var(--navy);
+    font-weight:700;
+  }
+
+  .progress-bar{
+    margin:14px 16px 0;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:12px 14px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .progress-track{flex:1;height:8px;background:#eceae2;border-radius:99px;overflow:hidden;}
+  .progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--gold) 0%,var(--navy) 100%);transition:width .3s ease;}
+  #progressText{font-size:13px;color:var(--muted);white-space:nowrap;min-width:62px;text-align:right;}
+
+  main{padding:0 16px;}
+  .panel{display:none;}
+  .panel.active{display:block;}
+
+  .section{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-top:16px;overflow:hidden;}
+  .section-head{padding:14px 16px 6px;}
+  .section-head h2{font-size:15.5px;margin:0;font-weight:700;color:var(--navy);}
+  .section-basis{font-size:11.5px;color:var(--muted);padding:0 16px 10px;border-bottom:1px solid #f1f0ec;}
+  .hint{font-size:12.5px;color:var(--muted);margin:14px 2px 0;}
+
+  ul.items{list-style:none;margin:0;padding:0 0 6px;}
+  ul.items li{border-top:1px solid #f1f0ec;}
+  ul.items li:first-child{border-top:none;}
+  label.item{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;cursor:pointer;font-size:14px;}
+  label.item:hover{background:#fafaf7;}
+  input[type=checkbox]{
+    appearance:none;width:20px;height:20px;flex:0 0 20px;
+    border:2px solid #c8c6bd;border-radius:5px;margin-top:1px;position:relative;cursor:pointer;background:#fff;
+  }
+  input[type=checkbox]:checked{background:var(--navy);border-color:var(--navy);}
+  input[type=checkbox]:checked::after{
+    content:'';position:absolute;left:5px;top:1px;width:6px;height:11px;
+    border:solid var(--gold);border-width:0 2px 2px 0;transform:rotate(45deg);
+  }
+  .item-text strong{display:block;color:var(--text);}
+  .item-text span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;}
+
+  .ref-footer{margin:26px 16px 0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:11.5px;color:var(--muted);}
+  .ref-footer h3{font-size:13px;color:var(--navy);margin:0 0 8px;}
+  .ref-footer ul{margin:0;padding-left:18px;}
+  .ref-footer li{margin-bottom:4px;}
+
+  footer{margin:18px 16px 0;text-align:center;font-size:12px;color:var(--muted);padding:16px 0;}
+  .resetBtn{display:block;margin:24px auto 0;background:var(--navy);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:13px;cursor:pointer;font-family:inherit;}
+  .resetBtn:hover{background:var(--navy-deep);}
+  @media print{ .tabs,.progress-bar,.resetBtn{display:none;} .panel{display:block !important;} body{background:#fff;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">한국전기안전공사 · 강원지사 검사부</div>
+    <h1>사용전검사 자가점검 체크리스트</h1>
+    <p>검사 신청 전 미리 확인하시면 재검사 없이 한 번에 통과하실 수 있습니다.</p>
+  </header>
+
+  <div class="notice">
+    <b>⚠️ 본 체크리스트는 참고용 안내자료입니다.</b>
+    최종 판정기준은 「전기안전관리법」 제9조(사용전검사) 및 같은 법 시행규칙, 「전기설비 검사 및 점검의 방법·절차 등에 관한 고시」(산업통상자원부고시) 별표7·별표9, 한국전기설비규정(KEC)에 따릅니다. 본 항목은 위 고시의 검사항목을 기준으로 작성되었습니다.
+  </div>
+
+  <div class="tabs">
+    <button class="tabBtn active" data-tab="common">공통</button>
+    <button class="tabBtn" data-tab="hv">고압 수전설비</button>
+    <button class="tabBtn" data-tab="gen">발전설비</button>
+    <button class="tabBtn" data-tab="pv">태양광</button>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div id="progressText">0 / 0</div>
+  </div>
+
+  <main>
+
+    <!-- ============ 공통 ============ -->
+    <div class="panel active" data-panel="common">
+
+      <div class="section">
+        <div class="section-head"><h2>01 · 접지</h2></div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="common" id="c-1"><span class="item-text"><strong>접지도체 설치 여부</strong><span>제어반·분전반·전동기 외함 등에 접지도체 자체가 빠지지 않았는지 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="common" id="c-2"><span class="item-text"><strong>접지선 탈락·이완 여부</strong><span>접지함 내 접지선 단자 체결상태 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="common" id="c-3"><span class="item-text"><strong>접지단자함 상호접속·외함 상태</strong><span>저압·고압 접지단자함 상호접속 및 외함 파손 여부</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="common" id="c-4"><span class="item-text"><strong>보호도체 단면적 적정성</strong><span>상도체 굵기 대비 최소단면적 계산값 충족 여부</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="common" id="c-5"><span class="item-text"><strong>피뢰기(LA) 등 개별기기 접지</strong><span>피뢰기 등 개별 기기 접지 누락 여부</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="common" id="c-6"><span class="item-text"><strong>지중전선로 금속관 접지</strong><span>지중 케이블 보호관·금속 접속함 접지 (지중설비 해당 시)</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="common" id="c-7"><span class="item-text"><strong>접지저항 측정값</strong><span>설비 종류별 기준값 이내 여부 사전 측정</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h2>02 · 절연저항</h2></div>
+        <div class="section-basis">SELV·PELV 0.5MΩ↑(DC250V) · 500V이하 1.0MΩ↑(DC500V) · 500V초과 1.0MΩ↑(DC1000V)</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="common" id="c-8"><span class="item-text"><strong>전압별 기준치 충족 여부</strong></span></label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h2>03 · 배선·차단기·분전반</h2></div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="common" id="c-9"><span class="item-text"><strong>지락차단장치(누전차단기) 설치 여부</strong><span>MCCB만 있고 ELB 자체가 없는 경우가 가장 흔한 지적사항</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="common" id="c-10"><span class="item-text"><strong>차단기 정격이 전선 허용전류 이내인지</strong><span>전선 굵기 대비 차단기 용량 과대 시설 여부</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="common" id="c-11"><span class="item-text"><strong>욕실·욕조 등 콘센트 인체감전보호용 누전차단기</strong><span>KEC 234.5 — 정격감도전류 15mA 이하, 동작시간 0.03초 이하 (또는 3kVA 이하 절연변압기로 보호된 전로)</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="common" id="c-12"><span class="item-text"><strong>고정배선에 코드류(VCTF 등) 미사용</strong><span>코드는 이동전선용, 고정배선은 케이블 사용 필수</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="common" id="c-13"><span class="item-text"><strong>누전차단기 작동시험</strong><span>테스트 버튼으로 정상 동작 여부 확인</span></span></label></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ============ 고압 수전설비 ============ -->
+    <div class="panel" data-panel="hv">
+
+      <div class="section">
+        <div class="section-head"><h2>01 · 변압기</h2></div>
+        <div class="section-basis">근거: 고시 별표7 Ⅰ-1 - 변압기 관련 절연유시험·보호장치 항목</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="hv" id="h-1"><span class="item-text"><strong>외관 및 접지시공상태</strong><span>본체 변형, 부식, 누유 흔적 여부 및 접지선 연결상태</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="hv" id="h-2"><span class="item-text"><strong>절연유 구외유출방지시설</strong><span>유출 방지턱·집유조 등 시설상태</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="hv" id="h-3"><span class="item-text"><strong>경보장치·차단장치</strong><span>변압기 보호장치(부흐홀쯔 계전기 등) 및 계측장치 정상 여부</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h2>02 · 차단기·개폐기</h2></div>
+        <div class="section-basis">근거: 고시 별표7 Ⅰ-1 - 보호장치 시험, 제어회로 동작 및 기기조작시험</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="hv" id="h-4"><span class="item-text"><strong>차단기(VCB·OCB 등) 규격 및 외관</strong><span>정격전압·정격전류 표기와 실제 설치 규격 일치 여부</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="hv" id="h-5"><span class="item-text"><strong>개폐표시 상태</strong><span>투입/차단 상태표시기 정상 작동 여부</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="hv" id="h-6"><span class="item-text"><strong>인터록 시설상태</strong><span>차단기-단로기 간 기계적·전기적 인터록 정상 작동 여부</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h2>03 · 피뢰기</h2></div>
+        <div class="section-basis">근거: 고시 별표7 Ⅰ-7 피뢰설비 「수뢰부·인하도선·접지극시스템」</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="hv" id="h-7"><span class="item-text"><strong>설치위치 및 외관상태</strong><span>피뢰기 설치위치 적정성과 외관 손상 여부</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="hv" id="h-8"><span class="item-text"><strong>접지선 연결 및 접지저항</strong><span>피뢰기 전용 접지선 연결상태 확인</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h2>04 · 계기용 변성기(PT·CT)</h2></div>
+        <div class="section-basis">근거: 고시 별표7 Ⅰ-1 「부대설비」 - 계기용 변성기, 상표시</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="hv" id="h-9"><span class="item-text"><strong>결선상태 및 비율</strong><span>변류비(CT)·변압비(PT)가 설계도서와 일치하는지 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="hv" id="h-10"><span class="item-text"><strong>상별표시 상태</strong><span>특고압 전로의 상별표시 부착 여부</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h2>05 · 보호계전기</h2></div>
+        <div class="section-basis">근거: 고시 별표7 Ⅰ-1 「6.보호장치 시험」 - 최소동작시험, 한시특성시험, 연동시험</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="hv" id="h-11"><span class="item-text"><strong>정정값 확인</strong><span>과전류·지락 계전기 정정값이 설계 기준에 부합하는지 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="hv" id="h-12"><span class="item-text"><strong>보호협조 적정성</strong><span>과전류보호장치와 전선 단면적 간 보호협조 확인</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h2>06 · 전력퓨즈·콘덴서</h2></div>
+        <div class="section-basis">근거: 고시 별표7 Ⅰ-1 「6.보호장치 시험」 - 전력용 콘덴서 또는 분로리액터</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="hv" id="h-13"><span class="item-text"><strong>전력퓨즈 용량 및 설치상태</strong><span>퓨즈 용량이 설계 기준과 일치하는지 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="hv" id="h-14"><span class="item-text"><strong>콘덴서 경보·차단장치</strong><span>전력용 콘덴서 보호장치 정상 동작 여부</span></span></label></li>
+        </ul>
+      </div>
+
+      <p class="hint">※ 고압이상 전기기계·기구는 시험성적서, 기술규격서(설계서·계약서·도면) 준비가 필요합니다.</p>
+    </div>
+
+    <!-- ============ 발전설비 (비상용 예비발전설비) ============ -->
+    <div class="panel" data-panel="gen">
+
+      <div class="section">
+        <div class="section-head"><h2>01 · 내연기관 외관</h2></div>
+        <div class="section-basis">근거: 고시 별표7 Ⅰ-6 비상용 예비발전설비 「1.내연기관 및 발전기」</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="gen" id="g-1"><span class="item-text"><strong>누유·누수 여부</strong><span>연료·냉각수·윤활유 계통 누설 흔적 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="gen" id="g-2"><span class="item-text"><strong>배기관 설치 적정성</strong><span>배기관 경로, 단열·방화 처리상태 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="gen" id="g-3"><span class="item-text"><strong>연료계통 적정성</strong><span>연료탱크, 배관, 차단밸브 설치상태 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="gen" id="g-4"><span class="item-text"><strong>환기시설 적정여부</strong><span>발전기실 환기구·배기설비 설치상태</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h2>02 · 발전기 본체</h2></div>
+        <div class="section-basis">근거: 고시 별표7 Ⅰ-6 「1.내연기관 및 발전기」 - 접지시공상태, 절연저항·절연내력</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="gen" id="g-5"><span class="item-text"><strong>접지시공상태</strong><span>발전기 외함 접지선 연결상태 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="gen" id="g-6"><span class="item-text"><strong>배전반 설치 및 접지</strong><span>배전반 설치상태와 접지 시공 여부</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="gen" id="g-7"><span class="item-text"><strong>차단기 용량·설치상태</strong><span>발전기 출력 대비 차단기 용량 적정성</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h2>03 · 상용전원 절체장치(ATS)</h2></div>
+        <div class="section-basis">근거: 고시 별표7 Ⅰ-6 - 상용전원과의 절체방법</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="gen" id="g-8"><span class="item-text"><strong>절체방법 적정성</strong><span>수동/자동 절체 방식이 설계도서와 일치하는지 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="gen" id="g-9"><span class="item-text"><strong>자동기동 동작상태</strong><span>정전 감지 시 자동기동 회로 정상 동작 여부</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h2>04 · 축전지 및 충전장치</h2></div>
+        <div class="section-basis">근거: 고시 별표7 Ⅰ-6 - 축전지 및 충전장치의 설치상태</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="gen" id="g-10"><span class="item-text"><strong>축전지 설치상태</strong><span>단자 부식, 액 누출 여부 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="gen" id="g-11"><span class="item-text"><strong>충전장치 정상 동작</strong><span>자동 충전 회로 정상 동작 여부</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h2>05 · 보호장치</h2></div>
+        <div class="section-basis">근거: 고시 별표7 Ⅰ-6 - 지락보호 및 과전류 보호방식, 변류기 비율</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="gen" id="g-12"><span class="item-text"><strong>지락·과전류 보호방식</strong><span>보호방식이 설계 기준에 부합하는지 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="gen" id="g-13"><span class="item-text"><strong>변류기(CT) 비율·배율</strong><span>변류기 비율이 정격과 일치하는지 확인</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h2>06 · 부하운전시험</h2></div>
+        <div class="section-basis">근거: 고시 별표7 Ⅰ-6 「4.종합시험」 - 부하운전시험(30분 이상), 500kW 초과 시 비상정지장치시험 포함</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="gen" id="g-14"><span class="item-text"><strong>부하운전 가능여부 사전 점검</strong><span>출력 가능한 최대부하로 30분 이상 운전 가능한 상태인지 사전 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="gen" id="g-15"><span class="item-text"><strong>비상정지장치 동작 점검</strong><span>500kW 초과 설비는 비상정지장치 사전 동작 확인 필요</span></span></label></li>
+        </ul>
+      </div>
+
+      <p class="hint">※ 계통에 연계하여 사용하는 비상용 예비발전설비도 본 항목을 포함하여 점검합니다.</p>
+    </div>
+
+    <!-- ============ 태양광 ============ -->
+    <div class="panel" data-panel="pv">
+
+      <div class="section">
+        <div class="section-head"><h2>01 · 태양광 전지(모듈) 및 Array</h2></div>
+        <div class="section-basis">근거: 고시 별표9 Ⅰ-6 태양광발전설비 「2.태양광 전지」</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-1"><span class="item-text"><strong>모듈 외관상태</strong><span>파손, 변색, 핫스팟 흔적 여부 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-2"><span class="item-text"><strong>Array 절연저항</strong><span>모듈 배선(Array) 절연저항 측정 가능 상태 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-3"><span class="item-text"><strong>Array 접지저항</strong><span>구조물·모듈 프레임 접지 연결상태 확인</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h2>02 · 전력변환장치(인버터)</h2></div>
+        <div class="section-basis">근거: 고시 별표9 Ⅰ-6 「3.전력변환장치」</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-4"><span class="item-text"><strong>접지시공상태</strong><span>인버터 외함 접지선 연결상태 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-5"><span class="item-text"><strong>단독운전 방지기능</strong><span>계통 정전 시 단독운전 방지 기능 정상 동작 여부(공인시험기관 성적서 확인)</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-6"><span class="item-text"><strong>역방향운전 제어기능</strong><span>역송 관련 보호기능 정상 동작 여부</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-7"><span class="item-text"><strong>DC지락차단장치</strong><span>DC 측 지락차단장치 설치 및 공인시험기관 시험성적서 확인</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h2>03 · 구조물</h2></div>
+        <div class="section-basis">근거: 고시 별표9 Ⅰ-6 「11.구조물」</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-8"><span class="item-text"><strong>기초상태</strong><span>구조물 기초 침하·균열 여부</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-9"><span class="item-text"><strong>지지물 구조계산서 부합여부</strong><span>설계도서·구조계산서와 실제 시공 일치 여부</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-10"><span class="item-text"><strong>부식·변형 여부</strong><span>프레임 부식, 볼트 풀림 등 외관상태 확인</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h2>04 · 부지</h2></div>
+        <div class="section-basis">근거: 고시 별표9 Ⅰ-6 「12.부지」</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-11"><span class="item-text"><strong>배수로 시공상태</strong><span>우수 배수로 설치상태 및 막힘 여부</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-12"><span class="item-text"><strong>부지 시공상태</strong><span>경사지 등 침식·붕괴 위험 여부</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h2>05 · 추락방지장치</h2></div>
+        <div class="section-basis">근거: 고시 별표9 Ⅰ-6 「14.추락방지장치」 (지붕형·경사지 등 해당 시)</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-13"><span class="item-text"><strong>점검통로 확보</strong><span>유지보수용 점검통로 폭·안전성 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-14"><span class="item-text"><strong>위험표시 부착</strong><span>추락위험 경고표지 부착 여부</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h2>06 · 변압기·차단기·전선로·접지설비</h2></div>
+        <div class="section-basis">근거: 고시 별표9 Ⅰ-6 「4~7」 - 기력발전소 변압기·차단기·전선로·접지설비 검사항목 준용</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-15"><span class="item-text"><strong>승압용 변압기 점검</strong><span>접지·절연저항·절연유 상태(해당 시)</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-16"><span class="item-text"><strong>차단기·접지설비 점검</strong><span>차단기 절연저항, 접지저항 측정 가능 상태 확인</span></span></label></li>
+        </ul>
+      </div>
+
+      <p class="hint">※ BIPV(건물일체형)·BAPV(건물부착형)·수상형 구조물은 별도 항목(방위각, 방수, 부력체 안전성 등)이 추가 적용됩니다.</p>
+    </div>
+
+  </main>
+
+  <div class="ref-footer">
+    <h3>📋 항목 근거 자료</h3>
+    <ul>
+      <li>「전기안전관리법」 제9조(사용전검사), 같은 법 시행규칙 제6조</li>
+      <li>「전기설비 검사 및 점검의 방법·절차 등에 관한 고시」(산업통상자원부고시) 별표7 자가용전기설비의 검사항목, 별표9 사업용전기설비 검사항목</li>
+      <li>한국전기설비규정(KEC)</li>
+    </ul>
+  </div>
+
+  <button class="resetBtn" id="resetBtn" type="button">전체 초기화</button>
+
+  <footer>
+    본 자료는 한국전기안전공사 강원지사 검사부에서 제공하는 참고용 자가점검 도구입니다.<br>
+    실제 검사 결과는 현장 검사자의 판정에 따릅니다.
+  </footer>
+</div>
+
+<script>
+(function(){
+  var STORAGE_KEY = 'kesco_checklist_v1';
+
+  function loadState(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    }catch(e){ return {}; }
+  }
+  function saveState(state){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+  }
+
+  var state = loadState();
+  var checkboxes = document.querySelectorAll('input[type=checkbox]');
+
+  checkboxes.forEach(function(cb){
+    if(state[cb.id]) cb.checked = true;
+    cb.addEventListener('change', function(){
+      state[cb.id] = cb.checked;
+      saveState(state);
+      updateProgress();
+    });
+  });
+
+  var tabs = document.querySelectorAll('.tabBtn');
+  var panels = document.querySelectorAll('.panel');
+
+  tabs.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      tabs.forEach(function(b){ b.classList.remove('active'); });
+      panels.forEach(function(p){ p.classList.remove('active'); });
+      btn.classList.add('active');
+      var target = btn.getAttribute('data-tab');
+      document.querySelector('.panel[data-panel="'+target+'"]').classList.add('active');
+      updateProgress();
+    });
+  });
+
+  function updateProgress(){
+    var activePanel = document.querySelector('.panel.active');
+    if(!activePanel) return;
+    var boxes = activePanel.querySelectorAll('input[type=checkbox]');
+    var total = boxes.length;
+    var checked = 0;
+    boxes.forEach(function(cb){ if(cb.checked) checked++; });
+    var pct = total === 0 ? 0 : Math.round((checked/total)*100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = checked + ' / ' + total;
+  }
+
+  document.getElementById('resetBtn').addEventListener('click', function(){
+    if(!confirm('모든 체크 항목을 초기화하시겠습니까?')) return;
+    checkboxes.forEach(function(cb){ cb.checked = false; });
+    state = {};
+    saveState(state);
+    updateProgress();
+  });
+
+  updateProgress();
+})();
+</script>
+</body>
+</html>
