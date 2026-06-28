@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>사용전검사 자가점검 체크리스트</title>
+<title>1 PASS CHECK | 사용전검사 자가점검</title>
 <style>
   :root{
     --navy:#0f1f3d;
@@ -129,8 +130,8 @@
 <div class="wrap">
   <header>
     <div class="eyebrow">한국전기안전공사 · 강원본부 검사부</div>
-    <h1>사용전검사 자가점검 체크리스트</h1>
-    <p>검사 전 사전 검사대상 설비 체크를 통한 불합격 사전예방.</p>
+    <h1>1 PASS CHECK</h1>
+    <p>사용전검사 자가점검 체크리스트, 불합격 설비 사전확인</p>
   </header>
 
   <div class="notice">
@@ -323,6 +324,10 @@
           <li><label class="item"><input type="checkbox" data-grp="pv" id="p-1"><span class="item-text"><strong>모듈 외관상태</strong><span>파손, 변색, 핫스팟 흔적 여부 확인</span></span></label></li>
           <li><label class="item"><input type="checkbox" data-grp="pv" id="p-2"><span class="item-text"><strong>Array 절연저항</strong><span>모듈 배선(Array) 절연저항 측정 가능 상태 확인</span></span></label></li>
           <li><label class="item"><input type="checkbox" data-grp="pv" id="p-3"><span class="item-text"><strong>Array 접지저항</strong><span>구조물·모듈 프레임 접지 연결상태 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-17"><span class="item-text"><strong>KS 인증제품 사용 여부</strong><span>결정질·박막형·BIPV 모듈 모두 KS 인증제품 필요 (KESC 630.2의1.가)</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-18"><span class="item-text"><strong>모듈 직렬군 단락전류·배열 적정성</strong><span>각 직렬군 동일 단락전류 모듈 구성, 2병렬 이상 시 전압·전류 동일 배열 (KESC 720.2.2의1)</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-19"><span class="item-text"><strong>(양면형 모듈) BNPI·STC 적용기준 확인</strong><span>'25.9.20 이후 신청분은 BNPI 기준, 이전분은 STC+후면발전량 기준 적용 — 해당 모듈만 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-20"><span class="item-text"><strong>모듈·지지물 본딩(등전위) 시공</strong><span>모듈과 지지물 간 본딩 누락 여부 — 현장 지적 다발 항목</span></span></label></li>
         </ul>
       </div>
 
@@ -334,16 +339,22 @@
           <li><label class="item"><input type="checkbox" data-grp="pv" id="p-5"><span class="item-text"><strong>단독운전 방지기능</strong><span>계통 정전 시 단독운전 방지 기능 정상 동작 여부(공인시험기관 성적서 확인)</span></span></label></li>
           <li><label class="item"><input type="checkbox" data-grp="pv" id="p-6"><span class="item-text"><strong>역방향운전 제어기능</strong><span>역송 관련 보호기능 정상 동작 여부</span></span></label></li>
           <li><label class="item"><input type="checkbox" data-grp="pv" id="p-7"><span class="item-text"><strong>DC지락차단장치</strong><span>DC 측 지락차단장치 설치 및 공인시험기관 시험성적서 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-21"><span class="item-text"><strong>입력단·출력단 정보표시 부착</strong><span>전압·전류·용량 등 표시 상태 — 현장 지적 최다발 항목</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-22"><span class="item-text"><strong>계통연계시험 실시 여부</strong><span>인버터-한전계통 연계시험 사전 실시 및 배선 연결 상태 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-23"><span class="item-text"><strong>인버터·보호계전기 시운전 점검</strong><span>정상 동작 여부 사전 점검(불량 시 수리·교체 필요)</span></span></label></li>
         </ul>
       </div>
 
       <div class="section">
         <div class="section-head"><h2>03 · 구조물</h2></div>
-        <div class="section-basis">근거: 고시 별표9 Ⅰ-6 「11.구조물」</div>
+        <div class="section-basis">근거: 고시 별표9 Ⅰ-6 「11.구조물」, KESC 720.3.1</div>
         <ul class="items">
           <li><label class="item"><input type="checkbox" data-grp="pv" id="p-8"><span class="item-text"><strong>기초상태</strong><span>구조물 기초 침하·균열 여부</span></span></label></li>
-          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-9"><span class="item-text"><strong>지지물 구조계산서 부합여부</strong><span>설계도서·구조계산서와 실제 시공 일치 여부</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-9"><span class="item-text"><strong>지지물 구조계산서 부합여부</strong><span>설계도서·구조계산서와 실제 시공 일치 여부 — 현장 지적 최다발 항목</span></span></label></li>
           <li><label class="item"><input type="checkbox" data-grp="pv" id="p-10"><span class="item-text"><strong>부식·변형 여부</strong><span>프레임 부식, 볼트 풀림 등 외관상태 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-24"><span class="item-text"><strong>구조계산서 4대 하중 반영여부</strong><span>풍압·적설·자체·지진하중 포함 여부 (KESC 720.3.1)</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-25"><span class="item-text"><strong>단선결선도 등 설계도서와 시공 일치</strong><span>제출 도면(단선결선도·구조계산서)과 현장 설치상태 일치 여부</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-26"><span class="item-text"><strong>보강부재 및 부식방지처리</strong><span>브레이싱(가새) 등 보강부재 누락 여부, 용융아연도금·절단·용접부 방식처리 확인</span></span></label></li>
         </ul>
       </div>
 
@@ -360,8 +371,11 @@
         <div class="section-head"><h2>05 · 추락방지장치</h2></div>
         <div class="section-basis">근거: 고시 별표9 Ⅰ-6 「14.추락방지장치」 (지붕형·경사지 등 해당 시)</div>
         <ul class="items">
-          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-13"><span class="item-text"><strong>점검통로 확보</strong><span>유지보수용 점검통로 폭·안전성 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-13"><span class="item-text"><strong>점검통로 확보</strong><span>유지보수용 점검통로 폭·안전성 확인(모듈 미설치 구간 이동통로 포함)</span></span></label></li>
           <li><label class="item"><input type="checkbox" data-grp="pv" id="p-14"><span class="item-text"><strong>위험표시 부착</strong><span>추락위험 경고표지 부착 여부</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-27"><span class="item-text"><strong>사다리 설치기준 충족</strong><span>20kW·건물높이 6m 기준 고정형/이동식/착탈식 구분 적용 (2026-1호 가이드)</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-28"><span class="item-text"><strong>안전난간·안전대 걸이 시설</strong><span>상부난간대 90cm 이상, 난간대 지름 2.7cm 이상 금속제</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-29"><span class="item-text"><strong>사다리 중간 참 설치</strong><span>사다리 높이 10m 이상 시 5m 이내 간격으로 참 설치</span></span></label></li>
         </ul>
       </div>
 
@@ -371,10 +385,33 @@
         <ul class="items">
           <li><label class="item"><input type="checkbox" data-grp="pv" id="p-15"><span class="item-text"><strong>승압용 변압기 점검</strong><span>접지·절연저항·절연유 상태(해당 시)</span></span></label></li>
           <li><label class="item"><input type="checkbox" data-grp="pv" id="p-16"><span class="item-text"><strong>차단기·접지설비 점검</strong><span>차단기 절연저항, 접지저항 측정 가능 상태 확인</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-30"><span class="item-text"><strong>차단기-전선 보호협조</strong><span>차단기 정격전류와 전선 허용전류 간 적정 협조 여부 — 현장 지적 다발 항목</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-31"><span class="item-text"><strong>전선 상별 색상표시</strong><span>L1 갈색·L2 흑색·L3 회색·N 청색·보호도체 녹색/노란색 구분 준수</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-32"><span class="item-text"><strong>트레이 접지·본딩 및 케이블 매설깊이</strong><span>트레이 접지/본딩 시공, 지중 케이블 적정 매설깊이 또는 트로프 시설</span></span></label></li>
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-33"><span class="item-text"><strong>(특고압 해당 시) 시험성적서·LA 시설</strong><span>특고압케이블·종단접속재·피뢰기 시험성적서, 수용가측 피뢰기(LA) 시설 여부</span></span></label></li>
         </ul>
       </div>
 
-      <p class="hint">※ BIPV(건물일체형)·BAPV(건물부착형)·수상형 구조물은 별도 항목(방위각, 방수, 부력체 안전성 등)이 추가 적용됩니다.</p>
+      <div class="section">
+        <div class="section-head"><h2>07 · 울타리 기준</h2></div>
+        <div class="section-basis">근거: KESC 370·700.4.3 (발전소 등의 울타리·담 등의 시설)</div>
+        <ul class="items">
+          <li><label class="item"><input type="checkbox" data-grp="pv" id="p-34"><span class="item-text"><strong>모듈 직렬군 최대개방전압별 울타리 시설</strong><span>직류 750V 초과 1,500V 이하 시 울타리(높이 2m, 하단간격 15cm) 시설 또는 위험표시(나대지·옥상 등 해당 시) — 모듈 끝선이 울타리 벗어나지 않도록 시설</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="ref-footer">
+        <h3>🔍 설치유형별 추가 확인사항 (해당 시에만 적용)</h3>
+        <ul>
+          <li><strong>건물부착형(BAPV)</strong>: 모듈 배면 지붕·벽면과 10cm 이상 이격, 사용전검사 시 「방수 시공상태 점검기록표」 제출 필요 (2026-1호 가이드 7.2)</li>
+          <li><strong>건물일체형(BIPV)</strong>: 안전성능성적서(내풍압·분포압강도·방수) 및 KS 인증(또는 KS C 8561·8562 시험성적서) 제출 필요 (2026-1호 가이드 7.3)</li>
+          <li><strong>수상 태양광</strong>: 염분/비염분 환경별 KS C IEC 60068-2-52 시험성적서, 어레이별 점검통로 40cm 이상, 구명용품·경광등 시설 (2026-1호 가이드 8)</li>
+          <li><strong>영농형 태양광(권고)</strong>: 모듈 하단 지상고 4m 이상, 농로 폭 4m 이상 권장 — 추후 기준 제정 시 변경 가능 (2026-1호 가이드 12)</li>
+          <li><strong>비상용 예비발전기 연계 시</strong>: 상용전원과 병렬운전 방지 결선(연동·잠금·3단계 절환 등) 확인 (KESC 390.2.1)</li>
+        </ul>
+      </div>
+
+      <p class="hint">※ BIPV·BAPV·수상형·영농형 등 특수 설치유형은 위 추가 확인사항을 함께 참고하시기 바랍니다.</p>
     </div>
 
   </main>
