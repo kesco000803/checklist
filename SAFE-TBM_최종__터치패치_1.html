@@ -1,0 +1,2619 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>SAFE-TBM+ | KESCO 강원본부 검사부</title>
+<style>
+/* ══════════════════════════════════════
+   SAFE-TBM+  |  KESCO 강원본부 검사부
+   Safety Automatic Field Education
+══════════════════════════════════════ */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;}
+body{
+  font-family:'맑은 고딕','Malgun Gothic','나눔고딕','NanumGothic',sans-serif;
+  background:#f0f4f8;
+  display:flex;flex-direction:column;
+}
+
+/* ══ 헤더 (첨부 이미지 재현) ══ */
+.header{
+  background:linear-gradient(135deg,#0D2137 0%,#1565C0 55%,#1976D2 75%,#0D47A1 100%);
+  padding:18px 20px 16px;
+  position:relative;overflow:hidden;
+  flex-shrink:0;
+}
+.header::before{
+  content:'';position:absolute;
+  top:-60px;right:-60px;
+  width:220px;height:220px;border-radius:50%;
+  background:rgba(255,255,255,0.06);
+}
+.header::after{
+  content:'';position:absolute;
+  bottom:-40px;left:30%;
+  width:300px;height:300px;border-radius:50%;
+  background:rgba(255,255,255,0.03);
+}
+.header-badges{display:flex;gap:8px;margin-bottom:12px;position:relative;z-index:1;}
+.badge{
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.25);
+  border-radius:6px;padding:4px 12px;
+  font-size:11px;font-weight:700;color:rgba(255,255,255,0.9);
+  letter-spacing:0.5px;
+}
+.badge-gold{
+  background:rgba(180,130,0,0.3);
+  border-color:rgba(255,180,0,0.5);color:#FFD54F;
+}
+
+/* 타이틀 */
+.header-title{position:relative;z-index:1;margin-bottom:10px;}
+/* ── SAFE-TBM+ 브랜드 타이틀 ── */
+.safe-tbm-main{
+  display:flex;align-items:baseline;gap:0;
+  margin-bottom:5px;
+}
+.brand-safe{
+  font-size:34px;font-weight:900;color:#fff;
+  letter-spacing:1px;
+  text-shadow:0 2px 14px rgba(0,0,0,0.35);
+}
+.brand-dash{
+  font-size:28px;font-weight:700;color:rgba(255,255,255,0.6);
+  margin:0 1px;
+}
+.brand-tbm{
+  font-size:34px;font-weight:900;color:#FFD54F;
+  letter-spacing:1px;
+  text-shadow:0 0 20px rgba(255,213,79,0.8), 0 2px 8px rgba(0,0,0,0.3);
+  animation:brand-blink 2.5s ease-in-out infinite;
+}
+.brand-plus{
+  font-size:16px;font-weight:900;color:#FFD54F;
+  vertical-align:super;
+  line-height:0;
+  position:relative;
+  top:-8px;
+  margin-left:2px;
+  text-shadow:0 0 12px rgba(255,213,79,0.9);
+  animation:brand-blink 2.5s ease-in-out infinite;
+}
+@keyframes brand-blink{
+  0%,100%{text-shadow:0 0 20px rgba(255,213,79,0.8),0 2px 8px rgba(0,0,0,0.3);}
+  50%{text-shadow:0 0 40px rgba(255,213,79,1),0 0 60px rgba(255,179,0,0.6),0 2px 8px rgba(0,0,0,0.3);}
+}
+.safe-tbm-eng{
+  font-size:11px;color:rgba(255,255,255,0.65);
+  letter-spacing:0.5px;margin-bottom:10px;
+  font-weight:500;
+}
+.eng-hi{
+  color:#FFD54F;font-weight:900;font-size:12px;
+}
+
+/* 하단 서브텍스트 */
+.header-info{
+  display:flex;gap:16px;flex-wrap:wrap;
+  font-size:11.5px;color:rgba(220,240,255,0.75);
+  position:relative;z-index:1;
+}
+.header-info span{display:flex;align-items:center;gap:4px;}
+
+/* 로고 */
+.header-logo{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  z-index:2;
+}
+.header-logo img{
+  width:130px;height:auto;
+  filter:
+    brightness(0) invert(1)
+    drop-shadow(0 0 10px rgba(255,255,255,0.9))
+    drop-shadow(0 0 20px rgba(41,182,246,0.7));
+  opacity:0.95;
+  animation:logo-glow 3s ease-in-out infinite;
+}
+@keyframes logo-glow{
+  0%,100%{
+    filter:brightness(0) invert(1)
+      drop-shadow(0 0 8px rgba(255,255,255,0.8))
+      drop-shadow(0 0 18px rgba(41,182,246,0.5));
+    opacity:0.92;
+  }
+  50%{
+    filter:brightness(0) invert(1)
+      drop-shadow(0 0 16px rgba(255,255,255,1))
+      drop-shadow(0 0 32px rgba(41,182,246,0.9))
+      drop-shadow(0 0 48px rgba(255,213,79,0.4));
+    opacity:1;
+  }
+}
+
+/* ══ 음성인식 바 ══ */
+.voice-bar{
+  background:#0A1E30;
+  border-bottom:1px solid rgba(41,182,246,0.2);
+  padding:8px 14px;
+  display:flex;align-items:center;gap:10px;
+  flex-shrink:0;
+}
+.voice-status{flex:1;font-size:12px;color:rgba(255,255,255,0.5);}
+.voice-status.listening{color:#29B6F6;font-weight:700;}
+.voice-status.matched{color:#4CAF50;font-weight:700;}
+.voice-status.error{color:#EF5350;}
+.voice-keyword{
+  font-size:16px;font-weight:900;color:#FFB300;
+  min-width:60px;text-align:center;
+}
+.mic-btn{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,#1565C0,#1E88E5);
+  border:2px solid rgba(41,182,246,0.5);
+  color:#fff;font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;flex-shrink:0;
+}
+.mic-btn:active{transform:scale(0.92);}
+.mic-btn.on{
+  background:linear-gradient(135deg,#C62828,#E53935);
+  border-color:rgba(255,100,100,0.6);
+  animation:mpulse 1s infinite;
+}
+@keyframes mpulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(198,40,40,0.5);}
+  50%{box-shadow:0 0 0 8px rgba(198,40,40,0);}
+}
+
+/* ══ 환경 탭 ══ */
+.env-tabs{
+  background:#fff;
+  border-bottom:1px solid #E0E0E0;
+  display:flex;overflow-x:auto;flex-shrink:0;
+  -ms-overflow-style:none;scrollbar-width:none;
+}
+.env-tabs::-webkit-scrollbar{display:none;}
+.env-tab{
+  flex-shrink:0;
+  padding:10px 16px;
+  font-size:12px;font-weight:700;color:#999;
+  cursor:pointer;border-bottom:3px solid transparent;
+  display:flex;align-items:center;gap:5px;
+  white-space:nowrap;transition:all 0.2s;
+  user-select:none;
+}
+.env-tab:active{background:#f5f5f5;}
+.env-tab.active{color:#1565C0;border-bottom-color:#1565C0;}
+.env-tab.active.fac{color:#4527A0;border-bottom-color:#4527A0;}
+.env-tab.active.apt{color:#2E7D32;border-bottom-color:#2E7D32;}
+.env-tab.active.sol{color:#E65100;border-bottom-color:#E65100;}
+
+/* ══ 메인 스크롤 ══ */
+.main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+
+/* ══ 환경 배너 ══ */
+.env-banner{
+  margin:10px 12px 0;border-radius:12px;
+  padding:14px 16px;color:#fff;
+  display:flex;align-items:center;gap:12px;
+  position:relative;overflow:hidden;
+}
+.env-banner::after{
+  content:attr(data-badge);
+  position:absolute;right:14px;top:12px;
+  background:rgba(255,255,255,0.15);
+  border-radius:5px;padding:2px 9px;
+  font-size:9.5px;font-weight:700;letter-spacing:1px;
+}
+.eb-icon{font-size:36px;flex-shrink:0;}
+.eb-info h3{font-size:14px;font-weight:900;margin-bottom:3px;}
+.eb-info p{font-size:11px;opacity:0.85;line-height:1.45;}
+.bg-common  {background:linear-gradient(135deg,#1565C0,#1976D2);}
+.bg-factory {background:linear-gradient(135deg,#1A237E,#283593);}
+.bg-apt     {background:linear-gradient(135deg,#1B5E20,#2E7D32);}
+.bg-solar   {background:linear-gradient(135deg,#BF360C,#E64A19);}
+
+/* ══ 경고 배너 ══ */
+.alert-bar{
+  background:linear-gradient(90deg,#C62828,#E53935);
+  padding:9px 14px;display:flex;align-items:center;gap:9px;
+}
+.alert-bar p{font-size:12px;color:#fff;font-weight:600;line-height:1.5;word-break:keep-all;}
+
+/* ══ 카드 ══ */
+.cards{padding:8px 12px 20px;}
+.card{background:#fff;border-radius:12px;margin-bottom:9px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.08);overflow:hidden;}
+.card-toggle{display:none;}
+.env-radio,.pop-toggle{display:none;}
+.wiz-radio{display:none;}
+
+/* ── 모드 전환 바 ── */
+.mode-switch{display:flex;gap:8px;padding:10px 14px;background:#fff;border-bottom:1px solid #E0E0E0;flex-wrap:wrap;}
+.mode-btn{
+  flex:1;text-align:center;padding:12px 10px;border-radius:10px;
+  font-size:13px;font-weight:700;background:#F0F2F5;color:#666;
+  cursor:pointer;user-select:none;transition:all 0.15s;
+}
+#wiz-list:checked ~ .mode-switch label[for="wiz-list"]{
+  background:linear-gradient(135deg,#0D2137,#1565C0);color:#fff;
+}
+#wiz-common-t0:checked ~ .mode-switch label.wiz-enter,
+#wiz-common-t1:checked ~ .mode-switch label.wiz-enter,
+#wiz-common-t2:checked ~ .mode-switch label.wiz-enter,
+#wiz-common-t3:checked ~ .mode-switch label.wiz-enter,
+#wiz-common-t4:checked ~ .mode-switch label.wiz-enter,
+#wiz-common-t5:checked ~ .mode-switch label.wiz-enter,
+#wiz-common-t6:checked ~ .mode-switch label.wiz-enter,
+#wiz-common-t7:checked ~ .mode-switch label.wiz-enter,
+#wiz-common-t8:checked ~ .mode-switch label.wiz-enter,
+#wiz-factory-t0:checked ~ .mode-switch label.wiz-enter,
+#wiz-factory-t1:checked ~ .mode-switch label.wiz-enter,
+#wiz-factory-t2:checked ~ .mode-switch label.wiz-enter,
+#wiz-factory-t3:checked ~ .mode-switch label.wiz-enter,
+#wiz-factory-t4:checked ~ .mode-switch label.wiz-enter,
+#wiz-factory-t5:checked ~ .mode-switch label.wiz-enter,
+#wiz-factory-t6:checked ~ .mode-switch label.wiz-enter,
+#wiz-factory-t7:checked ~ .mode-switch label.wiz-enter,
+#wiz-factory-t8:checked ~ .mode-switch label.wiz-enter,
+#wiz-apt-t0:checked ~ .mode-switch label.wiz-enter,
+#wiz-apt-t1:checked ~ .mode-switch label.wiz-enter,
+#wiz-apt-t2:checked ~ .mode-switch label.wiz-enter,
+#wiz-apt-t3:checked ~ .mode-switch label.wiz-enter,
+#wiz-apt-t4:checked ~ .mode-switch label.wiz-enter,
+#wiz-apt-t5:checked ~ .mode-switch label.wiz-enter,
+#wiz-apt-t6:checked ~ .mode-switch label.wiz-enter,
+#wiz-apt-t7:checked ~ .mode-switch label.wiz-enter,
+#wiz-apt-t8:checked ~ .mode-switch label.wiz-enter,
+#wiz-solar-t0:checked ~ .mode-switch label.wiz-enter,
+#wiz-solar-t1:checked ~ .mode-switch label.wiz-enter,
+#wiz-solar-t2:checked ~ .mode-switch label.wiz-enter,
+#wiz-solar-t3:checked ~ .mode-switch label.wiz-enter,
+#wiz-solar-t4:checked ~ .mode-switch label.wiz-enter,
+#wiz-solar-t5:checked ~ .mode-switch label.wiz-enter,
+#wiz-solar-t6:checked ~ .mode-switch label.wiz-enter,
+#wiz-solar-t7:checked ~ .mode-switch label.wiz-enter,
+#wiz-solar-t8:checked ~ .mode-switch label.wiz-enter{
+  background:linear-gradient(135deg,#0D2137,#1565C0);color:#fff;
+}
+.wiz-enter{display:none;}
+#env-common:checked ~ .mode-switch .wiz-enter-common{display:inline-block;}
+#env-factory:checked ~ .mode-switch .wiz-enter-factory{display:inline-block;}
+#env-apt:checked ~ .mode-switch .wiz-enter-apt{display:inline-block;}
+#env-solar:checked ~ .mode-switch .wiz-enter-solar{display:inline-block;}
+
+/* ── 체크리스트 모드 ↔ 진행모드 전환 ──
+   name="wizStep" 라디오 그룹이 (환경 × 스텝) 조합을 모두 담당.
+   진입 버튼이 env별로 4개 있고 각각 자기 env의 STEP1(t0)을 직접 가리키므로
+   어떤 스텝에 있었든 "▶현장 진행 모드"를 누르면 항상 그 env의 STEP1부터 시작함.
+   진행모드 내부의 환경전환 아이콘도 동일하게 각 env의 t0을 가리켜서
+   중간에 환경을 바꿔도 항상 STEP1로 감. 이전/다음 버튼만 env별 4종 변형을 두어
+   같은 환경 안에서는 스텝만 이동하도록 함. ── */
+.wizard-mode{display:none;}
+#wiz-common-t0:checked ~ .wizard-mode,
+#wiz-common-t1:checked ~ .wizard-mode,
+#wiz-common-t2:checked ~ .wizard-mode,
+#wiz-common-t3:checked ~ .wizard-mode,
+#wiz-common-t4:checked ~ .wizard-mode,
+#wiz-common-t5:checked ~ .wizard-mode,
+#wiz-common-t6:checked ~ .wizard-mode,
+#wiz-common-t7:checked ~ .wizard-mode,
+#wiz-common-t8:checked ~ .wizard-mode,
+#wiz-factory-t0:checked ~ .wizard-mode,
+#wiz-factory-t1:checked ~ .wizard-mode,
+#wiz-factory-t2:checked ~ .wizard-mode,
+#wiz-factory-t3:checked ~ .wizard-mode,
+#wiz-factory-t4:checked ~ .wizard-mode,
+#wiz-factory-t5:checked ~ .wizard-mode,
+#wiz-factory-t6:checked ~ .wizard-mode,
+#wiz-factory-t7:checked ~ .wizard-mode,
+#wiz-factory-t8:checked ~ .wizard-mode,
+#wiz-apt-t0:checked ~ .wizard-mode,
+#wiz-apt-t1:checked ~ .wizard-mode,
+#wiz-apt-t2:checked ~ .wizard-mode,
+#wiz-apt-t3:checked ~ .wizard-mode,
+#wiz-apt-t4:checked ~ .wizard-mode,
+#wiz-apt-t5:checked ~ .wizard-mode,
+#wiz-apt-t6:checked ~ .wizard-mode,
+#wiz-apt-t7:checked ~ .wizard-mode,
+#wiz-apt-t8:checked ~ .wizard-mode,
+#wiz-solar-t0:checked ~ .wizard-mode,
+#wiz-solar-t1:checked ~ .wizard-mode,
+#wiz-solar-t2:checked ~ .wizard-mode,
+#wiz-solar-t3:checked ~ .wizard-mode,
+#wiz-solar-t4:checked ~ .wizard-mode,
+#wiz-solar-t5:checked ~ .wizard-mode,
+#wiz-solar-t6:checked ~ .wizard-mode,
+#wiz-solar-t7:checked ~ .wizard-mode,
+#wiz-solar-t8:checked ~ .wizard-mode{display:block;}
+#wiz-common-t0:checked ~ .header,
+#wiz-common-t1:checked ~ .header,
+#wiz-common-t2:checked ~ .header,
+#wiz-common-t3:checked ~ .header,
+#wiz-common-t4:checked ~ .header,
+#wiz-common-t5:checked ~ .header,
+#wiz-common-t6:checked ~ .header,
+#wiz-common-t7:checked ~ .header,
+#wiz-common-t8:checked ~ .header,
+#wiz-factory-t0:checked ~ .header,
+#wiz-factory-t1:checked ~ .header,
+#wiz-factory-t2:checked ~ .header,
+#wiz-factory-t3:checked ~ .header,
+#wiz-factory-t4:checked ~ .header,
+#wiz-factory-t5:checked ~ .header,
+#wiz-factory-t6:checked ~ .header,
+#wiz-factory-t7:checked ~ .header,
+#wiz-factory-t8:checked ~ .header,
+#wiz-apt-t0:checked ~ .header,
+#wiz-apt-t1:checked ~ .header,
+#wiz-apt-t2:checked ~ .header,
+#wiz-apt-t3:checked ~ .header,
+#wiz-apt-t4:checked ~ .header,
+#wiz-apt-t5:checked ~ .header,
+#wiz-apt-t6:checked ~ .header,
+#wiz-apt-t7:checked ~ .header,
+#wiz-apt-t8:checked ~ .header,
+#wiz-solar-t0:checked ~ .header,
+#wiz-solar-t1:checked ~ .header,
+#wiz-solar-t2:checked ~ .header,
+#wiz-solar-t3:checked ~ .header,
+#wiz-solar-t4:checked ~ .header,
+#wiz-solar-t5:checked ~ .header,
+#wiz-solar-t6:checked ~ .header,
+#wiz-solar-t7:checked ~ .header,
+#wiz-solar-t8:checked ~ .header{display:none;}
+#wiz-common-t0:checked ~ .voice-bar,
+#wiz-common-t1:checked ~ .voice-bar,
+#wiz-common-t2:checked ~ .voice-bar,
+#wiz-common-t3:checked ~ .voice-bar,
+#wiz-common-t4:checked ~ .voice-bar,
+#wiz-common-t5:checked ~ .voice-bar,
+#wiz-common-t6:checked ~ .voice-bar,
+#wiz-common-t7:checked ~ .voice-bar,
+#wiz-common-t8:checked ~ .voice-bar,
+#wiz-factory-t0:checked ~ .voice-bar,
+#wiz-factory-t1:checked ~ .voice-bar,
+#wiz-factory-t2:checked ~ .voice-bar,
+#wiz-factory-t3:checked ~ .voice-bar,
+#wiz-factory-t4:checked ~ .voice-bar,
+#wiz-factory-t5:checked ~ .voice-bar,
+#wiz-factory-t6:checked ~ .voice-bar,
+#wiz-factory-t7:checked ~ .voice-bar,
+#wiz-factory-t8:checked ~ .voice-bar,
+#wiz-apt-t0:checked ~ .voice-bar,
+#wiz-apt-t1:checked ~ .voice-bar,
+#wiz-apt-t2:checked ~ .voice-bar,
+#wiz-apt-t3:checked ~ .voice-bar,
+#wiz-apt-t4:checked ~ .voice-bar,
+#wiz-apt-t5:checked ~ .voice-bar,
+#wiz-apt-t6:checked ~ .voice-bar,
+#wiz-apt-t7:checked ~ .voice-bar,
+#wiz-apt-t8:checked ~ .voice-bar,
+#wiz-solar-t0:checked ~ .voice-bar,
+#wiz-solar-t1:checked ~ .voice-bar,
+#wiz-solar-t2:checked ~ .voice-bar,
+#wiz-solar-t3:checked ~ .voice-bar,
+#wiz-solar-t4:checked ~ .voice-bar,
+#wiz-solar-t5:checked ~ .voice-bar,
+#wiz-solar-t6:checked ~ .voice-bar,
+#wiz-solar-t7:checked ~ .voice-bar,
+#wiz-solar-t8:checked ~ .voice-bar{display:none;}
+#wiz-common-t0:checked ~ .env-tabs,
+#wiz-common-t1:checked ~ .env-tabs,
+#wiz-common-t2:checked ~ .env-tabs,
+#wiz-common-t3:checked ~ .env-tabs,
+#wiz-common-t4:checked ~ .env-tabs,
+#wiz-common-t5:checked ~ .env-tabs,
+#wiz-common-t6:checked ~ .env-tabs,
+#wiz-common-t7:checked ~ .env-tabs,
+#wiz-common-t8:checked ~ .env-tabs,
+#wiz-factory-t0:checked ~ .env-tabs,
+#wiz-factory-t1:checked ~ .env-tabs,
+#wiz-factory-t2:checked ~ .env-tabs,
+#wiz-factory-t3:checked ~ .env-tabs,
+#wiz-factory-t4:checked ~ .env-tabs,
+#wiz-factory-t5:checked ~ .env-tabs,
+#wiz-factory-t6:checked ~ .env-tabs,
+#wiz-factory-t7:checked ~ .env-tabs,
+#wiz-factory-t8:checked ~ .env-tabs,
+#wiz-apt-t0:checked ~ .env-tabs,
+#wiz-apt-t1:checked ~ .env-tabs,
+#wiz-apt-t2:checked ~ .env-tabs,
+#wiz-apt-t3:checked ~ .env-tabs,
+#wiz-apt-t4:checked ~ .env-tabs,
+#wiz-apt-t5:checked ~ .env-tabs,
+#wiz-apt-t6:checked ~ .env-tabs,
+#wiz-apt-t7:checked ~ .env-tabs,
+#wiz-apt-t8:checked ~ .env-tabs,
+#wiz-solar-t0:checked ~ .env-tabs,
+#wiz-solar-t1:checked ~ .env-tabs,
+#wiz-solar-t2:checked ~ .env-tabs,
+#wiz-solar-t3:checked ~ .env-tabs,
+#wiz-solar-t4:checked ~ .env-tabs,
+#wiz-solar-t5:checked ~ .env-tabs,
+#wiz-solar-t6:checked ~ .env-tabs,
+#wiz-solar-t7:checked ~ .env-tabs,
+#wiz-solar-t8:checked ~ .env-tabs{display:none;}
+#wiz-common-t0:checked ~ .main,
+#wiz-common-t1:checked ~ .main,
+#wiz-common-t2:checked ~ .main,
+#wiz-common-t3:checked ~ .main,
+#wiz-common-t4:checked ~ .main,
+#wiz-common-t5:checked ~ .main,
+#wiz-common-t6:checked ~ .main,
+#wiz-common-t7:checked ~ .main,
+#wiz-common-t8:checked ~ .main,
+#wiz-factory-t0:checked ~ .main,
+#wiz-factory-t1:checked ~ .main,
+#wiz-factory-t2:checked ~ .main,
+#wiz-factory-t3:checked ~ .main,
+#wiz-factory-t4:checked ~ .main,
+#wiz-factory-t5:checked ~ .main,
+#wiz-factory-t6:checked ~ .main,
+#wiz-factory-t7:checked ~ .main,
+#wiz-factory-t8:checked ~ .main,
+#wiz-apt-t0:checked ~ .main,
+#wiz-apt-t1:checked ~ .main,
+#wiz-apt-t2:checked ~ .main,
+#wiz-apt-t3:checked ~ .main,
+#wiz-apt-t4:checked ~ .main,
+#wiz-apt-t5:checked ~ .main,
+#wiz-apt-t6:checked ~ .main,
+#wiz-apt-t7:checked ~ .main,
+#wiz-apt-t8:checked ~ .main,
+#wiz-solar-t0:checked ~ .main,
+#wiz-solar-t1:checked ~ .main,
+#wiz-solar-t2:checked ~ .main,
+#wiz-solar-t3:checked ~ .main,
+#wiz-solar-t4:checked ~ .main,
+#wiz-solar-t5:checked ~ .main,
+#wiz-solar-t6:checked ~ .main,
+#wiz-solar-t7:checked ~ .main,
+#wiz-solar-t8:checked ~ .main{display:none;}
+
+/* ── 진행모드 슬라이드 ── */
+.wiz-slide{display:none;flex-direction:column;min-height:100vh;background:#F7F8FA;}
+.wiz-top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;background:#0D2137;color:#fff;flex-shrink:0;
+  gap:8px;
+}
+.wiz-progress{font-size:12px;font-weight:700;color:#90CAF9;flex-shrink:0;}
+.wiz-env-switch{display:flex;gap:6px;flex:1;justify-content:center;}
+.wiz-env-btn{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2px;width:52px;padding:6px 2px 5px;border-radius:10px;
+  background:rgba(255,255,255,0.10);border:1.5px solid rgba(255,255,255,0.18);
+  cursor:pointer;user-select:none;flex-shrink:0;
+}
+.wiz-env-ic{font-size:19px;line-height:1;}
+.wiz-env-tx{font-size:9.5px;font-weight:700;color:rgba(255,255,255,0.7);letter-spacing:-0.2px;}
+#wiz-common-t0:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"],
+#wiz-common-t1:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"],
+#wiz-common-t2:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"],
+#wiz-common-t3:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"],
+#wiz-common-t4:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"],
+#wiz-common-t5:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"],
+#wiz-common-t6:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"],
+#wiz-common-t7:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"],
+#wiz-common-t8:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"],
+#wiz-factory-t0:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"],
+#wiz-factory-t1:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"],
+#wiz-factory-t2:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"],
+#wiz-factory-t3:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"],
+#wiz-factory-t4:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"],
+#wiz-factory-t5:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"],
+#wiz-factory-t6:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"],
+#wiz-factory-t7:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"],
+#wiz-factory-t8:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"],
+#wiz-apt-t0:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"],
+#wiz-apt-t1:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"],
+#wiz-apt-t2:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"],
+#wiz-apt-t3:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"],
+#wiz-apt-t4:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"],
+#wiz-apt-t5:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"],
+#wiz-apt-t6:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"],
+#wiz-apt-t7:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"],
+#wiz-apt-t8:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"],
+#wiz-solar-t0:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"],
+#wiz-solar-t1:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"],
+#wiz-solar-t2:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"],
+#wiz-solar-t3:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"],
+#wiz-solar-t4:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"],
+#wiz-solar-t5:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"],
+#wiz-solar-t6:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"],
+#wiz-solar-t7:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"],
+#wiz-solar-t8:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"]{
+  background:#1565C0;border-color:#64B5F6;
+  box-shadow:0 0 0 2px rgba(100,181,246,0.35);
+}
+#wiz-common-t0:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"] .wiz-env-tx,
+#wiz-common-t1:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"] .wiz-env-tx,
+#wiz-common-t2:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"] .wiz-env-tx,
+#wiz-common-t3:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"] .wiz-env-tx,
+#wiz-common-t4:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"] .wiz-env-tx,
+#wiz-common-t5:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"] .wiz-env-tx,
+#wiz-common-t6:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"] .wiz-env-tx,
+#wiz-common-t7:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"] .wiz-env-tx,
+#wiz-common-t8:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-common-t0"] .wiz-env-tx,
+#wiz-factory-t0:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"] .wiz-env-tx,
+#wiz-factory-t1:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"] .wiz-env-tx,
+#wiz-factory-t2:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"] .wiz-env-tx,
+#wiz-factory-t3:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"] .wiz-env-tx,
+#wiz-factory-t4:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"] .wiz-env-tx,
+#wiz-factory-t5:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"] .wiz-env-tx,
+#wiz-factory-t6:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"] .wiz-env-tx,
+#wiz-factory-t7:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"] .wiz-env-tx,
+#wiz-factory-t8:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-factory-t0"] .wiz-env-tx,
+#wiz-apt-t0:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"] .wiz-env-tx,
+#wiz-apt-t1:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"] .wiz-env-tx,
+#wiz-apt-t2:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"] .wiz-env-tx,
+#wiz-apt-t3:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"] .wiz-env-tx,
+#wiz-apt-t4:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"] .wiz-env-tx,
+#wiz-apt-t5:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"] .wiz-env-tx,
+#wiz-apt-t6:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"] .wiz-env-tx,
+#wiz-apt-t7:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"] .wiz-env-tx,
+#wiz-apt-t8:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-apt-t0"] .wiz-env-tx,
+#wiz-solar-t0:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"] .wiz-env-tx,
+#wiz-solar-t1:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"] .wiz-env-tx,
+#wiz-solar-t2:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"] .wiz-env-tx,
+#wiz-solar-t3:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"] .wiz-env-tx,
+#wiz-solar-t4:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"] .wiz-env-tx,
+#wiz-solar-t5:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"] .wiz-env-tx,
+#wiz-solar-t6:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"] .wiz-env-tx,
+#wiz-solar-t7:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"] .wiz-env-tx,
+#wiz-solar-t8:checked ~ .wizard-mode label.wiz-env-btn[for="wiz-solar-t0"] .wiz-env-tx{
+  color:#fff;
+}
+.wiz-exit{font-size:13px;color:rgba(255,255,255,0.75);cursor:pointer;user-select:none;padding:6px 10px;flex-shrink:0;}
+.wiz-body{flex:1;overflow-y:auto;padding:22px 20px 20px;}
+.wiz-title{font-size:22px;font-weight:800;color:#0D2137;margin-bottom:4px;line-height:1.35;}
+.wiz-sub{font-size:13px;color:#888;margin-bottom:18px;}
+.wiz-speech-block{margin-bottom:16px;}
+.wiz-speech{
+  font-size:19px;font-weight:700;line-height:1.6;color:#0D2137;
+  background:#fff;border-left:5px solid #1565C0;
+  border-radius:0 12px 12px 0;padding:16px 18px;margin-bottom:12px;
+  box-shadow:0 1px 3px rgba(0,0,0,0.06);word-break:keep-all;
+}
+.wiz-extra{display:none;background:#FFF8E1;border-left:5px solid #F9A825;
+  border-radius:0 10px 10px 0;padding:12px 16px;margin-bottom:10px;font-size:14px;color:#5D4037;}
+.wiz-extra-h{font-weight:800;margin-bottom:6px;}
+.wiz-extra ul{padding-left:18px;}
+.wiz-extra li{margin-bottom:4px;}
+.wiz-speech-env{display:none;}
+#wiz-common-t0:checked ~ .wizard-mode .wiz-speech-env[data-env="common"],
+#wiz-common-t1:checked ~ .wizard-mode .wiz-speech-env[data-env="common"],
+#wiz-common-t2:checked ~ .wizard-mode .wiz-speech-env[data-env="common"],
+#wiz-common-t3:checked ~ .wizard-mode .wiz-speech-env[data-env="common"],
+#wiz-common-t4:checked ~ .wizard-mode .wiz-speech-env[data-env="common"],
+#wiz-common-t5:checked ~ .wizard-mode .wiz-speech-env[data-env="common"],
+#wiz-common-t6:checked ~ .wizard-mode .wiz-speech-env[data-env="common"],
+#wiz-common-t7:checked ~ .wizard-mode .wiz-speech-env[data-env="common"],
+#wiz-common-t8:checked ~ .wizard-mode .wiz-speech-env[data-env="common"],
+#wiz-factory-t0:checked ~ .wizard-mode .wiz-speech-env[data-env="factory"],
+#wiz-factory-t1:checked ~ .wizard-mode .wiz-speech-env[data-env="factory"],
+#wiz-factory-t2:checked ~ .wizard-mode .wiz-speech-env[data-env="factory"],
+#wiz-factory-t3:checked ~ .wizard-mode .wiz-speech-env[data-env="factory"],
+#wiz-factory-t4:checked ~ .wizard-mode .wiz-speech-env[data-env="factory"],
+#wiz-factory-t5:checked ~ .wizard-mode .wiz-speech-env[data-env="factory"],
+#wiz-factory-t6:checked ~ .wizard-mode .wiz-speech-env[data-env="factory"],
+#wiz-factory-t7:checked ~ .wizard-mode .wiz-speech-env[data-env="factory"],
+#wiz-factory-t8:checked ~ .wizard-mode .wiz-speech-env[data-env="factory"],
+#wiz-apt-t0:checked ~ .wizard-mode .wiz-speech-env[data-env="apt"],
+#wiz-apt-t1:checked ~ .wizard-mode .wiz-speech-env[data-env="apt"],
+#wiz-apt-t2:checked ~ .wizard-mode .wiz-speech-env[data-env="apt"],
+#wiz-apt-t3:checked ~ .wizard-mode .wiz-speech-env[data-env="apt"],
+#wiz-apt-t4:checked ~ .wizard-mode .wiz-speech-env[data-env="apt"],
+#wiz-apt-t5:checked ~ .wizard-mode .wiz-speech-env[data-env="apt"],
+#wiz-apt-t6:checked ~ .wizard-mode .wiz-speech-env[data-env="apt"],
+#wiz-apt-t7:checked ~ .wizard-mode .wiz-speech-env[data-env="apt"],
+#wiz-apt-t8:checked ~ .wizard-mode .wiz-speech-env[data-env="apt"],
+#wiz-solar-t0:checked ~ .wizard-mode .wiz-speech-env[data-env="solar"],
+#wiz-solar-t1:checked ~ .wizard-mode .wiz-speech-env[data-env="solar"],
+#wiz-solar-t2:checked ~ .wizard-mode .wiz-speech-env[data-env="solar"],
+#wiz-solar-t3:checked ~ .wizard-mode .wiz-speech-env[data-env="solar"],
+#wiz-solar-t4:checked ~ .wizard-mode .wiz-speech-env[data-env="solar"],
+#wiz-solar-t5:checked ~ .wizard-mode .wiz-speech-env[data-env="solar"],
+#wiz-solar-t6:checked ~ .wizard-mode .wiz-speech-env[data-env="solar"],
+#wiz-solar-t7:checked ~ .wizard-mode .wiz-speech-env[data-env="solar"],
+#wiz-solar-t8:checked ~ .wizard-mode .wiz-speech-env[data-env="solar"]{display:block;}
+#wiz-common-t0:checked ~ .wizard-mode .wiz-extra[data-env="common"],
+#wiz-common-t1:checked ~ .wizard-mode .wiz-extra[data-env="common"],
+#wiz-common-t2:checked ~ .wizard-mode .wiz-extra[data-env="common"],
+#wiz-common-t3:checked ~ .wizard-mode .wiz-extra[data-env="common"],
+#wiz-common-t4:checked ~ .wizard-mode .wiz-extra[data-env="common"],
+#wiz-common-t5:checked ~ .wizard-mode .wiz-extra[data-env="common"],
+#wiz-common-t6:checked ~ .wizard-mode .wiz-extra[data-env="common"],
+#wiz-common-t7:checked ~ .wizard-mode .wiz-extra[data-env="common"],
+#wiz-common-t8:checked ~ .wizard-mode .wiz-extra[data-env="common"],
+#wiz-factory-t0:checked ~ .wizard-mode .wiz-extra[data-env="factory"],
+#wiz-factory-t1:checked ~ .wizard-mode .wiz-extra[data-env="factory"],
+#wiz-factory-t2:checked ~ .wizard-mode .wiz-extra[data-env="factory"],
+#wiz-factory-t3:checked ~ .wizard-mode .wiz-extra[data-env="factory"],
+#wiz-factory-t4:checked ~ .wizard-mode .wiz-extra[data-env="factory"],
+#wiz-factory-t5:checked ~ .wizard-mode .wiz-extra[data-env="factory"],
+#wiz-factory-t6:checked ~ .wizard-mode .wiz-extra[data-env="factory"],
+#wiz-factory-t7:checked ~ .wizard-mode .wiz-extra[data-env="factory"],
+#wiz-factory-t8:checked ~ .wizard-mode .wiz-extra[data-env="factory"],
+#wiz-apt-t0:checked ~ .wizard-mode .wiz-extra[data-env="apt"],
+#wiz-apt-t1:checked ~ .wizard-mode .wiz-extra[data-env="apt"],
+#wiz-apt-t2:checked ~ .wizard-mode .wiz-extra[data-env="apt"],
+#wiz-apt-t3:checked ~ .wizard-mode .wiz-extra[data-env="apt"],
+#wiz-apt-t4:checked ~ .wizard-mode .wiz-extra[data-env="apt"],
+#wiz-apt-t5:checked ~ .wizard-mode .wiz-extra[data-env="apt"],
+#wiz-apt-t6:checked ~ .wizard-mode .wiz-extra[data-env="apt"],
+#wiz-apt-t7:checked ~ .wizard-mode .wiz-extra[data-env="apt"],
+#wiz-apt-t8:checked ~ .wizard-mode .wiz-extra[data-env="apt"],
+#wiz-solar-t0:checked ~ .wizard-mode .wiz-extra[data-env="solar"],
+#wiz-solar-t1:checked ~ .wizard-mode .wiz-extra[data-env="solar"],
+#wiz-solar-t2:checked ~ .wizard-mode .wiz-extra[data-env="solar"],
+#wiz-solar-t3:checked ~ .wizard-mode .wiz-extra[data-env="solar"],
+#wiz-solar-t4:checked ~ .wizard-mode .wiz-extra[data-env="solar"],
+#wiz-solar-t5:checked ~ .wizard-mode .wiz-extra[data-env="solar"],
+#wiz-solar-t6:checked ~ .wizard-mode .wiz-extra[data-env="solar"],
+#wiz-solar-t7:checked ~ .wizard-mode .wiz-extra[data-env="solar"],
+#wiz-solar-t8:checked ~ .wizard-mode .wiz-extra[data-env="solar"]{display:block;}
+.wiz-nav{
+  display:flex;gap:10px;padding:14px 18px calc(14px + env(safe-area-inset-bottom));
+  background:#fff;border-top:1px solid #E0E0E0;flex-shrink:0;
+  position:sticky;bottom:0;
+}
+.wiz-btn{
+  flex:1;text-align:center;padding:18px;border-radius:14px;
+  font-size:17px;font-weight:800;cursor:pointer;user-select:none;
+}
+.wiz-next{background:linear-gradient(135deg,#0D2137,#1565C0);color:#fff;}
+.wiz-finish{background:linear-gradient(135deg,#1B5E20,#2E7D32);}
+.wiz-prev{background:#EEEFF2;color:#444;flex:0 0 88px;}
+.wiz-nav-common,.wiz-nav-factory,.wiz-nav-apt,.wiz-nav-solar{display:none;}
+#wiz-common-t0:checked ~ .wizard-mode .wiz-nav-common,
+#wiz-common-t1:checked ~ .wizard-mode .wiz-nav-common,
+#wiz-common-t2:checked ~ .wizard-mode .wiz-nav-common,
+#wiz-common-t3:checked ~ .wizard-mode .wiz-nav-common,
+#wiz-common-t4:checked ~ .wizard-mode .wiz-nav-common,
+#wiz-common-t5:checked ~ .wizard-mode .wiz-nav-common,
+#wiz-common-t6:checked ~ .wizard-mode .wiz-nav-common,
+#wiz-common-t7:checked ~ .wizard-mode .wiz-nav-common,
+#wiz-common-t8:checked ~ .wizard-mode .wiz-nav-common{display:flex;}
+#wiz-factory-t0:checked ~ .wizard-mode .wiz-nav-factory,
+#wiz-factory-t1:checked ~ .wizard-mode .wiz-nav-factory,
+#wiz-factory-t2:checked ~ .wizard-mode .wiz-nav-factory,
+#wiz-factory-t3:checked ~ .wizard-mode .wiz-nav-factory,
+#wiz-factory-t4:checked ~ .wizard-mode .wiz-nav-factory,
+#wiz-factory-t5:checked ~ .wizard-mode .wiz-nav-factory,
+#wiz-factory-t6:checked ~ .wizard-mode .wiz-nav-factory,
+#wiz-factory-t7:checked ~ .wizard-mode .wiz-nav-factory,
+#wiz-factory-t8:checked ~ .wizard-mode .wiz-nav-factory{display:flex;}
+#wiz-apt-t0:checked ~ .wizard-mode .wiz-nav-apt,
+#wiz-apt-t1:checked ~ .wizard-mode .wiz-nav-apt,
+#wiz-apt-t2:checked ~ .wizard-mode .wiz-nav-apt,
+#wiz-apt-t3:checked ~ .wizard-mode .wiz-nav-apt,
+#wiz-apt-t4:checked ~ .wizard-mode .wiz-nav-apt,
+#wiz-apt-t5:checked ~ .wizard-mode .wiz-nav-apt,
+#wiz-apt-t6:checked ~ .wizard-mode .wiz-nav-apt,
+#wiz-apt-t7:checked ~ .wizard-mode .wiz-nav-apt,
+#wiz-apt-t8:checked ~ .wizard-mode .wiz-nav-apt{display:flex;}
+#wiz-solar-t0:checked ~ .wizard-mode .wiz-nav-solar,
+#wiz-solar-t1:checked ~ .wizard-mode .wiz-nav-solar,
+#wiz-solar-t2:checked ~ .wizard-mode .wiz-nav-solar,
+#wiz-solar-t3:checked ~ .wizard-mode .wiz-nav-solar,
+#wiz-solar-t4:checked ~ .wizard-mode .wiz-nav-solar,
+#wiz-solar-t5:checked ~ .wizard-mode .wiz-nav-solar,
+#wiz-solar-t6:checked ~ .wizard-mode .wiz-nav-solar,
+#wiz-solar-t7:checked ~ .wizard-mode .wiz-nav-solar,
+#wiz-solar-t8:checked ~ .wizard-mode .wiz-nav-solar{display:flex;}
+#wiz-common-t0:checked ~ .wizard-mode .wiz-slide[data-step="t0"],
+#wiz-factory-t0:checked ~ .wizard-mode .wiz-slide[data-step="t0"],
+#wiz-apt-t0:checked ~ .wizard-mode .wiz-slide[data-step="t0"],
+#wiz-solar-t0:checked ~ .wizard-mode .wiz-slide[data-step="t0"]{display:flex;}
+#wiz-common-t1:checked ~ .wizard-mode .wiz-slide[data-step="t1"],
+#wiz-factory-t1:checked ~ .wizard-mode .wiz-slide[data-step="t1"],
+#wiz-apt-t1:checked ~ .wizard-mode .wiz-slide[data-step="t1"],
+#wiz-solar-t1:checked ~ .wizard-mode .wiz-slide[data-step="t1"]{display:flex;}
+#wiz-common-t2:checked ~ .wizard-mode .wiz-slide[data-step="t2"],
+#wiz-factory-t2:checked ~ .wizard-mode .wiz-slide[data-step="t2"],
+#wiz-apt-t2:checked ~ .wizard-mode .wiz-slide[data-step="t2"],
+#wiz-solar-t2:checked ~ .wizard-mode .wiz-slide[data-step="t2"]{display:flex;}
+#wiz-common-t3:checked ~ .wizard-mode .wiz-slide[data-step="t3"],
+#wiz-factory-t3:checked ~ .wizard-mode .wiz-slide[data-step="t3"],
+#wiz-apt-t3:checked ~ .wizard-mode .wiz-slide[data-step="t3"],
+#wiz-solar-t3:checked ~ .wizard-mode .wiz-slide[data-step="t3"]{display:flex;}
+#wiz-common-t4:checked ~ .wizard-mode .wiz-slide[data-step="t4"],
+#wiz-factory-t4:checked ~ .wizard-mode .wiz-slide[data-step="t4"],
+#wiz-apt-t4:checked ~ .wizard-mode .wiz-slide[data-step="t4"],
+#wiz-solar-t4:checked ~ .wizard-mode .wiz-slide[data-step="t4"]{display:flex;}
+#wiz-common-t5:checked ~ .wizard-mode .wiz-slide[data-step="t5"],
+#wiz-factory-t5:checked ~ .wizard-mode .wiz-slide[data-step="t5"],
+#wiz-apt-t5:checked ~ .wizard-mode .wiz-slide[data-step="t5"],
+#wiz-solar-t5:checked ~ .wizard-mode .wiz-slide[data-step="t5"]{display:flex;}
+#wiz-common-t6:checked ~ .wizard-mode .wiz-slide[data-step="t6"],
+#wiz-factory-t6:checked ~ .wizard-mode .wiz-slide[data-step="t6"],
+#wiz-apt-t6:checked ~ .wizard-mode .wiz-slide[data-step="t6"],
+#wiz-solar-t6:checked ~ .wizard-mode .wiz-slide[data-step="t6"]{display:flex;}
+#wiz-common-t7:checked ~ .wizard-mode .wiz-slide[data-step="t7"],
+#wiz-factory-t7:checked ~ .wizard-mode .wiz-slide[data-step="t7"],
+#wiz-apt-t7:checked ~ .wizard-mode .wiz-slide[data-step="t7"],
+#wiz-solar-t7:checked ~ .wizard-mode .wiz-slide[data-step="t7"]{display:flex;}
+#wiz-common-t8:checked ~ .wizard-mode .wiz-slide[data-step="t8"],
+#wiz-factory-t8:checked ~ .wizard-mode .wiz-slide[data-step="t8"],
+#wiz-apt-t8:checked ~ .wizard-mode .wiz-slide[data-step="t8"],
+#wiz-solar-t8:checked ~ .wizard-mode .wiz-slide[data-step="t8"]{display:flex;}
+
+/* ── CSS 전용 폴백: 탭 강조 (JS 없이도 동작) ── */
+#env-common:checked ~ .env-tabs label[for="env-common"]{color:#1565C0;border-bottom-color:#1565C0;}
+#env-factory:checked ~ .env-tabs label[for="env-factory"]{color:#4527A0;border-bottom-color:#4527A0;}
+#env-apt:checked ~ .env-tabs label[for="env-apt"]{color:#2E7D32;border-bottom-color:#2E7D32;}
+#env-solar:checked ~ .env-tabs label[for="env-solar"]{color:#E65100;border-bottom-color:#E65100;}
+/* ── CSS 전용 폴백: 환경별 안내 블록 표시 ── */
+#env-factory:checked ~ .main .env-zone[data-env="factory"]{display:block;}
+#env-apt:checked ~ .main .env-zone[data-env="apt"]{display:block;}
+#env-solar:checked ~ .main .env-zone[data-env="solar"]{display:block;}
+/* ── CSS 전용 폴백: 팝업 열기/닫기 ── */
+#popOpen-s0:checked ~ #pop-s0{display:block;}
+#popOpen-s1:checked ~ #pop-s1{display:block;}
+#popOpen-s2:checked ~ #pop-s2{display:block;}
+#popOpen-s3:checked ~ #pop-s3{display:block;}
+#popOpen-s4:checked ~ #pop-s4{display:block;}
+#popOpen-s5:checked ~ #pop-s5{display:block;}
+#popOpen-s6:checked ~ #pop-s6{display:block;}
+#popOpen-s7:checked ~ #pop-s7{display:block;}
+#popOpen-s8:checked ~ #pop-s8{display:block;}
+.card-head{
+  display:flex;align-items:center;gap:9px;padding:12px 14px;
+  cursor:pointer;user-select:none;
+}
+.card-head:active{background:#f9f9f9;}
+.step-ic{
+  width:34px;height:34px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:900;color:#fff;flex-shrink:0;
+}
+.ch-info{flex:1;}
+.ch-info h3{font-size:13.5px;font-weight:700;color:#1A1A2E;margin-bottom:2px;}
+.ch-info p{font-size:11px;color:#999;}
+.ch-arr{font-size:11px;color:#ccc;transition:transform 0.3s;}
+.card-toggle:checked~.card-head .ch-arr{transform:rotate(180deg);}
+.card-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+.card-toggle:checked~.card-body{max-height:4000px;}
+.ci{padding:0 14px 15px;}
+
+/* ══ 환경전용 구역 ══ */
+.env-zone{display:none;}
+.env-zone.show{display:block;}
+.env-block{
+  border-radius:9px;padding:10px 12px;margin-bottom:8px;
+  border-left:4px solid;
+}
+.env-block h4{font-size:12.5px;font-weight:700;margin-bottom:5px;display:flex;align-items:center;gap:5px;}
+.env-block ul{font-size:12.5px;color:#222;line-height:1.75;padding-left:16px;}
+.env-block p{font-size:12.5px;color:#222;line-height:1.7;}
+.eb-fac{background:#EDE7F6;border-color:#4527A0;} .eb-fac h4{color:#4527A0;}
+.eb-apt{background:#E8F5E9;border-color:#2E7D32;} .eb-apt h4{color:#1B5E20;}
+.eb-sol{background:#FFF3E0;border-color:#E65100;} .eb-sol h4{color:#BF360C;}
+
+/* ══ 공통 위험박스 ══ */
+.danger{
+  background:linear-gradient(135deg,#FFEBEE,#FCE4EC);
+  border:1.5px solid #C62828;border-radius:8px;
+  padding:9px 12px;margin-bottom:8px;
+}
+.danger .dt{font-weight:700;font-size:13px;color:#B71C1C;margin-bottom:4px;}
+.danger .dd{font-size:12.5px;color:#333;line-height:1.65;padding-left:18px;}
+
+/* ══ 체크리스트 ══ */
+.chk{list-style:none;margin-bottom:10px;}
+.chk li{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 0;border-bottom:1px solid #f0f0f0;
+  font-size:13px;color:#222;line-height:1.45;
+}
+.chk li:last-child{border-bottom:none;}
+.ci-ic{width:19px;height:19px;border-radius:4px;display:flex;
+       align-items:center;justify-content:center;font-size:9px;
+       flex-shrink:0;margin-top:2px;color:#fff;}
+
+/* ══ 역할그리드 ══ */
+.role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:10px;}
+.role-card{background:#F4F6F9;border-radius:9px;padding:10px 6px;text-align:center;}
+.role-card .ri{font-size:20px;margin-bottom:3px;}
+.role-card .rn{font-size:10.5px;font-weight:700;color:#1A1A2E;margin-bottom:2px;}
+.role-card .rd{font-size:10px;color:#666;line-height:1.35;}
+
+/* ══ 구두발화 ══ */
+.speech-lbl{font-size:11px;font-weight:700;color:#1565C0;letter-spacing:1px;margin:12px 0 7px;}
+.speech{
+  background:#E8F4FD;
+  border-left:4px solid #1E88E5;
+  border-radius:0 8px 8px 0;
+  padding:11px 14px 11px 44px;
+  font-size:13.5px;color:#1A237E;line-height:1.75;
+  margin-bottom:8px;
+  position:relative;
+  word-break:keep-all;
+}
+.speech::before{
+  content:'💬';
+  position:absolute;left:12px;top:11px;
+  font-size:15px;line-height:1;
+}
+.speech.env-add{
+  background:#FFF8E1;
+  border-left-color:#F9A825;
+  color:#4E342E;
+}
+.speech.env-add::before{content:'⚡';}
+
+/* ══ 팝업 버튼 ══ */
+.pop-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  background:linear-gradient(135deg,#0D2137,#1565C0);
+  color:#fff;border-radius:20px;
+  padding:9px 18px;
+  font-size:12.5px;font-weight:700;cursor:pointer;
+  margin-bottom:12px;border:none;font-family:inherit;
+  letter-spacing:0.2px;
+}
+.pop-btn:active{opacity:0.85;}
+
+
+/* ══ 팝업 일러스트 헤더 ══ */
+.pop-illust{
+  display:flex;align-items:center;justify-content:center;
+  padding:12px 12px 8px;
+  flex-shrink:0;
+  min-height:210px;
+}
+.pop-illust svg{
+  width:100%;max-width:420px;height:210px;
+}
+
+/* 팝업 헤더 레이아웃 수정 */
+.pop-hd{
+  padding:14px 18px;display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+}
+
+/* ══ 팝업 ══ */
+.popup-overlay{
+  display:none;
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  background:#000;
+  z-index:9000;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.popup-box{
+  background:#fff;
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+.pop-hd{
+  padding:14px 18px;display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+}
+.pop-hd-t{color:#fff;font-size:16px;font-weight:700;}
+.pop-hd-s{color:rgba(255,255,255,0.7);font-size:12px;margin-top:3px;}
+.pop-close{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,0.18);color:#fff;
+  font-size:18px;font-weight:700;text-align:center;line-height:38px;
+  cursor:pointer;flex-shrink:0;border:none;font-family:inherit;
+}
+.pop-body{overflow-y:auto;flex:1;}
+.pop-item{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:16px 20px;
+  border-bottom:1px solid #f0f0f0;
+  font-size:15.5px;line-height:1.85;color:#0D2137;
+  font-weight:500;word-break:keep-all;
+}
+.pop-item-text{flex:1;}
+.pop-item:last-child{border-bottom:none;}
+.pop-num{
+  display:flex;align-items:center;justify-content:center;
+  width:26px;height:26px;border-radius:50%;
+  background:#1565C0;color:#fff;
+  font-size:11px;font-weight:700;
+  flex-shrink:0;
+  margin-top:2px;
+}
+.pop-item.add{background:#FFFDE7;font-size:15.5px;}
+.pop-item.add .pop-num{background:#F9A825;color:#000;}
+
+/* ══ 마무리 ══ */
+.finish-card{
+  background:linear-gradient(135deg,#1B5E20,#2E7D32);
+  border-radius:12px;padding:18px 16px;color:#fff;
+  margin:0 12px 18px;
+  box-shadow:0 4px 14px rgba(46,125,50,0.3);
+}
+.finish-card h3{font-size:14px;font-weight:900;margin-bottom:9px;}
+.fin-speech{
+  background:rgba(255,255,255,0.1);border-left:3px solid rgba(255,255,255,0.35);
+  border-radius:0 6px 6px 0;padding:8px 11px;
+  font-size:12px;line-height:1.7;margin-bottom:6px;word-break:keep-all;
+}
+.fin-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.fin-tag{background:rgba(255,255,255,0.15);border-radius:5px;padding:4px 9px;font-size:10.5px;}
+
+/* ══ 음성인식 오버레이 ══ */
+.voice-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(6,20,36,0.96);z-index:9999;
+  flex-direction:column;align-items:center;justify-content:center;
+  padding:30px 20px;
+}
+.voice-overlay.show{display:flex;}
+.vo-title{font-size:13px;font-weight:700;color:#29B6F6;letter-spacing:1px;margin-bottom:6px;}
+.vo-wave{font-size:40px;margin-bottom:16px;animation:wavebounce 0.8s infinite alternate;}
+@keyframes wavebounce{from{transform:scale(1);}to{transform:scale(1.15);}}
+.vo-heard{
+  font-size:26px;font-weight:900;color:#FFB300;
+  min-height:38px;text-align:center;margin-bottom:20px;letter-spacing:1px;
+}
+.vo-hints{
+  display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:24px;
+}
+.vo-hint{
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+  border-radius:20px;padding:8px 16px;
+  font-size:13px;font-weight:700;color:#fff;
+}
+.vo-hint.c1{border-color:#29B6F6;color:#29B6F6;}
+.vo-hint.c2{border-color:#7986CB;color:#7986CB;}
+.vo-hint.c3{border-color:#66BB6A;color:#66BB6A;}
+.vo-hint.c4{border-color:#FF7043;color:#FF7043;}
+.vo-cancel{
+  padding:11px 32px;background:transparent;
+  border:1px solid rgba(255,255,255,0.2);border-radius:22px;
+  color:rgba(255,255,255,0.45);font-size:13px;cursor:pointer;font-family:inherit;
+}
+.vo-cancel:active{background:rgba(255,255,255,0.06);}
+
+/* ══ 색상 ══ */
+.c-navy  {background:linear-gradient(135deg,#0D2137,#1565C0);}
+.c-blue  {background:linear-gradient(135deg,#1565C0,#1976D2);}
+.c-red   {background:linear-gradient(135deg,#C62828,#E53935);}
+.c-org   {background:linear-gradient(135deg,#E65100,#F57C00);}
+.c-purp  {background:linear-gradient(135deg,#4527A0,#5E35B1);}
+.c-teal  {background:linear-gradient(135deg,#00695C,#00897B);}
+.c-amb   {background:linear-gradient(135deg,#F57F17,#F9A825);}
+.c-grn   {background:linear-gradient(135deg,#2E7D32,#43A047);}
+
+@media print{
+  .voice-bar,.env-tabs,.voice-overlay{display:none!important;}
+  .main{overflow:visible;height:auto;}
+  html,body{overflow:auto;height:auto;}
+  .card-body{max-height:none!important;}
+}
+</style>
+</head>
+<body>
+<!-- ══ CSS 전용 상태 제어 (JS 미실행 환경 대비 폴백) ══ -->
+<input type="radio" name="envSel" id="env-common" class="env-radio" checked>
+<input type="radio" name="envSel" id="env-factory" class="env-radio">
+<input type="radio" name="envSel" id="env-apt" class="env-radio">
+<input type="radio" name="envSel" id="env-solar" class="env-radio">
+<input type="checkbox" id="popOpen-s0" class="pop-toggle">
+<input type="checkbox" id="popOpen-s1" class="pop-toggle">
+<input type="checkbox" id="popOpen-s2" class="pop-toggle">
+<input type="checkbox" id="popOpen-s3" class="pop-toggle">
+<input type="checkbox" id="popOpen-s4" class="pop-toggle">
+<input type="checkbox" id="popOpen-s5" class="pop-toggle">
+<input type="checkbox" id="popOpen-s6" class="pop-toggle">
+<input type="checkbox" id="popOpen-s7" class="pop-toggle">
+<input type="checkbox" id="popOpen-s8" class="pop-toggle">
+<input type="radio" name="wizStep" id="wiz-list" class="wiz-radio" checked>
+<input type="radio" name="wizStep" id="wiz-common-t0" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-common-t1" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-common-t2" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-common-t3" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-common-t4" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-common-t5" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-common-t6" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-common-t7" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-common-t8" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-factory-t0" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-factory-t1" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-factory-t2" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-factory-t3" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-factory-t4" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-factory-t5" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-factory-t6" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-factory-t7" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-factory-t8" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-apt-t0" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-apt-t1" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-apt-t2" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-apt-t3" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-apt-t4" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-apt-t5" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-apt-t6" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-apt-t7" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-apt-t8" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-solar-t0" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-solar-t1" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-solar-t2" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-solar-t3" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-solar-t4" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-solar-t5" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-solar-t6" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-solar-t7" class="wiz-radio">
+<input type="radio" name="wizStep" id="wiz-solar-t8" class="wiz-radio">
+
+
+<!-- ══ 헤더 ══ -->
+<div class="mode-switch">
+  <label class="mode-btn" for="wiz-list">📋 체크리스트 모드</label>
+  <label class="mode-btn wiz-enter wiz-enter-common" for="wiz-common-t0">▶ 현장 진행 모드</label>
+  <label class="mode-btn wiz-enter wiz-enter-factory" for="wiz-factory-t0">▶ 현장 진행 모드</label>
+  <label class="mode-btn wiz-enter wiz-enter-apt" for="wiz-apt-t0">▶ 현장 진행 모드</label>
+  <label class="mode-btn wiz-enter wiz-enter-solar" for="wiz-solar-t0">▶ 현장 진행 모드</label>
+</div>
+
+<div class="header">
+  <div class="header-badges">
+    <span class="badge">KESCO 한국전기안전공사</span>
+    <span class="badge badge-gold">강원본부 검사부</span>
+  </div>
+  <div class="header-title">
+    <div class="safe-tbm-main">
+      <span class="brand-safe">SAFE</span><span class="brand-dash">-</span><span class="brand-tbm">TBM</span><span class="brand-plus">+</span>
+    </div>
+    <div class="safe-tbm-eng">
+      (<span class="eng-hi">S</span>afety <span class="eng-hi">A</span>utomatic <span class="eng-hi">F</span>ield <span class="eng-hi">E</span>ducation)
+    </div>
+  </div>
+  <div class="header-info">
+    <span>⚡ 안전작업지침 제13조</span>
+    <span>📋 법정검사 안전작업 절차서</span>
+    <span>🕐 예상시간 약 00시간</span>
+  </div>
+  <div class="header-logo">
+    <img src="data:image/png;base64,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" alt="KESCO">
+  </div>
+</div>
+
+<!-- ══ 음성인식 바 ══ -->
+<div class="voice-bar">
+  <div style="font-size:18px;flex-shrink:0;">🎤</div>
+  <div class="voice-status" id="voiceStatus">마이크 버튼을 눌러 작업환경을 말씀해 주세요</div>
+  <div class="voice-keyword" id="voiceKeyword"></div>
+  <button class="mic-btn" id="micBtn" onclick="toggleMic()">🎤</button>
+</div>
+
+<!-- ══ 환경 탭 ══ -->
+<div class="env-tabs">
+  <label class="env-tab active" data-env="common" for="env-common" onclick="setEnv('common')">📋 공통</label>
+  <label class="env-tab" data-env="factory" for="env-factory" onclick="setEnv('factory')">🏭 공장·산업</label>
+  <label class="env-tab" data-env="apt" for="env-apt" onclick="setEnv('apt')">🏢 아파트·공동</label>
+  <label class="env-tab" data-env="solar" for="env-solar" onclick="setEnv('solar')">☀️ 태양광</label>
+</div>
+
+<!-- ══ 메인 ══ -->
+<div class="main" id="mainScroll">
+
+  <!-- 경고 -->
+  <div class="alert-bar">
+    <span style="font-size:16px;flex-shrink:0;">⚠️</span>
+    <p><strong>작업 전 반드시 전원 참석 확인 후 진행</strong> — 안전작업지침 제13조</p>
+  </div>
+
+  <!-- 환경 배너 -->
+  <div class="env-banner bg-common" id="envBanner" data-badge="COMMON">
+    <div class="eb-icon" id="envIcon">📋</div>
+    <div class="eb-info">
+      <h3 id="envTitle">법정검사 공통 안전회의</h3>
+      <p id="envDesc">수전설비 법정검사 — 기본 공통 시나리오</p>
+    </div>
+  </div>
+
+  <div class="cards">
+
+  <!-- ═══ 사전 안내 ═══ -->
+  <div class="card">
+    <input type="checkbox" id="t0" class="card-toggle" checked>
+    <label class="card-head" for="t0" style="border-bottom:3px solid #0D2137;">
+      <div class="step-ic c-navy">🤝</div>
+      <div class="ch-info"><h3>사전 안내 — 집합 및 참석 확인</h3><p>안전작업지침 제13조 ① ②항</p></div>
+      <span class="ch-arr">▼</span>
+    </label>
+    <div class="card-body"><div class="ci">
+      <ul class="chk">
+        <li><div class="ci-ic c-navy">✔</div>작업책임자 — 검사 총괄 및 안전조치 책임자</li>
+        <li><div class="ci-ic c-blue">✔</div>전기안전관리자 — 차단기·개폐기 조작자</li>
+        <li><div class="ci-ic c-teal">✔</div>시공업체 · 감리자 — 지원 및 입회자</li>
+      </ul>
+      <label class="pop-btn" for="popOpen-s0" onclick="openPopup('pop-s0')">👁 사전 안내 구두발화 전체 보기</label>
+      <div class="speech-lbl">💬 구두 발화</div>
+      <div class="speech">"자, 검사 시작 전에 안전회의 먼저 진행하겠습니다. 잠깐만 모여주세요."</div>
+      <div class="speech">"저는 오늘 검사를 담당하는 한국전기안전공사 <strong>강원본부 검사 작업책임자 OOO</strong>입니다."</div>
+      <div class="speech">"본 안전회의는 안전작업지침 제13조에 따라 진행합니다. 전기안전관리자, 시공업체, 감리자 전원 참석해 주셔야 합니다."</div>
+    </div></div>
+  </div>
+
+  <!-- ═══ STEP 1 ═══ -->
+  <div class="card">
+    <input type="checkbox" id="t1" class="card-toggle">
+    <label class="card-head" for="t1" style="border-bottom:3px solid #1565C0;">
+      <div class="step-ic c-blue">1</div>
+      <div class="ch-info"><h3>STEP 1 — 오늘 작업 개요 설명</h3><p>검사 종류 · 범위 · 소요시간</p></div>
+      <span class="ch-arr">▼</span>
+    </label>
+    <div class="card-body"><div class="ci">
+      <ul class="chk">
+        <li><div class="ci-ic c-blue">📋</div>검사 종류 : <strong>정기(사용전) 법정검사</strong></li>
+        <li><div class="ci-ic c-blue">🏗</div>검사 범위 : <strong>수전실 및 구내 배전설비</strong></li>
+        <li><div class="ci-ic c-blue">🕐</div>예상시간 : <strong>약 00시간</strong></li>
+      </ul>
+      <!-- 환경별 추가 -->
+      <div class="env-zone" data-env="factory"><div class="env-block eb-fac">
+        <h4>🏭 공장·산업 추가</h4>
+        <ul><li>공장 가동 상태 및 연동 설비(컨베이어·프레스 등) 사전 정지 여부 확인</li></ul>
+      </div></div>
+      <div class="env-zone" data-env="apt"><div class="env-block eb-apt">
+        <h4>🏢 공동주택 추가</h4>
+        <ul><li>엘리베이터·비상발전기·방재실 사전 통보 및 입주민 안내방송 실시 확인</li></ul>
+      </div></div>
+      <div class="env-zone" data-env="solar"><div class="env-block eb-sol">
+        <h4>☀️ 태양광 추가</h4>
+        <ul><li>인버터 및 접속함 차단 후에도 DC 측 잔류전압 반드시 확인</li></ul>
+      </div></div>
+      <label class="pop-btn" for="popOpen-s1" onclick="openPopup('pop-s1')">👁 STEP 1 구두발화 전체 보기</label>
+      <div class="speech-lbl">💬 구두 발화</div>
+      <div class="speech">"금일 검사는 정기(사용전)검사로 검사범위는 <strong>수전실(구내배전설비)</strong>입니다."</div>
+      <div class="speech">"안전사고 예방 최우선으로 진행하겠으며, 안전조치 완료 확인 후 검사를 개시하겠습니다."</div>
+      <div class="speech env-add env-zone" data-env="factory">"공장 내 연동 설비 가동 여부를 사전에 확인하겠으며, 검사 중 기계설비 임의 가동을 절대 금합니다."</div>
+      <div class="speech env-add env-zone" data-env="apt">"엘리베이터 정지 및 입주민 안내방송이 완료되었는지 확인해 주십시오."</div>
+      <div class="speech env-add env-zone" data-env="solar">"태양광 패널은 일조 시 항상 발전 중입니다. 인버터 차단 후에도 DC 측 잔류전압을 반드시 확인하겠습니다."</div>
+    </div></div>
+  </div>
+
+  <!-- ═══ STEP 2 ═══ -->
+  <div class="card">
+    <input type="checkbox" id="t2" class="card-toggle">
+    <label class="card-head" for="t2" style="border-bottom:3px solid #1565C0;">
+      <div class="step-ic c-blue">2</div>
+      <div class="ch-info"><h3>STEP 2 — 역할 분담 안내</h3><p>관계자 외 출입 및 임의행동 금지</p></div>
+      <span class="ch-arr">▼</span>
+    </label>
+    <div class="card-body"><div class="ci">
+      <div class="role-grid">
+        <div class="role-card"><div class="ri">🧑‍💼</div><div class="rn">작업책임자</div><div class="rd">검사 총괄·안전</div></div>
+        <div class="role-card"><div class="ri">⚡</div><div class="rn">전기안전관리자</div><div class="rd">개폐기 조작</div></div>
+        <div class="role-card"><div class="ri">👷</div><div class="rn">시공·감리</div><div class="rd">지원 및 입회</div></div>
+      </div>
+      <div class="danger"><div class="dt">⛔ 임의 조작 및 단독행동 절대 금지</div></div>
+      <ul class="chk" style="margin-top:7px;">
+        <li><div class="ci-ic c-blue">🔌</div>CCTV, 엘리베이터, 주차 차단기 등 정전영향 설비 사전 조치여부 확인</li>
+      </ul>
+      <label class="pop-btn" for="popOpen-s2" onclick="openPopup('pop-s2')">👁 STEP 2 구두발화 전체 보기</label>
+      <div class="speech-lbl">💬 구두 발화</div>
+      <div class="speech">"검사 중 관계자 외 출입을 금하며, 검사작업 이외의 작업도 금합니다."</div>
+      <div class="speech">"전기안전관리자님은 안전장구 착용 후 반드시 제 안내에 따라 개폐기조작에 협조해 주시기 바랍니다."</div>
+      <div class="speech">"CCTV, 엘리베이터, 주차 차단기 등 정전영향 설비의 사전 조치여부를 확인해 주십시오."</div>
+    </div></div>
+  </div>
+
+  <!-- ═══ STEP 3 ═══ -->
+  <div class="card">
+    <input type="checkbox" id="t3" class="card-toggle">
+    <label class="card-head" for="t3" style="border-bottom:3px solid #C62828;background:linear-gradient(90deg,#fff5f5,#fff);">
+      <div class="step-ic c-red">⚡</div>
+      <div class="ch-info"><h3>STEP 3 — 주요 위험요인 고지 ★ 핵심</h3><p>가장 중요한 구간</p></div>
+      <span class="ch-arr">▼</span>
+    </label>
+    <div class="card-body"><div class="ci">
+      <div style="background:#C62828;color:#fff;border-radius:6px;padding:7px 11px;font-size:12px;font-weight:700;text-align:center;margin-bottom:9px;">!! 지금부터가 가장 중요한 부분입니다 !!</div>
+      <div class="danger"><div class="dt">⚠️ 위험① 활선 인입전선로 / 책임분계점 동행 절차</div>
+        <div class="dd">책임분계점 투입개방 시 안전관리자는 반드시 작업책임자와 동행하여 진행합니다.</div></div>
+      <div class="danger"><div class="dt">⚠️ 위험② 고압 시험전압 인가</div>
+        <div class="dd">특고압 기기류 절연내력시험 중 임의 접근 시 감전사고 위험 — 반드시 대기</div></div>
+      <!-- 환경별 추가 위험 -->
+      <div class="env-zone" data-env="factory"><div class="env-block eb-fac">
+        <h4>🏭 공장 특수 위험</h4>
+        <ul>
+          <li>정전 시 자동 재기동 방지 — 모든 동력반 잠금 필수</li>
+          <li>위험물·인화성 물질 저장소 인근 작업 시 추가 안전 조치</li>
+          <li>천장 크레인·호이스트 이동 중지 및 고정 확인</li>
+        </ul>
+      </div></div>
+      <div class="env-zone" data-env="apt"><div class="env-block eb-apt">
+        <h4>🏢 공동주택 특수 위험</h4>
+        <ul>
+          <li>지하 주차장 환기팬·방화셔터 정지 확인</li>
+          <li>소방 연동 차단 — 소방안전관리자 사전 통보 필수</li>
+        </ul>
+      </div></div>
+      <div class="env-zone" data-env="solar"><div class="env-block eb-sol">
+        <h4>☀️ 태양광 특수 위험</h4>
+        <ul>
+          <li>패널 음영 처리 전 DC 전압 최대 1,000V 이상 상시 발생</li>
+          <li>인버터 차단 후 DC 접속함 개방 시 잔류전압 방전 필수</li>
+          <li>지붕형: 낙하·미끄럼 위험 — 안전대 착용 필수</li>
+          <li>DC 아크는 교류보다 소호 어려움 — 절연장갑 필수</li>
+        </ul>
+        <div class="danger" style="margin-top:8px;"><div class="dt">⚠️ 위험③ ESS 전기실 진입 전 충분한 환기 후 진입 (질식 위험)</div>
+          <div class="dd">화재 및 폭발 소화 시 일산화탄소 및 독성가스 발생으로 질식 위험 — 전기실 개방하여 충분한 환기 후 안전 확보 후 작업 실시</div></div>
+        <div class="danger"><div class="dt">⚠️ 위험④ ESS 배터리 접속부 감전 주의</div>
+          <div class="dd">좁은 현장 등 배터리 접속부 감전이 항시 노출되어 있음 — 안전거리 확보 후 작업 실시</div></div>
+      </div></div>
+      <label class="pop-btn" for="popOpen-s3" onclick="openPopup('pop-s3')">👁 STEP 3 구두발화 전체 보기</label>
+      <div class="speech-lbl">💬 구두 발화</div>
+      <div class="speech">"책임분계점 투입개방 시 안전관리자님은 반드시 저와 동행하여 진행해 주십시오."</div>
+      <div class="speech">"특고압 기기류에 시험전압 인가 중에는 임의로 접근하지 마시고 대기해 주십시오."</div>
+      <div class="speech env-add env-zone" data-env="factory">"공장 내 모든 동력반을 잠금 처리하겠으며, 크레인·호이스트가 중지되었는지 확인 후 작업을 개시합니다."</div>
+
+      <div class="speech env-add env-zone" data-env="solar">"태양광 패널 음영 처리 전 DC 측 전압은 최대 1,000V 이상입니다. 절연장갑 착용 및 잔류전압 방전을 반드시 확인합니다."</div>
+    </div></div>
+  </div>
+
+  <!-- ═══ STEP 4 ═══ -->
+  <div class="card">
+    <input type="checkbox" id="t4" class="card-toggle">
+    <label class="card-head" for="t4" style="border-bottom:3px solid #E65100;">
+      <div class="step-ic c-org">🦺</div>
+      <div class="ch-info"><h3>STEP 4 — 안전장구 착용 및 출입통제</h3><p>미착용자 수전실 출입 불가</p></div>
+      <span class="ch-arr">▼</span>
+    </label>
+    <div class="card-body"><div class="ci">
+      <div class="danger"><div class="dt">⛔ 안전장구 미착용자 출입 불가 — 구획벨트 통제</div></div>
+      <ul class="chk" style="margin-top:7px;">
+        <li><div class="ci-ic c-org">🦺</div>전기안전관리자 : 전기안전관리자 조끼</li>
+        <li><div class="ci-ic c-red">🧤</div>고압 접근 작업자 : 고압절연장갑 필수</li>
+        <li><div class="ci-ic c-blue">⛑</div>전체 : 안전모, 안전화, 안전조끼</li>
+      </ul>
+      <div class="env-zone" data-env="factory"><div class="env-block eb-fac">
+        <h4>🏭 공장 추가 장구</h4>
+        <p>방진마스크, 내화학 장갑 (위험물 취급 구역 해당 시)</p>
+      </div></div>
+      <div class="env-zone" data-env="solar"><div class="env-block eb-sol">
+        <h4>☀️ 태양광 추가 장구</h4>
+        <p>지붕형: 안전대 착용 필수 / UV차단 장갑 / 미끄럼방지 안전화</p>
+      </div></div>
+      <label class="pop-btn" for="popOpen-s4" onclick="openPopup('pop-s4')">👁 STEP 4 구두발화 전체 보기</label>
+      <div class="speech-lbl">💬 구두 발화</div>
+      <div class="speech">"안전장구를 착용하지 않은 분은 수전실 출입이 불가합니다."</div>
+      <div class="speech">"전기안전관리자님은 안전장구 착용 및 전기안전관리자 조끼 착용 후 현장에 들어오십시오."</div>
+      <div class="speech env-add env-zone" data-env="solar">"지붕형 시공의 경우 반드시 안전대를 착용하시고, 미끄럼방지 안전화를 확인해 주십시오."</div>
+    </div></div>
+  </div>
+
+  <!-- ═══ STEP 5 ═══ -->
+  <div class="card">
+    <input type="checkbox" id="t5" class="card-toggle">
+    <label class="card-head" for="t5" style="border-bottom:3px solid #4527A0;">
+      <div class="step-ic c-purp">🔒</div>
+      <div class="ch-info"><h3>STEP 5 — 안전표지 및 LOTO</h3><p>잠금장치 및 위험표지판 부착</p></div>
+      <span class="ch-arr">▼</span>
+    </label>
+    <div class="card-body"><div class="ci">
+      <ul class="chk">
+        <li><div class="ci-ic c-purp">🔒</div>수전개폐기 큐비클 LOTO 잠금장치 부착</li>
+        <li><div class="ci-ic c-purp">⚠️</div>위험표지판 부착</li>
+        <li><div class="ci-ic c-red">🚫</div>작업책임자 허가 없이 절대 개방 금지</li>
+      </ul>
+      <div class="env-zone" data-env="solar"><div class="env-block eb-sol">
+        <h4>☀️ 태양광 LOTO 추가</h4>
+        <p>DC 접속함 잠금 + 인버터 차단기 잠금 + "DC 위험 고전압" 표지 부착</p>
+      </div></div>
+      <label class="pop-btn" for="popOpen-s5" onclick="openPopup('pop-s5')">👁 STEP 5 구두발화 전체 보기</label>
+      <div class="speech-lbl">💬 구두 발화</div>
+      <div class="speech">"잠금장치가 부착된 큐비클은 제 허가 없이는 절대 개방하시면 안 됩니다."</div>
+      <div class="speech env-add env-zone" data-env="solar">"DC 접속함과 인버터 차단기 잠금 및 'DC 위험 고전압' 표지를 부착하겠습니다."</div>
+    </div></div>
+  </div>
+
+  <!-- ═══ STEP 6 ═══ -->
+  <div class="card">
+    <input type="checkbox" id="t6" class="card-toggle">
+    <label class="card-head" for="t6" style="border-bottom:3px solid #00695C;">
+      <div class="step-ic c-teal">🛑</div>
+      <div class="ch-info"><h3>STEP 6 — 작업중지 권한 고지</h3><p>안전 미확보 시 즉시 중지</p></div>
+      <span class="ch-arr">▼</span>
+    </label>
+    <div class="card-body"><div class="ci">
+      <ul class="chk">
+        <li><div class="ci-ic c-teal">🛑</div>안전 미확보 시 작업책임자 즉시 작업 중지 가능</li>
+        <li><div class="ci-ic c-teal">✔</div>안전 확보 후 재개 또는 일정 변경</li>
+      </ul>
+      <label class="pop-btn" for="popOpen-s6" onclick="openPopup('pop-s6')">👁 STEP 6 구두발화 전체 보기</label>
+      <div class="speech-lbl">💬 구두 발화</div>
+      <div class="speech">"안전이 확보되지 않는다고 판단되면 작업책임자인 제가 즉시 작업을 중지시킬 수 있습니다."</div>
+    </div></div>
+  </div>
+
+  <!-- ═══ STEP 7 ═══ -->
+  <div class="card">
+    <input type="checkbox" id="t7" class="card-toggle">
+    <label class="card-head" for="t7" style="border-bottom:3px solid #F57F17;">
+      <div class="step-ic c-amb">🔁</div>
+      <div class="ch-info"><h3>STEP 7 — 복전 및 원상복구</h3><p>임의 전원 투입 절대 금지</p></div>
+      <span class="ch-arr">▼</span>
+    </label>
+    <div class="card-body"><div class="ci">
+      <div class="danger"><div class="dt">⛔ 임의 전원 투입 절대 금지</div></div>
+      <ul class="chk" style="margin-top:7px;">
+        <li><div class="ci-ic c-amb" style="color:#000;">①</div>검사장비 및 단락접지용구 완전 철거 확인</li>
+        <li><div class="ci-ic c-amb" style="color:#000;">②</div>안전조치 완료 확인 후 복전 절차 진행</li>
+        <li><div class="ci-ic c-amb" style="color:#000;">③</div>전원 투입 후 전압 확인 및 원상복구 이상 유무</li>
+      </ul>
+      <div class="env-zone" data-env="factory"><div class="env-block eb-fac">
+        <h4>🏭 공장 복전 주의</h4>
+        <p>동력반 복전 전 연동 기계설비 재기동 준비 상태 확인 후 순차 투입</p>
+      </div></div>
+      <div class="env-zone" data-env="solar"><div class="env-block eb-sol">
+        <h4>☀️ 태양광 복전 순서</h4>
+        <p>인버터 투입 → DC 접속함 투입 순서 준수 / 계통 연계 확인 후 최종 투입</p>
+      </div></div>
+      <label class="pop-btn" for="popOpen-s7" onclick="openPopup('pop-s7')">👁 STEP 7 구두발화 전체 보기</label>
+      <div class="speech-lbl">💬 구두 발화</div>
+      <div class="speech">"복전은 반드시 저의 지시에 따라 진행하며, 안전조치 완료 확인 후 절차를 진행합니다."</div>
+      <div class="speech env-add env-zone" data-env="factory">"동력반 복전 전 연동 기계설비 재기동 준비 상태를 확인 후 순차 투입합니다."</div>
+      <div class="speech env-add env-zone" data-env="solar">"인버터 투입 후 DC 접속함을 순서대로 투입하겠으며, 계통 연계 상태를 확인한 후 최종 투입합니다."</div>
+    </div></div>
+  </div>
+
+  <!-- ═══ STEP 8 ═══ -->
+  <div class="card">
+    <input type="checkbox" id="t8" class="card-toggle">
+    <label class="card-head" for="t8" style="border-bottom:3px solid #C62828;">
+      <div class="step-ic c-red">⛔</div>
+      <div class="ch-info"><h3>STEP 8 — 기타 금지사항</h3><p>검사 중 별도 작업 절대 금지</p></div>
+      <span class="ch-arr">▼</span>
+    </label>
+    <div class="card-body"><div class="ci">
+      <div class="danger"><div class="dt">⛔ 검사 중 청소 등 별도 작업 절대 금지</div></div>
+      <ul class="chk" style="margin-top:7px;">
+        <li><div class="ci-ic c-red">📢</div>이상현상 발생 시 즉시 검사자에게 보고</li>
+        <li><div class="ci-ic c-blue">🔁</div>복전 후 차단기 원상복구, 전기설비 사용 이상 유무 확인(안전관리자)</li>
+      </ul>
+      <div class="env-zone" data-env="apt"><div class="env-block eb-apt">
+        <h4>🏢 공동주택 추가</h4>
+        <p>입주민 민원 응대를 위한 방재실 상주 관리자 배치 권고</p>
+      </div></div>
+      <label class="pop-btn" for="popOpen-s8" onclick="openPopup('pop-s8')">👁 STEP 8 구두발화 전체 보기</label>
+      <div class="speech-lbl">💬 구두 발화</div>
+      <div class="speech">"검사 중 별도 작업은 검사 종료 후 안전조치 확인 후 실시해 주십시오."</div>
+      <div class="speech">"복전 후 차단기 원상복구, 전기설비 사용 이상 유무를 안전관리자님께서는 확인해 주시기 바랍니다."</div>
+    </div></div>
+  </div>
+
+  </div><!-- /cards -->
+
+  <!-- 마무리 -->
+  <div class="finish-card">
+    <h3>✅ 마무리 — 확인 및 서명</h3>
+    <div class="fin-speech">"지금까지 말씀드린 내용에 대해 위험요소 인지 체크리스트를 확인해 주시겠습니까?"</div>
+    <div class="fin-speech">"안전 최우선 검사가 될 수 있도록 적극적인 협조를 부탁드리겠습니다."</div>
+    <div class="fin-tags">
+      <span class="fin-tag">📱 체크리스트</span>
+      <span class="fin-tag">📱 위험요소 인지</span>
+      <span class="fin-tag">📱 책임분계점 확인</span>
+      <span class="fin-tag">✍️ 고객 서명</span>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:12px 0 16px;font-size:10px;color:#aaa;">
+    📋 안전작업지침 제13조 | 법정검사 안전작업 절차서 | KESCO 강원본부 검사부
+  </div>
+</div><!-- /main -->
+
+<!-- ══ 팝업들 ══ -->
+<div class="popup-overlay" id="pop-s0">
+  <div class="popup-box">
+    <div class="pop-hd" style="background:linear-gradient(135deg,#0D2137,#1565C0);">
+      <div><div class="pop-hd-t">사전 안내 — 구두발화</div><div class="pop-hd-s">안전작업지침 제13조</div></div>
+      <label class="pop-close" for="popOpen-s0" onclick="closePopup()">✕</label>
+    </div>
+    <div class="pop-illust" style="background:linear-gradient(180deg,rgba(10,25,50,0.98),rgba(13,33,55,0.96));padding:12px 14px 10px;"><svg viewBox="0 0 380 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg0" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="rgba(21,101,192,0.15)"/>
+      <stop offset="100%" stop-color="rgba(13,33,55,0)"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="190" cy="140" rx="170" ry="20" fill="rgba(0,0,0,0.2)"/>
+  <!-- 수전실 배경 -->
+  <rect x="10" y="30" width="120" height="110" rx="4" fill="rgba(255,255,255,0.05)" stroke="rgba(41,182,246,0.25)" stroke-width="1"/>
+  <rect x="20" y="42" width="30" height="22" rx="2" fill="rgba(41,182,246,0.15)" stroke="rgba(41,182,246,0.4)" stroke-width="1"/>
+  <rect x="56" y="42" width="30" height="22" rx="2" fill="rgba(41,182,246,0.1)" stroke="rgba(41,182,246,0.3)" stroke-width="1"/>
+  <rect x="92" y="42" width="30" height="22" rx="2" fill="rgba(255,213,79,0.15)" stroke="rgba(255,213,79,0.35)" stroke-width="1"/>
+  <line x1="20" y1="72" x2="115" y2="72" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <rect x="20" y="78" width="95" height="6" rx="2" fill="rgba(255,255,255,0.06)"/>
+  <rect x="20" y="88" width="70" height="6" rx="2" fill="rgba(255,255,255,0.05)"/>
+  <rect x="20" y="98" width="85" height="6" rx="2" fill="rgba(255,255,255,0.04)"/>
+  <text x="65" y="128" font-size="8" fill="rgba(100,181,246,0.5)" text-anchor="middle">수전실</text>
+  <!-- 작업책임자 (중앙, 태블릿 들고) -->
+  <circle cx="190" cy="52" r="14" fill="rgba(21,101,192,0.7)" stroke="rgba(41,182,246,0.6)" stroke-width="1.5"/>
+  <text x="190" y="49" font-size="16" text-anchor="middle">👷</text>
+  <!-- 안전모 -->
+  <path d="M179,46 Q190,36 201,46" fill="rgba(255,152,0,0.8)" stroke="none"/>
+  <!-- 태블릿 -->
+  <rect x="180" y="68" width="20" height="28" rx="3" fill="rgba(255,255,255,0.2)" stroke="rgba(41,182,246,0.5)" stroke-width="1"/>
+  <rect x="182" y="70" width="16" height="22" rx="1" fill="rgba(21,101,192,0.4)"/>
+  <line x1="190" y1="72" x2="196" y2="72" stroke="rgba(41,182,246,0.6)" stroke-width="1"/>
+  <line x1="183" y1="75" x2="196" y2="75" stroke="rgba(41,182,246,0.4)" stroke-width="0.8"/>
+  <line x1="183" y1="78" x2="194" y2="78" stroke="rgba(41,182,246,0.4)" stroke-width="0.8"/>
+  <text x="190" y="105" font-size="7" fill="rgba(100,181,246,0.9)" text-anchor="middle" font-weight="700">작업책임자</text>
+  <!-- 청취자들 -->
+  <!-- 전기안전관리자 -->
+  <circle cx="290" cy="60" r="12" fill="rgba(255,179,0,0.65)" stroke="rgba(255,213,79,0.5)" stroke-width="1.5"/>
+  <text x="290" y="57" font-size="14" text-anchor="middle">👤</text>
+  <path d="M280,44 Q290,35 300,44" fill="rgba(255,152,0,0.7)"/>
+  <!-- 조끼 표시 -->
+  <rect x="282" y="74" width="16" height="12" rx="2" fill="rgba(255,179,0,0.4)" stroke="rgba(255,213,79,0.4)" stroke-width="0.8"/>
+  <text x="290" y="96" font-size="6.5" fill="rgba(255,200,100,0.85)" text-anchor="middle">전기안전</text>
+  <text x="290" y="104" font-size="6.5" fill="rgba(255,200,100,0.85)" text-anchor="middle">관리자</text>
+  <!-- 시공업체 -->
+  <circle cx="340" cy="65" r="11" fill="rgba(76,175,80,0.6)" stroke="rgba(76,175,80,0.45)" stroke-width="1.5"/>
+  <text x="340" y="62" font-size="13" text-anchor="middle">👤</text>
+  <path d="M331,50 Q340,42 349,50" fill="rgba(200,200,0,0.6)"/>
+  <text x="340" y="88" font-size="6.5" fill="rgba(129,199,132,0.85)" text-anchor="middle">시공업체</text>
+  <!-- 감리자 -->
+  <circle cx="365" cy="72" r="10" fill="rgba(126,87,194,0.6)" stroke="rgba(179,157,219,0.45)" stroke-width="1.5"/>
+  <text x="365" y="69" font-size="12" text-anchor="middle">👤</text>
+  <path d="M357,58 Q365,51 373,58" fill="rgba(100,80,150,0.6)"/>
+  <text x="365" y="95" font-size="6.5" fill="rgba(179,157,219,0.85)" text-anchor="middle">감리자</text>
+  <!-- 연결선 (발화) -->
+  <path d="M204,70 Q240,85 278,70" fill="none" stroke="rgba(41,182,246,0.35)" stroke-width="1" stroke-dasharray="4,3"/>
+  <path d="M204,72 Q260,92 328,72" fill="none" stroke="rgba(41,182,246,0.25)" stroke-width="1" stroke-dasharray="4,3"/>
+  <!-- 말풍선 -->
+  <rect x="148" y="12" width="82" height="26" rx="8" fill="rgba(21,101,192,0.5)" stroke="rgba(41,182,246,0.5)" stroke-width="1"/>
+  <polygon points="185,38 190,48 195,38" fill="rgba(21,101,192,0.5)"/>
+  <text x="189" y="24" font-size="7.5" fill="#E3F2FD" text-anchor="middle" font-weight="700">TBM 안전회의</text>
+  <text x="189" y="34" font-size="6.5" fill="rgba(200,230,255,0.8)" text-anchor="middle">안전작업지침 제13조</text>
+  <!-- 하단 -->
+  <rect x="80" y="142" width="220" height="14" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <text x="190" y="152" font-size="7.5" fill="rgba(200,230,255,0.7)" text-anchor="middle">전원 참석 확인 후 안전회의 진행</text>
+</svg></div>
+    <div class="pop-body">
+      <div class="pop-item"><span class="pop-num">1</span><div class="pop-item-text">"자, 검사 시작 전에 안전회의 먼저 진행하겠습니다. 잠깐만 모여주세요."</div></div>
+      <div class="pop-item"><span class="pop-num">2</span><div class="pop-item-text">"저는 오늘 검사를 담당하는 한국전기안전공사 강원본부 검사 작업책임자 OOO입니다."</div></div>
+      <div class="pop-item"><span class="pop-num">3</span><div class="pop-item-text">"본 안전회의는 안전작업지침 제13조에 따라 진행합니다. 전기안전관리자, 시공업체, 감리자 전원 참석해 주셔야 합니다. 자리 확인해 주시겠습니까?"</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="popup-overlay" id="pop-s1">
+  <div class="popup-box">
+    <div class="pop-hd" style="background:linear-gradient(135deg,#1565C0,#1976D2);">
+      <div><div class="pop-hd-t">STEP 1 — 작업 개요</div><div class="pop-hd-s">환경별 추가 발화 포함</div></div>
+      <label class="pop-close" for="popOpen-s1" onclick="closePopup()">✕</label>
+    </div>
+    <div class="pop-illust" style="background:linear-gradient(180deg,rgba(10,25,50,0.98),rgba(13,33,55,0.96));padding:12px 14px 10px;"><svg viewBox="0 0 380 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="panel1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(21,101,192,0.2)"/>
+      <stop offset="100%" stop-color="rgba(13,33,55,0.05)"/>
+    </linearGradient>
+  </defs>
+  <!-- 수전반 큐비클 -->
+  <rect x="20" y="20" width="55" height="120" rx="4" fill="url(#panel1)" stroke="rgba(41,182,246,0.4)" stroke-width="1.5"/>
+  <rect x="28" y="32" width="16" height="12" rx="2" fill="rgba(41,182,246,0.2)" stroke="rgba(41,182,246,0.5)" stroke-width="0.8"/>
+  <rect x="48" y="32" width="16" height="12" rx="2" fill="rgba(255,213,79,0.2)" stroke="rgba(255,213,79,0.4)" stroke-width="0.8"/>
+  <!-- 차단기 레버 -->
+  <rect x="30" y="50" width="12" height="20" rx="3" fill="rgba(41,182,246,0.15)" stroke="rgba(41,182,246,0.4)" stroke-width="1"/>
+  <rect x="34" y="48" width="4" height="8" rx="1" fill="rgba(41,182,246,0.6)"/>
+  <rect x="50" y="50" width="12" height="20" rx="3" fill="rgba(255,213,79,0.15)" stroke="rgba(255,213,79,0.4)" stroke-width="1"/>
+  <rect x="54" y="48" width="4" height="8" rx="1" fill="rgba(255,213,79,0.6)"/>
+  <!-- 계기류 -->
+  <circle cx="36" cy="84" r="8" fill="none" stroke="rgba(41,182,246,0.5)" stroke-width="1"/>
+  <line x1="36" y1="84" x2="36" y2="77" stroke="rgba(41,182,246,0.7)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="36" y1="84" x2="41" y2="87" stroke="rgba(255,213,79,0.6)" stroke-width="1.2" stroke-linecap="round"/>
+  <circle cx="56" cy="84" r="8" fill="none" stroke="rgba(76,175,80,0.5)" stroke-width="1"/>
+  <line x1="56" y1="84" x2="56" y2="77" stroke="rgba(76,175,80,0.7)" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="56" y1="84" x2="60" y2="87" stroke="rgba(255,213,79,0.6)" stroke-width="1.2" stroke-linecap="round"/>
+  <text x="36" y="100" font-size="6" fill="rgba(100,181,246,0.5)" text-anchor="middle">V</text>
+  <text x="56" y="100" font-size="6" fill="rgba(129,199,132,0.5)" text-anchor="middle">A</text>
+  <rect x="25" y="105" width="45" height="8" rx="2" fill="rgba(255,255,255,0.06)"/>
+  <rect x="25" y="116" width="32" height="6" rx="2" fill="rgba(255,255,255,0.04)"/>
+  <text x="47" y="136" font-size="7" fill="rgba(100,181,246,0.5)" text-anchor="middle">수전반</text>
+
+  <!-- 메인 배전반 -->
+  <rect x="86" y="15" width="70" height="130" rx="4" fill="rgba(21,101,192,0.12)" stroke="rgba(41,182,246,0.35)" stroke-width="1.5"/>
+  <rect x="94" y="26" width="22" height="18" rx="2" fill="rgba(41,182,246,0.12)" stroke="rgba(41,182,246,0.35)" stroke-width="0.8"/>
+  <rect x="122" y="26" width="22" height="18" rx="2" fill="rgba(41,182,246,0.12)" stroke="rgba(41,182,246,0.35)" stroke-width="0.8"/>
+  <!-- 메인 차단기 -->
+  <rect x="100" y="52" width="52" height="35" rx="4" fill="rgba(21,101,192,0.2)" stroke="rgba(41,182,246,0.5)" stroke-width="1"/>
+  <text x="126" y="65" font-size="7" fill="rgba(100,181,246,0.8)" text-anchor="middle">MAIN</text>
+  <text x="126" y="75" font-size="7" fill="rgba(100,181,246,0.6)" text-anchor="middle">CB</text>
+  <line x1="94" y1="95" x2="148" y2="95" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+  <rect x="94" y="100" width="54" height="5" rx="1" fill="rgba(255,255,255,0.05)"/>
+  <rect x="94" y="108" width="40" height="5" rx="1" fill="rgba(255,255,255,0.04)"/>
+  <rect x="94" y="116" width="48" height="5" rx="1" fill="rgba(255,255,255,0.04)"/>
+  <text x="121" y="136" font-size="7" fill="rgba(100,181,246,0.5)" text-anchor="middle">주배전반</text>
+
+  <!-- 클립보드 체크리스트 -->
+  <rect x="175" y="18" width="88" height="118" rx="5" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  <rect x="191" y="11" width="28" height="14" rx="4" fill="rgba(21,101,192,0.8)" stroke="rgba(41,182,246,0.5)" stroke-width="1"/>
+  <text x="205" y="20" font-size="6.5" fill="#fff" text-anchor="middle">검사표</text>
+  <!-- 체크 항목들 -->
+  <rect x="183" y="36" width="72" height="10" rx="2" fill="rgba(255,255,255,0.06)"/>
+  <circle cx="188" cy="41" r="3" fill="rgba(76,175,80,0.7)"/>
+  <text x="193" y="44" font-size="6" fill="rgba(200,230,255,0.7)">정기검사 확인</text>
+  <rect x="183" y="50" width="72" height="10" rx="2" fill="rgba(255,255,255,0.05)"/>
+  <circle cx="188" cy="55" r="3" fill="rgba(76,175,80,0.7)"/>
+  <text x="193" y="58" font-size="6" fill="rgba(200,230,255,0.7)">수전실 범위 확인</text>
+  <rect x="183" y="64" width="72" height="10" rx="2" fill="rgba(255,255,255,0.05)"/>
+  <circle cx="188" cy="69" r="3" fill="rgba(255,213,79,0.4)"/>
+  <text x="193" y="72" font-size="6" fill="rgba(200,230,255,0.6)">정전 방식 확인</text>
+  <rect x="183" y="78" width="72" height="10" rx="2" fill="rgba(255,255,255,0.04)"/>
+  <circle cx="188" cy="83" r="3" fill="rgba(255,255,255,0.15)"/>
+  <text x="193" y="86" font-size="6" fill="rgba(200,230,255,0.5)">소요시간 산정</text>
+  <line x1="182" y1="96" x2="256" y2="96" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+  <text x="219" y="110" font-size="7" fill="rgba(200,230,255,0.5)" text-anchor="middle">예상시간</text>
+  <!-- 시계 -->
+  <circle cx="219" cy="126" r="10" fill="none" stroke="rgba(255,213,79,0.5)" stroke-width="1.2"/>
+  <line x1="219" y1="126" x2="219" y2="119" stroke="#FFD54F" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="219" y1="126" x2="225" y2="129" stroke="rgba(255,213,79,0.7)" stroke-width="1.2" stroke-linecap="round"/>
+  <circle cx="219" cy="126" r="1.5" fill="#FFD54F"/>
+
+  <!-- 검사자 -->
+  <circle cx="315" cy="55" r="14" fill="rgba(21,101,192,0.6)" stroke="rgba(41,182,246,0.5)" stroke-width="1.5"/>
+  <text x="315" y="52" font-size="16" text-anchor="middle">👷</text>
+  <path d="M304,49 Q315,39 326,49" fill="rgba(255,152,0,0.75)"/>
+  <!-- 검사장비 들고있는 모습 -->
+  <rect x="305" y="71" width="20" height="14" rx="3" fill="rgba(255,255,255,0.15)" stroke="rgba(41,182,246,0.4)" stroke-width="1"/>
+  <line x1="307" y1="76" x2="323" y2="76" stroke="rgba(41,182,246,0.5)" stroke-width="0.8"/>
+  <line x1="307" y1="79" x2="321" y2="79" stroke="rgba(41,182,246,0.4)" stroke-width="0.8"/>
+  <!-- 측정기 케이블 -->
+  <path d="M315,85 Q315,95 295,100" fill="none" stroke="rgba(255,213,79,0.4)" stroke-width="1" stroke-dasharray="3,2"/>
+  <circle cx="290" cy="101" r="3" fill="rgba(255,213,79,0.5)"/>
+  <text x="315" y="108" font-size="7" fill="rgba(100,181,246,0.8)" text-anchor="middle">검사원</text>
+
+  <!-- 안전작업 표지 -->
+  <rect x="275" y="20" width="90" height="30" rx="4" fill="rgba(198,40,40,0.2)" stroke="rgba(198,40,40,0.4)" stroke-width="1"/>
+  <text x="320" y="32" font-size="7.5" fill="rgba(255,150,150,0.9)" text-anchor="middle" font-weight="700">⚡ 안전검사중</text>
+  <text x="320" y="44" font-size="6.5" fill="rgba(255,150,150,0.7)" text-anchor="middle">관계자외 출입금지</text>
+
+  <text x="190" y="153" font-size="7.5" fill="rgba(200,230,255,0.5)" text-anchor="middle">안전조치 완료 후 검사 개시</text>
+</svg></div>
+    <div class="pop-body">
+      <div class="pop-item"><span class="pop-num">1</span><div class="pop-item-text">"금일 검사는 정기(사용전)검사로 검사범위는 수전실(구내배전설비)입니다."</div></div>
+      <div class="pop-item"><span class="pop-num">2</span><div class="pop-item-text">"안전사고 예방 최우선으로 진행하겠으며, 안전조치 완료 확인 후 검사를 개시하겠습니다."</div></div>
+      <div class="pop-item add pop-env" data-env="factory" style="display:none;"><span class="pop-num">+</span>"공장 내 연동 설비 가동 여부를 사전 확인하겠으며, 검사 중 기계설비 임의 가동을 절대 금합니다."</div>
+      <div class="pop-item add pop-env" data-env="apt"     style="display:none;"><span class="pop-num">+</span>"엘리베이터 정지 및 입주민 안내방송이 완료되었는지 확인해 주십시오."</div>
+      <div class="pop-item add pop-env" data-env="solar"   style="display:none;"><span class="pop-num">+</span>"태양광 패널은 일조 시 항상 발전 중입니다. 인버터 차단 후에도 DC 측 잔류전압을 반드시 확인하겠습니다."</div>
+    </div>
+  </div>
+</div>
+
+<div class="popup-overlay" id="pop-s2">
+  <div class="popup-box">
+    <div class="pop-hd" style="background:linear-gradient(135deg,#1565C0,#1976D2);">
+      <div><div class="pop-hd-t">STEP 2 — 역할 분담</div><div class="pop-hd-s">구두발화 전체</div></div>
+      <label class="pop-close" for="popOpen-s2" onclick="closePopup()">✕</label>
+    </div>
+    <div class="pop-illust" style="background:linear-gradient(180deg,rgba(10,25,50,0.98),rgba(13,33,55,0.96));padding:12px 14px 10px;"><svg viewBox="0 0 380 160" xmlns="http://www.w3.org/2000/svg">
+  <!-- 배경 그리드 -->
+  <line x1="0" y1="40" x2="380" y2="40" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="0" y1="80" x2="380" y2="80" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="0" y1="120" x2="380" y2="120" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+  <!-- 작업책임자 카드 -->
+  <rect x="140" y="8" width="100" height="52" rx="8" fill="rgba(21,101,192,0.5)" stroke="rgba(41,182,246,0.6)" stroke-width="1.5"/>
+  <circle cx="190" cy="24" r="11" fill="rgba(13,33,55,0.5)"/>
+  <text x="190" y="21" font-size="14" text-anchor="middle">🧑‍💼</text>
+  <text x="190" y="44" font-size="7.5" fill="#E3F2FD" text-anchor="middle" font-weight="700">작업책임자</text>
+  <text x="190" y="53" font-size="6" fill="rgba(200,230,255,0.7)" text-anchor="middle">검사 총괄 · 안전조치</text>
+
+  <!-- 연결선 -->
+  <line x1="155" y1="60" x2="75" y2="85" stroke="rgba(41,182,246,0.4)" stroke-width="1.5"/>
+  <line x1="190" y1="60" x2="190" y2="85" stroke="rgba(41,182,246,0.4)" stroke-width="1.5"/>
+  <line x1="225" y1="60" x2="305" y2="85" stroke="rgba(41,182,246,0.4)" stroke-width="1.5"/>
+
+  <!-- 전기안전관리자 카드 -->
+  <rect x="28" y="85" width="95" height="55" rx="7" fill="rgba(255,179,0,0.3)" stroke="rgba(255,213,79,0.5)" stroke-width="1.2"/>
+  <text x="75" y="105" font-size="18" text-anchor="middle">⚡</text>
+  <text x="75" y="122" font-size="7.5" fill="#FFD54F" text-anchor="middle" font-weight="700">전기안전관리자</text>
+  <text x="75" y="132" font-size="6" fill="rgba(255,213,79,0.7)" text-anchor="middle">차단기·개폐기 조작</text>
+  <!-- 중요 표시 -->
+  <rect x="30" y="87" width="30" height="10" rx="3" fill="rgba(198,40,40,0.6)"/>
+  <text x="45" y="95" font-size="6" fill="#fff" text-anchor="middle">지시준수</text>
+
+  <!-- 시공업체 카드 -->
+  <rect x="143" y="85" width="94" height="55" rx="7" fill="rgba(76,175,80,0.3)" stroke="rgba(76,175,80,0.5)" stroke-width="1.2"/>
+  <text x="190" y="105" font-size="18" text-anchor="middle">🔨</text>
+  <text x="190" y="122" font-size="7.5" fill="rgba(129,199,132,0.95)" text-anchor="middle" font-weight="700">시공업체</text>
+  <text x="190" y="132" font-size="6" fill="rgba(129,199,132,0.7)" text-anchor="middle">작업 지원 · 입회</text>
+
+  <!-- 감리자 카드 -->
+  <rect x="257" y="85" width="94" height="55" rx="7" fill="rgba(126,87,194,0.3)" stroke="rgba(179,157,219,0.5)" stroke-width="1.2"/>
+  <text x="304" y="105" font-size="18" text-anchor="middle">📋</text>
+  <text x="304" y="122" font-size="7.5" fill="rgba(179,157,219,0.95)" text-anchor="middle" font-weight="700">감리자</text>
+  <text x="304" y="132" font-size="6" fill="rgba(179,157,219,0.7)" text-anchor="middle">감리 확인 · 입회</text>
+
+  <!-- 금지 배너 -->
+  <rect x="40" y="147" width="300" height="13" rx="5" fill="rgba(198,40,40,0.35)" stroke="rgba(198,40,40,0.5)" stroke-width="1"/>
+  <text x="190" y="156.5" font-size="7.5" fill="rgba(255,180,180,0.95)" text-anchor="middle" font-weight="700">⛔ 임의 조작 · 단독행동 절대 금지 — 반드시 작업책임자 지시 준수</text>
+</svg></div>
+    <div class="pop-body">
+      <div class="pop-item"><span class="pop-num">1</span><div class="pop-item-text">"검사 중 관계자 외 출입을 금하며, 검사작업 이외의 작업도 금합니다."</div></div>
+      <div class="pop-item"><span class="pop-num">2</span><div class="pop-item-text">"전기안전관리자님은 안전장구 착용 후 반드시 제 안내에 따라 개폐기조작에 협조해 주시기 바랍니다."</div></div>
+      <div class="pop-item"><span class="pop-num">3</span><div class="pop-item-text">"검사 시작부터 완료 전까지 임의 조작 및 단독행동을 절대 금합니다."</div></div>
+      <div class="pop-item"><span class="pop-num">4</span><div class="pop-item-text">"CCTV, 엘리베이터, 주차 차단기 등 정전영향 설비의 사전 조치여부를 확인해 주십시오."</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="popup-overlay" id="pop-s3">
+  <div class="popup-box">
+    <div class="pop-hd" style="background:linear-gradient(135deg,#7f0000,#C62828);">
+      <div><div class="pop-hd-t">STEP 3 — 위험요인 고지 ★</div><div class="pop-hd-s">가장 중요한 구간</div></div>
+      <label class="pop-close" for="popOpen-s3" onclick="closePopup()">✕</label>
+    </div>
+    <div class="pop-illust" style="background:linear-gradient(180deg,rgba(10,25,50,0.98),rgba(13,33,55,0.96));padding:12px 14px 10px;"><svg viewBox="0 0 380 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="danger-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(198,40,40,0.3)"/>
+      <stop offset="100%" stop-color="rgba(13,33,55,0)"/>
+    </radialGradient>
+    <linearGradient id="wire-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="rgba(255,107,107,0.8)"/>
+      <stop offset="100%" stop-color="rgba(255,107,107,0.2)"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="190" cy="100" rx="180" ry="60" fill="url(#danger-glow)"/>
+
+  <!-- 인입전선로 (활선) -->
+  <rect x="10" y="30" width="20" height="100" rx="3" fill="rgba(100,100,120,0.4)" stroke="rgba(150,150,170,0.3)" stroke-width="1"/>
+  <!-- 애자 -->
+  <ellipse cx="20" cy="55" rx="8" ry="5" fill="rgba(150,150,170,0.5)" stroke="rgba(200,200,220,0.3)" stroke-width="0.8"/>
+  <ellipse cx="20" cy="80" rx="8" ry="5" fill="rgba(150,150,170,0.5)" stroke="rgba(200,200,220,0.3)" stroke-width="0.8"/>
+  <!-- 활선 전선 3상 -->
+  <line x1="28" y1="52" x2="120" y2="52" stroke="url(#wire-grad)" stroke-width="3" stroke-linecap="round"/>
+  <line x1="28" y1="62" x2="120" y2="62" stroke="url(#wire-grad)" stroke-width="3" stroke-linecap="round"/>
+  <line x1="28" y1="72" x2="120" y2="72" stroke="url(#wire-grad)" stroke-width="3" stroke-linecap="round"/>
+  <!-- 전기 스파크 효과 -->
+  <path d="M85,48 L88,52 L84,52 L87,58" stroke="#FFD54F" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M95,48 L98,52 L94,52 L97,58" stroke="#FFD54F" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+  <!-- 활선 경고 박스 -->
+  <rect x="14" y="14" width="110" height="28" rx="4" fill="rgba(198,40,40,0.5)" stroke="rgba(255,100,100,0.5)" stroke-width="1"/>
+  <text x="69" y="24" font-size="7.5" fill="#fff" text-anchor="middle" font-weight="700">⚡ 활선 위험</text>
+  <text x="69" y="35" font-size="6.5" fill="rgba(255,200,200,0.85)" text-anchor="middle">인입전선로 항상 충전</text>
+  <!-- 접근금지 X -->
+  <circle cx="69" cy="90" r="20" fill="none" stroke="rgba(255,80,80,0.6)" stroke-width="2"/>
+  <line x1="55" y1="76" x2="83" y2="104" stroke="rgba(255,80,80,0.7)" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- 고압 시험 장비 -->
+  <rect x="135" y="35" width="110" height="90" rx="6" fill="rgba(21,101,192,0.2)" stroke="rgba(41,182,246,0.4)" stroke-width="1.5"/>
+  <!-- 장비 디스플레이 -->
+  <rect x="143" y="44" width="55" height="35" rx="3" fill="rgba(13,33,55,0.6)" stroke="rgba(41,182,246,0.5)" stroke-width="1"/>
+  <text x="170" y="57" font-size="7" fill="#4CAF50" text-anchor="middle">AC/DC</text>
+  <text x="170" y="68" font-size="10" fill="#FFD54F" text-anchor="middle" font-weight="700">50kV</text>
+  <text x="170" y="75" font-size="6" fill="rgba(100,181,246,0.7)" text-anchor="middle">TEST MODE</text>
+  <!-- 다이얼 -->
+  <circle cx="215" cy="62" r="14" fill="rgba(13,33,55,0.5)" stroke="rgba(41,182,246,0.4)" stroke-width="1"/>
+  <circle cx="215" cy="62" r="10" fill="none" stroke="rgba(41,182,246,0.3)" stroke-width="0.8"/>
+  <line x1="215" y1="62" x2="215" y2="53" stroke="rgba(41,182,246,0.7)" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- 케이블 연결 -->
+  <path d="M190,79 L190,90 L160,90 L160,110" fill="none" stroke="rgba(198,40,40,0.6)" stroke-width="2"/>
+  <path d="M215,79 L215,95 L230,95 L230,115" fill="none" stroke="rgba(41,182,246,0.5)" stroke-width="2"/>
+  <!-- 시험전압 경고 -->
+  <rect x="143" y="100" width="94" height="18" rx="3" fill="rgba(255,179,0,0.25)" stroke="rgba(255,179,0,0.4)" stroke-width="1"/>
+  <text x="190" y="112" font-size="7" fill="#FFB300" text-anchor="middle" font-weight="700">⚠️ 시험전압 인가중</text>
+  <text x="190" y="128" font-size="6.5" fill="rgba(100,181,246,0.5)" text-anchor="middle">절연내력시험 장비</text>
+
+  <!-- 대기 인원 (안전거리) -->
+  <circle cx="295" cy="65" r="13" fill="rgba(76,175,80,0.5)" stroke="rgba(76,175,80,0.4)" stroke-width="1.5"/>
+  <text x="295" y="62" font-size="15" text-anchor="middle">👷</text>
+  <path d="M284,59 Q295,50 306,59" fill="rgba(255,152,0,0.7)"/>
+  <!-- 대기 표시 -->
+  <rect x="273" y="84" width="44" height="12" rx="3" fill="rgba(76,175,80,0.3)" stroke="rgba(76,175,80,0.4)" stroke-width="0.8"/>
+  <text x="295" y="93" font-size="6.5" fill="rgba(129,199,132,0.9)" text-anchor="middle">안전거리 대기</text>
+  <!-- 안전거리 선 -->
+  <line x1="250" y1="65" x2="280" y2="65" stroke="rgba(255,213,79,0.5)" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="265" y="60" font-size="6" fill="rgba(255,213,79,0.7)" text-anchor="middle">안전거리</text>
+
+  <!-- 책임분계점 표시 -->
+  <line x1="120" y1="20" x2="120" y2="135" stroke="rgba(255,213,79,0.4)" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <text x="120" y="148" font-size="6" fill="rgba(255,213,79,0.6)" text-anchor="middle">책임분계점</text>
+
+  <text x="190" y="155" font-size="7" fill="rgba(255,150,150,0.6)" text-anchor="middle">시험 중 임의 접근 즉시 감전사고</text>
+</svg></div>
+    <div class="pop-body">
+      <div class="pop-item"><span class="pop-num">1</span><div class="pop-item-text">"책임분계점 투입개방 시 안전관리자님은 반드시 저와 동행하여 절차를 진행해 주십시오."</div></div>
+      <div class="pop-item"><span class="pop-num">2</span><div class="pop-item-text">"특고압 기기류에 시험전압 인가 중에는 임의로 접근하지 마시고, 안전한 곳에서 대기해 주십시오."</div></div>
+      <div class="pop-item add pop-env" data-env="factory" style="display:none;"><span class="pop-num">+</span>"공장 내 모든 동력반을 잠금 처리하겠으며, 크레인·호이스트가 중지되었는지 확인 후 작업을 개시합니다."</div>
+      <div class="pop-item add pop-env" data-env="solar"   style="display:none;"><span class="pop-num">+</span>"태양광 패널 음영 처리 전 DC 측 전압은 최대 1,000V 이상입니다. 절연장갑 착용 및 잔류전압 방전을 반드시 확인합니다."</div>
+      <div class="pop-item add pop-env" data-env="solar"   style="display:none;"><span class="pop-num">+</span>"전기실 진입 전 충분한 환기 후 진입해 주십시오. 화재·폭발 소화 시 일산화탄소 및 독성가스 발생으로 질식 위험이 있습니다."</div>
+      <div class="pop-item add pop-env" data-env="solar"   style="display:none;"><span class="pop-num">+</span>"배터리 접속부 감전이 항시 노출되어 있으니 반드시 안전거리를 확보하고 작업하십시오."</div>
+    </div>
+  </div>
+</div>
+
+<div class="popup-overlay" id="pop-s4">
+  <div class="popup-box">
+    <div class="pop-hd" style="background:linear-gradient(135deg,#bf360c,#E65100);">
+      <div><div class="pop-hd-t">STEP 4 — 안전장구</div><div class="pop-hd-s">구두발화 전체</div></div>
+      <label class="pop-close" for="popOpen-s4" onclick="closePopup()">✕</label>
+    </div>
+    <div class="pop-illust" style="background:linear-gradient(180deg,rgba(10,25,50,0.98),rgba(13,33,55,0.96));padding:12px 14px 10px;"><svg viewBox="0 0 380 160" xmlns="http://www.w3.org/2000/svg">
+  <!-- 구분선 -->
+  <line x1="190" y1="10" x2="190" y2="155" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="5,5"/>
+
+  <!-- 왼쪽: 미착용 (X) -->
+  <text x="75" y="18" font-size="8" fill="rgba(255,100,100,0.8)" text-anchor="middle" font-weight="700">⛔ 미착용 출입 불가</text>
+  <!-- 사람 (미착용) -->
+  <circle cx="75" cy="50" r="15" fill="rgba(100,100,120,0.4)" stroke="rgba(150,150,170,0.4)" stroke-width="1"/>
+  <text x="75" y="47" font-size="18" text-anchor="middle" opacity="0.5">👤</text>
+  <!-- X 표시 -->
+  <circle cx="75" cy="50" r="28" fill="none" stroke="rgba(198,40,40,0.6)" stroke-width="2"/>
+  <line x1="55" y1="30" x2="95" y2="70" stroke="rgba(198,40,40,0.7)" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- 항목들 (X) -->
+  <rect x="20" y="92" width="110" height="11" rx="3" fill="rgba(198,40,40,0.15)" stroke="rgba(198,40,40,0.3)" stroke-width="0.8"/>
+  <text x="75" y="101" font-size="6.5" fill="rgba(255,120,120,0.8)" text-anchor="middle">❌ 안전모 미착용</text>
+  <rect x="20" y="106" width="110" height="11" rx="3" fill="rgba(198,40,40,0.15)" stroke="rgba(198,40,40,0.3)" stroke-width="0.8"/>
+  <text x="75" y="115" font-size="6.5" fill="rgba(255,120,120,0.8)" text-anchor="middle">❌ 절연장갑 미착용</text>
+  <rect x="20" y="120" width="110" height="11" rx="3" fill="rgba(198,40,40,0.15)" stroke="rgba(198,40,40,0.3)" stroke-width="0.8"/>
+  <text x="75" y="129" font-size="6.5" fill="rgba(255,120,120,0.8)" text-anchor="middle">❌ 안전조끼 미착용</text>
+  <rect x="20" y="134" width="110" height="15" rx="4" fill="rgba(198,40,40,0.3)" stroke="rgba(198,40,40,0.5)" stroke-width="1"/>
+  <text x="75" y="144" font-size="7.5" fill="#fff" text-anchor="middle" font-weight="700">출입 절대 불가</text>
+
+  <!-- 오른쪽: 착용 완료 (O) -->
+  <text x="305" y="18" font-size="8" fill="rgba(76,175,80,0.9)" text-anchor="middle" font-weight="700">✅ 착용 완료 출입 가능</text>
+  <!-- 사람 (착용 완료) -->
+  <circle cx="305" cy="50" r="15" fill="rgba(21,101,192,0.5)" stroke="rgba(41,182,246,0.5)" stroke-width="1.5"/>
+  <text x="305" y="47" font-size="18" text-anchor="middle">👷</text>
+  <!-- 안전모 -->
+  <path d="M293,43 Q305,32 317,43" fill="rgba(255,152,0,0.85)" stroke="none"/>
+  <!-- 착용 체크 -->
+  <circle cx="330" cy="30" r="9" fill="rgba(76,175,80,0.8)" stroke="rgba(76,175,80,0.5)" stroke-width="1"/>
+  <text x="330" y="34" font-size="10" fill="#fff" text-anchor="middle">✓</text>
+  <!-- 항목들 (V) -->
+  <rect x="250" y="92" width="110" height="11" rx="3" fill="rgba(76,175,80,0.15)" stroke="rgba(76,175,80,0.35)" stroke-width="0.8"/>
+  <text x="305" y="101" font-size="6.5" fill="rgba(129,199,132,0.9)" text-anchor="middle">✅ 안전모</text>
+  <rect x="250" y="106" width="110" height="11" rx="3" fill="rgba(76,175,80,0.15)" stroke="rgba(76,175,80,0.35)" stroke-width="0.8"/>
+  <text x="305" y="115" font-size="6.5" fill="rgba(129,199,132,0.9)" text-anchor="middle">✅ 고압절연장갑</text>
+  <rect x="250" y="120" width="110" height="11" rx="3" fill="rgba(76,175,80,0.15)" stroke="rgba(76,175,80,0.35)" stroke-width="0.8"/>
+  <text x="305" y="129" font-size="6.5" fill="rgba(129,199,132,0.9)" text-anchor="middle">✅ 전기안전관리자 조끼</text>
+  <rect x="250" y="134" width="110" height="15" rx="4" fill="rgba(76,175,80,0.4)" stroke="rgba(76,175,80,0.5)" stroke-width="1"/>
+  <text x="305" y="144" font-size="7.5" fill="#fff" text-anchor="middle" font-weight="700">출입 허가 ✓</text>
+
+  <!-- 구획벨트 -->
+  <path d="M10,80 L170,80" stroke="rgba(255,179,0,0.6)" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="5" y="76" width="6" height="8" rx="1" fill="rgba(255,179,0,0.7)"/>
+  <text x="90" y="75" font-size="6" fill="rgba(255,200,100,0.7)" text-anchor="middle">⚠ 구획벨트</text>
+</svg></div>
+    <div class="pop-body">
+      <div class="pop-item"><span class="pop-num">1</span><div class="pop-item-text">"안전장구를 착용하지 않은 분은 수전실 출입이 불가합니다. 구획벨트로 통제합니다."</div></div>
+      <div class="pop-item"><span class="pop-num">2</span><div class="pop-item-text">"전기안전관리자님은 안전장구 착용 및 전기안전관리자 조끼 착용 후 현장에 들어오십시오."</div></div>
+      <div class="pop-item add pop-env" data-env="solar" style="display:none;"><span class="pop-num">+</span>"지붕형 시공의 경우 반드시 안전대를 착용하시고, 미끄럼방지 안전화를 확인해 주십시오."</div>
+    </div>
+  </div>
+</div>
+
+<div class="popup-overlay" id="pop-s5">
+  <div class="popup-box">
+    <div class="pop-hd" style="background:linear-gradient(135deg,#311b92,#4527A0);">
+      <div><div class="pop-hd-t">STEP 5 — LOTO</div><div class="pop-hd-s">구두발화 전체</div></div>
+      <label class="pop-close" for="popOpen-s5" onclick="closePopup()">✕</label>
+    </div>
+    <div class="pop-illust" style="background:linear-gradient(180deg,rgba(10,25,50,0.98),rgba(13,33,55,0.96));padding:12px 14px 10px;"><svg viewBox="0 0 380 160" xmlns="http://www.w3.org/2000/svg">
+  <!-- 큐비클 전면 -->
+  <rect x="15" y="10" width="145" height="140" rx="5" fill="rgba(255,255,255,0.07)" stroke="rgba(41,182,246,0.35)" stroke-width="1.5"/>
+  <rect x="22" y="22" width="40" height="32" rx="3" fill="rgba(41,182,246,0.12)" stroke="rgba(41,182,246,0.35)" stroke-width="1"/>
+  <rect x="70" y="22" width="40" height="32" rx="3" fill="rgba(41,182,246,0.12)" stroke="rgba(41,182,246,0.35)" stroke-width="1"/>
+  <rect x="118" y="22" width="30" height="32" rx="3" fill="rgba(255,213,79,0.12)" stroke="rgba(255,213,79,0.3)" stroke-width="1"/>
+  <!-- 명판 -->
+  <rect x="22" y="60" width="126" height="14" rx="2" fill="rgba(255,255,255,0.06)"/>
+  <text x="85" y="70" font-size="7" fill="rgba(200,230,255,0.5)" text-anchor="middle">수전개폐기</text>
+  <!-- 핸들 -->
+  <rect x="45" y="82" width="14" height="30" rx="3" fill="rgba(100,150,200,0.3)" stroke="rgba(41,182,246,0.4)" stroke-width="1"/>
+  <rect x="48" y="78" width="8" height="10" rx="2" fill="rgba(41,182,246,0.5)"/>
+  <rect x="85" y="82" width="14" height="30" rx="3" fill="rgba(100,150,200,0.3)" stroke="rgba(41,182,246,0.4)" stroke-width="1"/>
+  <rect x="88" y="78" width="8" height="10" rx="2" fill="rgba(41,182,246,0.5)"/>
+  <text x="85" y="140" font-size="7" fill="rgba(100,181,246,0.5)" text-anchor="middle">수전개폐기 큐비클</text>
+
+  <!-- LOTO 자물쇠 메인 -->
+  <rect x="180" y="30" width="60" height="50" rx="8" fill="rgba(255,152,0,0.85)" stroke="rgba(255,213,79,0.6)" stroke-width="2"/>
+  <!-- 걸쇠 -->
+  <path d="M196,30 L196,18 Q196,8 210,8 Q224,8 224,18 L224,30" fill="none" stroke="rgba(200,100,0,0.8)" stroke-width="4" stroke-linecap="round"/>
+  <!-- 열쇠구멍 -->
+  <circle cx="210" cy="52" r="7" fill="rgba(160,80,0,0.5)"/>
+  <rect x="207" y="52" width="6" height="10" rx="2" fill="rgba(160,80,0,0.5)"/>
+  <!-- LOTO 텍스트 -->
+  <text x="210" y="72" font-size="9" fill="rgba(255,255,255,0.9)" text-anchor="middle" font-weight="900">LOTO</text>
+
+  <!-- 태그/표찰 -->
+  <rect x="252" y="24" width="56" height="36" rx="4" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <line x1="252" y1="44" x2="308" y2="44" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+  <text x="280" y="38" font-size="7.5" fill="rgba(255,150,150,0.9)" text-anchor="middle" font-weight="700">작업중</text>
+  <text x="280" y="52" font-size="6.5" fill="rgba(200,230,255,0.7)" text-anchor="middle">허가없이 조작금지</text>
+  <!-- 실 (태그 연결) -->
+  <path d="M210,80 Q240,90 252,42" fill="none" stroke="rgba(255,213,79,0.4)" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- 위험표지판 -->
+  <polygon points="320,15 350,65 290,65" fill="rgba(198,40,40,0.7)" stroke="rgba(255,100,100,0.4)" stroke-width="1.5"/>
+  <text x="320" y="44" font-size="12" fill="white" text-anchor="middle" font-weight="900">!</text>
+  <text x="320" y="58" font-size="6.5" fill="rgba(255,220,220,0.8)" text-anchor="middle">위험</text>
+
+  <!-- 금지 라벨들 -->
+  <rect x="175" y="92" width="195" height="14" rx="4" fill="rgba(198,40,40,0.3)" stroke="rgba(198,40,40,0.45)" stroke-width="1"/>
+  <text x="272" y="102" font-size="7" fill="rgba(255,170,170,0.9)" text-anchor="middle" font-weight="700">⛔ 작업책임자 허가 없이 절대 개방 금지</text>
+  <rect x="175" y="110" width="195" height="14" rx="4" fill="rgba(255,179,0,0.2)" stroke="rgba(255,179,0,0.35)" stroke-width="1"/>
+  <text x="272" y="120" font-size="7" fill="rgba(255,213,79,0.85)" text-anchor="middle">🔒 잠금 완료 — 조작 불가 상태</text>
+  <rect x="175" y="126" width="195" height="14" rx="4" fill="rgba(21,101,192,0.2)" stroke="rgba(41,182,246,0.3)" stroke-width="1"/>
+  <text x="272" y="136" font-size="7" fill="rgba(100,181,246,0.85)" text-anchor="middle">📋 안전표지판 부착 완료</text>
+
+  <!-- 체크 -->
+  <circle cx="170" cy="99" r="7" fill="rgba(76,175,80,0.7)"/>
+  <text x="170" y="103" font-size="9" fill="#fff" text-anchor="middle">✓</text>
+  <circle cx="170" cy="117" r="7" fill="rgba(76,175,80,0.7)"/>
+  <text x="170" y="121" font-size="9" fill="#fff" text-anchor="middle">✓</text>
+  <circle cx="170" cy="133" r="7" fill="rgba(76,175,80,0.7)"/>
+  <text x="170" y="137" font-size="9" fill="#fff" text-anchor="middle">✓</text>
+</svg></div>
+    <div class="pop-body">
+      <div class="pop-item"><span class="pop-num">1</span><div class="pop-item-text">"수전개폐기 큐비클에 잠금장치와 위험표지판을 부착합니다."</div></div>
+      <div class="pop-item"><span class="pop-num">2</span><div class="pop-item-text">"잠금장치가 부착된 큐비클은 제 허가 없이는 절대 개방하시면 안 됩니다."</div></div>
+      <div class="pop-item add pop-env" data-env="solar" style="display:none;"><span class="pop-num">+</span>"DC 접속함과 인버터 차단기 잠금 및 'DC 위험 고전압' 표지를 부착하겠습니다."</div>
+    </div>
+  </div>
+</div>
+
+<div class="popup-overlay" id="pop-s6">
+  <div class="popup-box">
+    <div class="pop-hd" style="background:linear-gradient(135deg,#004d40,#00695C);">
+      <div><div class="pop-hd-t">STEP 6 — 작업중지</div><div class="pop-hd-s">구두발화 전체</div></div>
+      <label class="pop-close" for="popOpen-s6" onclick="closePopup()">✕</label>
+    </div>
+    <div class="pop-illust" style="background:linear-gradient(180deg,rgba(10,25,50,0.98),rgba(13,33,55,0.96));padding:12px 14px 10px;"><svg viewBox="0 0 380 160" xmlns="http://www.w3.org/2000/svg">
+  <!-- 흐름 화살표 배경 -->
+  <path d="M20,80 L360,80" stroke="rgba(255,255,255,0.06)" stroke-width="24"/>
+
+  <!-- 단계 1: 위험 감지 -->
+  <rect x="8" y="30" width="78" height="90" rx="8" fill="rgba(198,40,40,0.2)" stroke="rgba(198,40,40,0.45)" stroke-width="1.5"/>
+  <text x="47" y="52" font-size="22" text-anchor="middle">⚠️</text>
+  <text x="47" y="72" font-size="7.5" fill="rgba(255,150,150,0.95)" text-anchor="middle" font-weight="700">위험 감지</text>
+  <text x="47" y="83" font-size="6" fill="rgba(255,150,150,0.7)" text-anchor="middle">안전 미확보</text>
+  <text x="47" y="93" font-size="6" fill="rgba(255,150,150,0.65)" text-anchor="middle">상황 발생</text>
+  <rect x="16" y="100" width="62" height="14" rx="3" fill="rgba(198,40,40,0.35)"/>
+  <text x="47" y="110" font-size="6.5" fill="rgba(255,200,200,0.9)" text-anchor="middle">즉시 신고</text>
+
+  <!-- 화살표 1 -->
+  <path d="M90,80 L108,80" stroke="rgba(255,255,255,0.25)" stroke-width="2" marker-end="url(#arr)"/>
+  <polygon points="106,75 118,80 106,85" fill="rgba(255,255,255,0.3)"/>
+
+  <!-- 단계 2: 작업중지 -->
+  <rect x="120" y="25" width="85" height="100" rx="8" fill="rgba(198,40,40,0.5)" stroke="rgba(255,100,100,0.55)" stroke-width="2"/>
+  <polygon points="162,32 185,70 139,70" fill="rgba(150,0,0,0.4)"/>
+  <text x="162" y="57" font-size="14" fill="white" text-anchor="middle" font-weight="900">STOP</text>
+  <text x="162" y="82" font-size="9" fill="white" text-anchor="middle" font-weight="700">작업중지</text>
+  <text x="162" y="95" font-size="6.5" fill="rgba(255,220,220,0.85)" text-anchor="middle">작업책임자</text>
+  <text x="162" y="105" font-size="6.5" fill="rgba(255,220,220,0.85)" text-anchor="middle">즉시 발동</text>
+  <!-- 작업책임자 아이콘 -->
+  <circle cx="162" cy="118" r="7" fill="rgba(255,255,255,0.15)"/>
+  <text x="162" y="115" font-size="9" text-anchor="middle">🧑‍💼</text>
+
+  <!-- 화살표 2 -->
+  <polygon points="207,75 219,80 207,85" fill="rgba(255,255,255,0.3)"/>
+
+  <!-- 단계 3: 안전조치/확보 -->
+  <rect x="222" y="30" width="78" height="90" rx="8" fill="rgba(255,152,0,0.25)" stroke="rgba(255,179,0,0.5)" stroke-width="1.5"/>
+  <text x="261" y="52" font-size="22" text-anchor="middle">🔧</text>
+  <text x="261" y="72" font-size="7.5" fill="rgba(255,200,100,0.95)" text-anchor="middle" font-weight="700">안전조치</text>
+  <text x="261" y="83" font-size="6" fill="rgba(255,200,100,0.7)" text-anchor="middle">위험요인</text>
+  <text x="261" y="93" font-size="6" fill="rgba(255,200,100,0.65)" text-anchor="middle">제거·통제</text>
+  <rect x="230" y="100" width="62" height="14" rx="3" fill="rgba(255,152,0,0.3)"/>
+  <text x="261" y="110" font-size="6.5" fill="rgba(255,220,150,0.9)" text-anchor="middle">안전 확보</text>
+
+  <!-- 화살표 3 -->
+  <polygon points="302,75 314,80 302,85" fill="rgba(76,175,80,0.4)"/>
+
+  <!-- 단계 4: 재개 or 변경 -->
+  <rect x="316" y="30" width="56" height="42" rx="6" fill="rgba(76,175,80,0.35)" stroke="rgba(76,175,80,0.5)" stroke-width="1.5"/>
+  <text x="344" y="48" font-size="18" text-anchor="middle">✅</text>
+  <text x="344" y="64" font-size="7" fill="rgba(129,199,132,0.9)" text-anchor="middle" font-weight="700">재개</text>
+
+  <rect x="316" y="78" width="56" height="42" rx="6" fill="rgba(100,100,150,0.3)" stroke="rgba(150,150,200,0.4)" stroke-width="1.5"/>
+  <text x="344" y="96" font-size="18" text-anchor="middle">📅</text>
+  <text x="344" y="112" font-size="7" fill="rgba(200,200,230,0.85)" text-anchor="middle" font-weight="700">일정변경</text>
+
+  <!-- OR 표시 -->
+  <text x="344" y="128" font-size="6.5" fill="rgba(200,200,200,0.5)" text-anchor="middle">택 1</text>
+
+  <text x="190" y="150" font-size="7.5" fill="rgba(255,150,150,0.6)" text-anchor="middle">안전 확보 전 절대 재개 불가 — 작업책임자 최종 판단</text>
+</svg></div>
+    <div class="pop-body">
+      <div class="pop-item"><span class="pop-num">1</span><div class="pop-item-text">"안전이 확보되지 않는다고 판단되면 작업책임자인 제가 즉시 작업을 중지시킬 수 있습니다."</div></div>
+      <div class="pop-item"><span class="pop-num">2</span><div class="pop-item-text">"작업 중지 시 안전 확보 후 재개하거나, 불가능할 경우 일정을 변경합니다."</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="popup-overlay" id="pop-s7">
+  <div class="popup-box">
+    <div class="pop-hd" style="background:linear-gradient(135deg,#e65100,#F57F17);">
+      <div><div class="pop-hd-t">STEP 7 — 복전</div><div class="pop-hd-s">구두발화 전체</div></div>
+      <label class="pop-close" for="popOpen-s7" onclick="closePopup()">✕</label>
+    </div>
+    <div class="pop-illust" style="background:linear-gradient(180deg,rgba(10,25,50,0.98),rgba(13,33,55,0.96));padding:12px 14px 10px;"><svg viewBox="0 0 380 160" xmlns="http://www.w3.org/2000/svg">
+  <!-- 배경 전기 느낌 -->
+  <defs>
+    <linearGradient id="power-on" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="rgba(13,33,55,0)"/>
+      <stop offset="50%" stop-color="rgba(255,213,79,0.08)"/>
+      <stop offset="100%" stop-color="rgba(41,182,246,0.08)"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="380" height="160" fill="url(#power-on)"/>
+
+  <!-- 단계 ①: 철거 확인 -->
+  <circle cx="50" cy="55" r="28" fill="rgba(198,40,40,0.25)" stroke="rgba(198,40,40,0.5)" stroke-width="1.5"/>
+  <text x="50" y="42" font-size="9" fill="rgba(255,150,150,0.8)" text-anchor="middle" font-weight="900">①</text>
+  <text x="50" y="55" font-size="16" text-anchor="middle">🗜️</text>
+  <text x="50" y="70" font-size="6.5" fill="rgba(255,150,150,0.85)" text-anchor="middle">단락접지</text>
+  <!-- 세부항목 -->
+  <rect x="10" y="88" width="80" height="10" rx="2" fill="rgba(198,40,40,0.15)" stroke="rgba(198,40,40,0.25)" stroke-width="0.8"/>
+  <text x="50" y="96" font-size="6" fill="rgba(255,150,150,0.8)" text-anchor="middle">접지용구 철거 확인</text>
+  <rect x="10" y="101" width="80" height="10" rx="2" fill="rgba(198,40,40,0.15)" stroke="rgba(198,40,40,0.25)" stroke-width="0.8"/>
+  <text x="50" y="109" font-size="6" fill="rgba(255,150,150,0.8)" text-anchor="middle">검사장비 철거 확인</text>
+  <rect x="10" y="114" width="80" height="10" rx="2" fill="rgba(198,40,40,0.15)" stroke="rgba(198,40,40,0.25)" stroke-width="0.8"/>
+  <text x="50" y="122" font-size="6" fill="rgba(255,150,150,0.8)" text-anchor="middle">인원 퇴출 확인</text>
+
+  <!-- 화살표 -->
+  <polygon points="90,52 106,57 90,62" fill="rgba(255,213,79,0.5)"/>
+  <line x1="80" y1="57" x2="104" y2="57" stroke="rgba(255,213,79,0.4)" stroke-width="1.5"/>
+
+  <!-- 단계 ②: 안전조치 완료 확인 -->
+  <circle cx="150" cy="55" r="28" fill="rgba(255,152,0,0.25)" stroke="rgba(255,179,0,0.5)" stroke-width="1.5"/>
+  <text x="150" y="42" font-size="9" fill="rgba(255,200,100,0.8)" text-anchor="middle" font-weight="900">②</text>
+  <text x="150" y="55" font-size="16" text-anchor="middle">🔍</text>
+  <text x="150" y="70" font-size="6.5" fill="rgba(255,200,100,0.85)" text-anchor="middle">최종점검</text>
+  <rect x="110" y="88" width="80" height="10" rx="2" fill="rgba(255,152,0,0.15)" stroke="rgba(255,152,0,0.25)" stroke-width="0.8"/>
+  <text x="150" y="96" font-size="6" fill="rgba(255,200,100,0.8)" text-anchor="middle">LOTO 해제 확인</text>
+  <rect x="110" y="101" width="80" height="10" rx="2" fill="rgba(255,152,0,0.15)" stroke="rgba(255,152,0,0.25)" stroke-width="0.8"/>
+  <text x="150" y="109" font-size="6" fill="rgba(255,200,100,0.8)" text-anchor="middle">안전조치 완료 확인</text>
+  <rect x="110" y="114" width="80" height="10" rx="2" fill="rgba(255,152,0,0.15)" stroke="rgba(255,152,0,0.25)" stroke-width="0.8"/>
+  <text x="150" y="122" font-size="6" fill="rgba(255,200,100,0.8)" text-anchor="middle">책임자 승인</text>
+
+  <!-- 화살표 -->
+  <polygon points="190,52 206,57 190,62" fill="rgba(41,182,246,0.5)"/>
+  <line x1="180" y1="57" x2="204" y2="57" stroke="rgba(41,182,246,0.4)" stroke-width="1.5"/>
+
+  <!-- 단계 ③: 복전 투입 -->
+  <circle cx="250" cy="55" r="28" fill="rgba(21,101,192,0.3)" stroke="rgba(41,182,246,0.55)" stroke-width="1.5"/>
+  <text x="250" y="42" font-size="9" fill="rgba(100,181,246,0.8)" text-anchor="middle" font-weight="900">③</text>
+  <text x="250" y="55" font-size="16" text-anchor="middle">🔌</text>
+  <text x="250" y="70" font-size="6.5" fill="rgba(100,181,246,0.85)" text-anchor="middle">전원 투입</text>
+  <rect x="210" y="88" width="80" height="10" rx="2" fill="rgba(21,101,192,0.2)" stroke="rgba(41,182,246,0.3)" stroke-width="0.8"/>
+  <text x="250" y="96" font-size="6" fill="rgba(100,181,246,0.8)" text-anchor="middle">책임자 지시 투입</text>
+  <rect x="210" y="101" width="80" height="10" rx="2" fill="rgba(21,101,192,0.2)" stroke="rgba(41,182,246,0.3)" stroke-width="0.8"/>
+  <text x="250" y="109" font-size="6" fill="rgba(100,181,246,0.8)" text-anchor="middle">임의 투입 절대 금지</text>
+
+  <!-- 화살표 -->
+  <polygon points="290,52 306,57 290,62" fill="rgba(76,175,80,0.5)"/>
+  <line x1="280" y1="57" x2="304" y2="57" stroke="rgba(76,175,80,0.4)" stroke-width="1.5"/>
+
+  <!-- 단계 ④: 전압 확인 -->
+  <circle cx="340" cy="55" r="28" fill="rgba(76,175,80,0.3)" stroke="rgba(76,175,80,0.55)" stroke-width="1.5"/>
+  <text x="340" y="42" font-size="9" fill="rgba(129,199,132,0.8)" text-anchor="middle" font-weight="900">④</text>
+  <text x="340" y="55" font-size="16" text-anchor="middle">✅</text>
+  <text x="340" y="70" font-size="6.5" fill="rgba(129,199,132,0.85)" text-anchor="middle">전압확인</text>
+  <rect x="300" y="88" width="78" height="10" rx="2" fill="rgba(76,175,80,0.2)" stroke="rgba(76,175,80,0.3)" stroke-width="0.8"/>
+  <text x="339" y="96" font-size="6" fill="rgba(129,199,132,0.8)" text-anchor="middle">전압계 이상 확인</text>
+  <rect x="300" y="101" width="78" height="10" rx="2" fill="rgba(76,175,80,0.2)" stroke="rgba(76,175,80,0.3)" stroke-width="0.8"/>
+  <text x="339" y="109" font-size="6" fill="rgba(129,199,132,0.8)" text-anchor="middle">원상복구 완료</text>
+
+  <!-- 중요 경고 -->
+  <rect x="30" y="130" width="320" height="22" rx="5" fill="rgba(198,40,40,0.25)" stroke="rgba(198,40,40,0.4)" stroke-width="1"/>
+  <text x="190" y="139" font-size="7.5" fill="rgba(255,170,170,0.95)" text-anchor="middle" font-weight="700">⛔ 임의 전원 투입 절대 금지</text>
+  <text x="190" y="149" font-size="6.5" fill="rgba(255,150,150,0.7)" text-anchor="middle">반드시 작업책임자 지시에 따라 순서대로 진행</text>
+</svg></div>
+    <div class="pop-body">
+      <div class="pop-item"><span class="pop-num">1</span><div class="pop-item-text">"복전은 반드시 저의 지시에 따라 진행하며, 임의로 전원을 투입하시면 절대 안 됩니다."</div></div>
+      <div class="pop-item"><span class="pop-num">2</span><div class="pop-item-text">"복전 전 검사장비 및 단락접지용구 완전 철거 확인 후 안전조치 완료 확인 시 복전 절차를 진행합니다."</div></div>
+      <div class="pop-item add pop-env" data-env="factory" style="display:none;"><span class="pop-num">+</span>"동력반 복전 전 연동 기계설비 재기동 준비 상태를 확인 후 순차 투입합니다."</div>
+      <div class="pop-item add pop-env" data-env="solar"   style="display:none;"><span class="pop-num">+</span>"인버터 투입 후 DC 접속함을 순서대로 투입하겠으며, 계통 연계 상태를 확인한 후 최종 투입합니다."</div>
+    </div>
+  </div>
+</div>
+
+<div class="popup-overlay" id="pop-s8">
+  <div class="popup-box">
+    <div class="pop-hd" style="background:linear-gradient(135deg,#7f0000,#C62828);">
+      <div><div class="pop-hd-t">STEP 8 — 금지사항</div><div class="pop-hd-s">구두발화 전체</div></div>
+      <label class="pop-close" for="popOpen-s8" onclick="closePopup()">✕</label>
+    </div>
+    <div class="pop-illust" style="background:linear-gradient(180deg,rgba(10,25,50,0.98),rgba(13,33,55,0.96));padding:12px 14px 10px;"><svg viewBox="0 0 380 160" xmlns="http://www.w3.org/2000/svg">
+  <!-- 타이틀 라인 -->
+  <rect x="10" y="8" width="360" height="20" rx="4" fill="rgba(198,40,40,0.3)" stroke="rgba(198,40,40,0.45)" stroke-width="1"/>
+  <text x="190" y="21" font-size="8.5" fill="#fff" text-anchor="middle" font-weight="700">⛔ 검사 중 별도 작업 절대 금지 / 사전 조치 확인</text>
+
+  <!-- 설비 카드 그리드 -->
+  <!-- 엘리베이터 -->
+  <rect x="10" y="34" width="82" height="52" rx="6" fill="rgba(21,101,192,0.2)" stroke="rgba(41,182,246,0.4)" stroke-width="1"/>
+  <text x="51" y="54" font-size="22" text-anchor="middle">🛗</text>
+  <text x="51" y="68" font-size="7" fill="rgba(100,181,246,0.9)" text-anchor="middle" font-weight="700">엘리베이터</text>
+  <rect x="15" y="74" width="72" height="8" rx="3" fill="rgba(76,175,80,0.3)" stroke="rgba(76,175,80,0.4)" stroke-width="0.8"/>
+  <text x="51" y="80" font-size="6" fill="rgba(129,199,132,0.9)" text-anchor="middle">✅ 정지 사전 안내</text>
+
+  <!-- 전산/IT -->
+  <rect x="100" y="34" width="82" height="52" rx="6" fill="rgba(126,87,194,0.2)" stroke="rgba(179,157,219,0.4)" stroke-width="1"/>
+  <text x="141" y="54" font-size="22" text-anchor="middle">💻</text>
+  <text x="141" y="68" font-size="7" fill="rgba(179,157,219,0.9)" text-anchor="middle" font-weight="700">전산·IT 설비</text>
+  <rect x="105" y="74" width="72" height="8" rx="3" fill="rgba(76,175,80,0.3)" stroke="rgba(76,175,80,0.4)" stroke-width="0.8"/>
+  <text x="141" y="80" font-size="6" fill="rgba(129,199,132,0.9)" text-anchor="middle">✅ 백업 후 종료</text>
+
+  <!-- 보안장비 -->
+  <rect x="190" y="34" width="82" height="52" rx="6" fill="rgba(255,152,0,0.18)" stroke="rgba(255,179,0,0.4)" stroke-width="1"/>
+  <text x="231" y="54" font-size="22" text-anchor="middle">📹</text>
+  <text x="231" y="68" font-size="7" fill="rgba(255,200,100,0.9)" text-anchor="middle" font-weight="700">보안·CCTV</text>
+  <rect x="195" y="74" width="72" height="8" rx="3" fill="rgba(76,175,80,0.3)" stroke="rgba(76,175,80,0.4)" stroke-width="0.8"/>
+  <text x="231" y="80" font-size="6" fill="rgba(129,199,132,0.9)" text-anchor="middle">✅ 사전 통보</text>
+
+  <!-- 주차차단기 -->
+  <rect x="280" y="34" width="92" height="52" rx="6" fill="rgba(0,105,92,0.2)" stroke="rgba(0,150,136,0.4)" stroke-width="1"/>
+  <text x="326" y="54" font-size="22" text-anchor="middle">🚗</text>
+  <text x="326" y="68" font-size="7" fill="rgba(77,182,172,0.9)" text-anchor="middle" font-weight="700">주차차단기</text>
+  <rect x="285" y="74" width="82" height="8" rx="3" fill="rgba(76,175,80,0.3)" stroke="rgba(76,175,80,0.4)" stroke-width="0.8"/>
+  <text x="326" y="80" font-size="6" fill="rgba(129,199,132,0.9)" text-anchor="middle">✅ 수동전환 확인</text>
+
+  <!-- 금지 항목 -->
+  <!-- 청소 금지 -->
+  <rect x="10" y="94" width="175" height="28" rx="5" fill="rgba(198,40,40,0.2)" stroke="rgba(198,40,40,0.4)" stroke-width="1"/>
+  <text x="97" y="106" font-size="7.5" fill="rgba(255,150,150,0.95)" text-anchor="middle" font-weight="700">⛔ 검사 중 청소 금지</text>
+  <text x="97" y="117" font-size="6.5" fill="rgba(255,150,150,0.7)" text-anchor="middle">정전 확인 후 실시</text>
+
+  <!-- 즉시 보고 -->
+  <rect x="195" y="94" width="175" height="28" rx="5" fill="rgba(76,175,80,0.2)" stroke="rgba(76,175,80,0.4)" stroke-width="1"/>
+  <text x="282" y="106" font-size="7.5" fill="rgba(129,199,132,0.95)" text-anchor="middle" font-weight="700">📢 이상현상 즉시 보고</text>
+  <text x="282" y="117" font-size="6.5" fill="rgba(129,199,132,0.7)" text-anchor="middle">검사자에게 바로 신고</text>
+
+  <!-- 하단 -->
+  <rect x="10" y="130" width="360" height="22" rx="5" fill="rgba(255,152,0,0.2)" stroke="rgba(255,179,0,0.35)" stroke-width="1"/>
+  <text x="190" y="141" font-size="7.5" fill="rgba(255,200,100,0.9)" text-anchor="middle" font-weight="700">⚠️ 정전 영향 설비 사전 조치 미완료 시 검사 불가</text>
+  <text x="190" y="148" font-size="6.5" fill="rgba(255,200,100,0.65)" text-anchor="middle">검사 전 담당자 확인 필수</text>
+</svg></div>
+    <div class="pop-body">
+      <div class="pop-item"><span class="pop-num">1</span><div class="pop-item-text">"검사 중 청소 등 별도 작업은 검사 종료 후 안전조치 확인 후 실시해 주십시오."</div></div>
+      <div class="pop-item"><span class="pop-num">2</span><div class="pop-item-text">"이상현상 발생 시 즉시 검사자에게 보고해 주십시오."</div></div>
+      <div class="pop-item"><span class="pop-num">3</span><div class="pop-item-text">"복전 후 차단기 원상복구, 전기설비 사용 이상 유무를 안전관리자님께서는 확인해 주시기 바랍니다."</div></div>
+      <div class="pop-item add pop-env" data-env="apt" style="display:none;"><span class="pop-num">+</span>"입주민 민원 응대를 위한 방재실 상주 관리자가 배치되어 있는지 확인해 주십시오."</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 음성인식 오버레이 ══ -->
+<div class="voice-overlay" id="voiceOverlay">
+  <div class="vo-title">🎤 SAFE-TBM+ 음성인식 중...</div>
+  <div class="vo-wave" id="voWave">🎙</div>
+  <div class="vo-heard" id="voHeard">말씀해 주세요</div>
+  <div class="vo-hints">
+    <div class="vo-hint c1">"공통"</div>
+    <div class="vo-hint c2">"공장"</div>
+    <div class="vo-hint c3">"아파트"</div>
+    <div class="vo-hint c4">"태양광"</div>
+  </div>
+  <button class="vo-cancel" onclick="stopMic()">취소</button>
+</div>
+
+<script>
+/* ══════════════════════════════════════
+   SAFE-TBM+ 코어
+   완전 오프라인 / 구형 호환
+══════════════════════════════════════ */
+var currentEnv = 'common';
+var recognition = null;
+var isListening = false;
+
+/* 환경 데이터 */
+var ENV = {
+  common:  {name:'공통 (기본)',      icon:'📋', badge:'COMMON',   bg:'bg-common',  title:'법정검사 공통 안전회의',     desc:'수전설비 법정검사 — 기본 공통 시나리오'},
+  factory: {name:'공장·산업시설',    icon:'🏭', badge:'FACTORY',  bg:'bg-factory', title:'공장·산업시설 법정검사',     desc:'수전설비 및 공장 배전시설 — 기계설비 연동 주의'},
+  apt:     {name:'아파트·공동주택',  icon:'🏢', badge:'APARTMENT',bg:'bg-apt',     title:'아파트·공동주택 법정검사',   desc:'공동주택 수전설비 — 입주민 생활시설 영향 최소화'},
+  solar:   {name:'태양광 발전시설',  icon:'☀️', badge:'SOLAR',    bg:'bg-solar',   title:'태양광 발전시설 법정검사',   desc:'태양광 수배전 설비 — DC 고전압 상시 위험 주의'}
+};
+
+var VOICE_MAP = {
+  '공통':'common','기본':'common','일반':'common',
+  '공장':'factory','산업':'factory','공장시설':'factory',
+  '아파트':'apt','공동주택':'apt','공동':'apt','아파트단지':'apt',
+  '태양광':'solar','태양':'solar','솔라':'solar','발전':'solar'
+};
+
+/* ── 환경 전환 ── */
+function setEnv(env) {
+  currentEnv = env;
+  var d = ENV[env];
+  if (!d) return;
+
+  /* 배너 */
+  var banner = document.getElementById('envBanner');
+  banner.className = 'env-banner ' + d.bg;
+  banner.setAttribute('data-badge', d.badge);
+  document.getElementById('envIcon').textContent  = d.icon;
+  document.getElementById('envTitle').textContent = d.title;
+  document.getElementById('envDesc').textContent  = d.desc;
+
+  /* 탭 */
+  var tabs = document.getElementsByClassName('env-tab');
+  for (var i=0; i<tabs.length; i++) {
+    var te = tabs[i].getAttribute('data-env');
+    var cls = 'env-tab';
+    if (te === env) {
+      cls += ' active';
+      if (env==='factory') cls+=' fac';
+      else if (env==='apt') cls+=' apt';
+      else if (env==='solar') cls+=' sol';
+    }
+    tabs[i].className = cls;
+  }
+
+  /* env-zone 표시/숨김 */
+  var zones = document.getElementsByClassName('env-zone');
+  for (var j=0; j<zones.length; j++) {
+    var ze = zones[j].getAttribute('data-env');
+    zones[j].style.display = (ze === env) ? 'block' : 'none';
+  }
+
+  /* 팝업 내 pop-env */
+  var penvs = document.getElementsByClassName('pop-env');
+  for (var k=0; k<penvs.length; k++) {
+    var pe = penvs[k].getAttribute('data-env');
+    penvs[k].style.display = (pe === env) ? '' : 'none';
+  }
+
+  /* 음성바 상태 */
+  document.getElementById('voiceStatus').textContent = d.icon + ' ' + d.name + ' 시나리오 적용됨';
+  document.getElementById('voiceStatus').className = 'voice-status matched';
+  document.getElementById('voiceKeyword').textContent = '';
+  setTimeout(function(){
+    if (!isListening) {
+      document.getElementById('voiceStatus').textContent = '마이크 버튼을 눌러 작업환경을 말씀해 주세요';
+      document.getElementById('voiceStatus').className = 'voice-status';
+    }
+  }, 2500);
+
+  document.getElementById('mainScroll').scrollTop = 0;
+}
+
+/* ── 팝업 ── */
+var _curPopup = null;
+function openPopup(id) {
+  if (_curPopup) { _curPopup.style.display = 'none'; }
+  var el = document.getElementById(id);
+  if (!el) return;
+  _curPopup = el;
+  el.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+function closePopup() {
+  if (_curPopup) { _curPopup.style.display = 'none'; _curPopup = null; }
+  document.body.style.overflow = '';
+}
+
+/* ── 음성인식 ── */
+function toggleMic() {
+  if (isListening) { stopMic(); return; }
+  startMic();
+}
+
+function startMic() {
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) {
+    /* 음성인식 미지원 시 탭으로 안내 */
+    document.getElementById('voiceStatus').textContent = '⚠️ 음성인식 미지원 — 탭으로 환경을 선택하세요';
+    document.getElementById('voiceStatus').className = 'voice-status error';
+    return;
+  }
+
+  recognition = new SR();
+  recognition.lang = 'ko-KR';
+  recognition.continuous = false;
+  recognition.interimResults = true;
+  recognition.maxAlternatives = 5;
+
+  recognition.onstart = function() {
+    isListening = true;
+    document.getElementById('micBtn').className = 'mic-btn on';
+    document.getElementById('voiceStatus').textContent = '🎤 듣는 중... 환경을 말씀해 주세요';
+    document.getElementById('voiceStatus').className = 'voice-status listening';
+    document.getElementById('voiceOverlay').className = 'voice-overlay show';
+    document.getElementById('voHeard').textContent = '말씀해 주세요';
+  };
+
+  recognition.onresult = function(e) {
+    var interim = '', final_t = '';
+    for (var i = e.resultIndex; i < e.results.length; i++) {
+      if (e.results[i].isFinal) final_t += e.results[i][0].transcript;
+      else interim += e.results[i][0].transcript;
+    }
+    var heard = final_t || interim;
+    document.getElementById('voHeard').textContent = heard || '...';
+    document.getElementById('voiceKeyword').textContent = heard;
+
+    /* 키워드 매칭 */
+    var matched = null;
+    for (var kw in VOICE_MAP) {
+      if (heard.indexOf(kw) !== -1) { matched = VOICE_MAP[kw]; break; }
+    }
+    if (matched && final_t) {
+      document.getElementById('voWave').textContent = '✅';
+      document.getElementById('voHeard').textContent = '✅ ' + ENV[matched].name;
+      setEnv(matched);
+      setTimeout(stopMic, 700);
+    }
+  };
+
+  recognition.onerror = function(e) {
+    var msg = e.error === 'not-allowed'
+      ? '⚠️ 마이크 권한이 차단됨 — 탭으로 선택하세요'
+      : '인식 실패 — 다시 시도해주세요';
+    document.getElementById('voiceStatus').textContent = msg;
+    document.getElementById('voiceStatus').className = 'voice-status error';
+    stopMic();
+  };
+
+  recognition.onend = function() {
+    if (isListening) stopMic();
+  };
+
+  try { recognition.start(); }
+  catch(e) {
+    document.getElementById('voiceStatus').textContent = '⚠️ 마이크 사용 불가 — 탭으로 선택하세요';
+    document.getElementById('voiceStatus').className = 'voice-status error';
+  }
+}
+
+function stopMic() {
+  isListening = false;
+  if (recognition) { try { recognition.stop(); } catch(e){} recognition = null; }
+  document.getElementById('micBtn').className = 'mic-btn';
+  document.getElementById('voiceOverlay').className = 'voice-overlay';
+}
+
+/* 초기화 */
+setEnv('common');
+</script>
+<div class="wizard-mode">
+  <div class="wiz-slide" data-step="t0">
+    <div class="wiz-top">
+      <span class="wiz-progress">STEP 1 / 9</span>
+      <div class="wiz-env-switch">
+        <label class="wiz-env-btn" for="wiz-common-t0"><span class="wiz-env-ic">📋</span><span class="wiz-env-tx">공통</span></label>
+        <label class="wiz-env-btn" for="wiz-factory-t0"><span class="wiz-env-ic">🏭</span><span class="wiz-env-tx">공장</span></label>
+        <label class="wiz-env-btn" for="wiz-apt-t0"><span class="wiz-env-ic">🏢</span><span class="wiz-env-tx">아파트</span></label>
+        <label class="wiz-env-btn" for="wiz-solar-t0"><span class="wiz-env-ic">☀️</span><span class="wiz-env-tx">태양광</span></label>
+      </div>
+      <label class="wiz-exit" for="wiz-list">✕ 목록으로</label>
+    </div>
+    <div class="wiz-body">
+      <h2 class="wiz-title">사전 안내 — 집합 및 참석 확인</h2>
+      <p class="wiz-sub">안전작업지침 제13조 ① ②항</p>
+      <div class="wiz-speech-block">
+      <div class="wiz-speech">💬 "자, 검사 시작 전에 안전회의 먼저 진행하겠습니다. 잠깐만 모여주세요."</div>
+      <div class="wiz-speech">💬 "저는 오늘 검사를 담당하는 한국전기안전공사 강원본부 검사 작업책임자 OOO입니다."</div>
+      <div class="wiz-speech">💬 "본 안전회의는 안전작업지침 제13조에 따라 진행합니다. 전기안전관리자, 시공업체, 감리자 전원 참석해 주셔야 합니다. 자리 확인해 주시겠습니까?"</div>
+      </div>
+    </div>
+    <div class="wiz-nav">
+      
+      <label class="wiz-btn wiz-next wiz-nav-common" for="wiz-common-t1">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-factory" for="wiz-factory-t1">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-apt" for="wiz-apt-t1">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-solar" for="wiz-solar-t1">다음 ▶</label>
+    </div>
+  </div>
+
+  <div class="wiz-slide" data-step="t1">
+    <div class="wiz-top">
+      <span class="wiz-progress">STEP 2 / 9</span>
+      <div class="wiz-env-switch">
+        <label class="wiz-env-btn" for="wiz-common-t0"><span class="wiz-env-ic">📋</span><span class="wiz-env-tx">공통</span></label>
+        <label class="wiz-env-btn" for="wiz-factory-t0"><span class="wiz-env-ic">🏭</span><span class="wiz-env-tx">공장</span></label>
+        <label class="wiz-env-btn" for="wiz-apt-t0"><span class="wiz-env-ic">🏢</span><span class="wiz-env-tx">아파트</span></label>
+        <label class="wiz-env-btn" for="wiz-solar-t0"><span class="wiz-env-ic">☀️</span><span class="wiz-env-tx">태양광</span></label>
+      </div>
+      <label class="wiz-exit" for="wiz-list">✕ 목록으로</label>
+    </div>
+    <div class="wiz-body">
+      <h2 class="wiz-title">STEP 1 — 오늘 작업 개요 설명</h2>
+      <p class="wiz-sub">검사 종류 · 범위 · 소요시간</p>
+      <div class="wiz-speech-block">
+      <div class="wiz-speech">💬 "금일 검사는 정기(사용전)검사로 검사범위는 수전실(구내배전설비)입니다."</div>
+      <div class="wiz-speech">💬 "안전사고 예방 최우선으로 진행하겠으며, 안전조치 완료 확인 후 검사를 개시하겠습니다."</div>
+      <div class="wiz-speech wiz-speech-env" data-env="factory">💬 "공장 내 연동 설비 가동 여부를 사전 확인하겠으며, 검사 중 기계설비 임의 가동을 절대 금합니다."</div>
+      <div class="wiz-speech wiz-speech-env" data-env="apt">💬 "엘리베이터 정지 및 입주민 안내방송이 완료되었는지 확인해 주십시오."</div>
+      <div class="wiz-speech wiz-speech-env" data-env="solar">💬 "태양광 패널은 일조 시 항상 발전 중입니다. 인버터 차단 후에도 DC 측 잔류전압을 반드시 확인하겠습니다."</div>
+      </div>
+      <div class="wiz-extra" data-env="factory">
+        <div class="wiz-extra-h">🏭 공장·산업 추가</div>
+        <ul><li>공장 가동 상태 및 연동 설비(컨베이어·프레스 등) 사전 정지 여부 확인</li></ul>
+      </div>
+      <div class="wiz-extra" data-env="apt">
+        <div class="wiz-extra-h">🏢 아파트·공동 추가</div>
+        <ul><li>엘리베이터·비상발전기·방재실 사전 통보 및 입주민 안내방송 실시 확인</li></ul>
+      </div>
+      <div class="wiz-extra" data-env="solar">
+        <div class="wiz-extra-h">☀️ 태양광 추가</div>
+        <ul><li>인버터 및 접속함 차단 후에도 DC 측 잔류전압 반드시 확인</li></ul>
+      </div>
+    </div>
+    <div class="wiz-nav">
+      <label class="wiz-btn wiz-prev wiz-nav-common" for="wiz-common-t0">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-factory" for="wiz-factory-t0">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-apt" for="wiz-apt-t0">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-solar" for="wiz-solar-t0">◀ 이전</label>
+      <label class="wiz-btn wiz-next wiz-nav-common" for="wiz-common-t2">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-factory" for="wiz-factory-t2">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-apt" for="wiz-apt-t2">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-solar" for="wiz-solar-t2">다음 ▶</label>
+    </div>
+  </div>
+
+  <div class="wiz-slide" data-step="t2">
+    <div class="wiz-top">
+      <span class="wiz-progress">STEP 3 / 9</span>
+      <div class="wiz-env-switch">
+        <label class="wiz-env-btn" for="wiz-common-t0"><span class="wiz-env-ic">📋</span><span class="wiz-env-tx">공통</span></label>
+        <label class="wiz-env-btn" for="wiz-factory-t0"><span class="wiz-env-ic">🏭</span><span class="wiz-env-tx">공장</span></label>
+        <label class="wiz-env-btn" for="wiz-apt-t0"><span class="wiz-env-ic">🏢</span><span class="wiz-env-tx">아파트</span></label>
+        <label class="wiz-env-btn" for="wiz-solar-t0"><span class="wiz-env-ic">☀️</span><span class="wiz-env-tx">태양광</span></label>
+      </div>
+      <label class="wiz-exit" for="wiz-list">✕ 목록으로</label>
+    </div>
+    <div class="wiz-body">
+      <h2 class="wiz-title">STEP 2 — 역할 분담 안내</h2>
+      <p class="wiz-sub">관계자 외 출입 및 임의행동 금지</p>
+      <div class="wiz-speech-block">
+      <div class="wiz-speech">💬 "검사 중 관계자 외 출입을 금하며, 검사작업 이외의 작업도 금합니다."</div>
+      <div class="wiz-speech">💬 "전기안전관리자님은 안전장구 착용 후 반드시 제 안내에 따라 개폐기조작에 협조해 주시기 바랍니다."</div>
+      <div class="wiz-speech">💬 "검사 시작부터 완료 전까지 임의 조작 및 단독행동을 절대 금합니다."</div>
+      <div class="wiz-speech">💬 "CCTV, 엘리베이터, 주차 차단기 등 정전영향 설비의 사전 조치여부를 확인해 주십시오."</div>
+      </div>
+    </div>
+    <div class="wiz-nav">
+      <label class="wiz-btn wiz-prev wiz-nav-common" for="wiz-common-t1">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-factory" for="wiz-factory-t1">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-apt" for="wiz-apt-t1">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-solar" for="wiz-solar-t1">◀ 이전</label>
+      <label class="wiz-btn wiz-next wiz-nav-common" for="wiz-common-t3">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-factory" for="wiz-factory-t3">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-apt" for="wiz-apt-t3">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-solar" for="wiz-solar-t3">다음 ▶</label>
+    </div>
+  </div>
+
+  <div class="wiz-slide" data-step="t3">
+    <div class="wiz-top">
+      <span class="wiz-progress">STEP 4 / 9</span>
+      <div class="wiz-env-switch">
+        <label class="wiz-env-btn" for="wiz-common-t0"><span class="wiz-env-ic">📋</span><span class="wiz-env-tx">공통</span></label>
+        <label class="wiz-env-btn" for="wiz-factory-t0"><span class="wiz-env-ic">🏭</span><span class="wiz-env-tx">공장</span></label>
+        <label class="wiz-env-btn" for="wiz-apt-t0"><span class="wiz-env-ic">🏢</span><span class="wiz-env-tx">아파트</span></label>
+        <label class="wiz-env-btn" for="wiz-solar-t0"><span class="wiz-env-ic">☀️</span><span class="wiz-env-tx">태양광</span></label>
+      </div>
+      <label class="wiz-exit" for="wiz-list">✕ 목록으로</label>
+    </div>
+    <div class="wiz-body">
+      <h2 class="wiz-title">STEP 3 — 주요 위험요인 고지 ★ 핵심</h2>
+      <p class="wiz-sub">가장 중요한 구간</p>
+      <div class="wiz-speech-block">
+      <div class="wiz-speech">💬 "책임분계점 투입개방 시 안전관리자님은 반드시 저와 동행하여 절차를 진행해 주십시오."</div>
+      <div class="wiz-speech">💬 "특고압 기기류에 시험전압 인가 중에는 임의로 접근하지 마시고, 안전한 곳에서 대기해 주십시오."</div>
+      <div class="wiz-speech wiz-speech-env" data-env="factory">💬 "공장 내 모든 동력반을 잠금 처리하겠으며, 크레인·호이스트가 중지되었는지 확인 후 작업을 개시합니다."</div>
+      <div class="wiz-speech wiz-speech-env" data-env="solar">💬 "태양광 패널 음영 처리 전 DC 측 전압은 최대 1,000V 이상입니다. 절연장갑 착용 및 잔류전압 방전을 반드시 확인합니다."</div>
+      <div class="wiz-speech wiz-speech-env" data-env="solar">💬 "전기실 진입 전 충분한 환기 후 진입해 주십시오. 화재·폭발 소화 시 일산화탄소 및 독성가스 발생으로 질식 위험이 있습니다."</div>
+      <div class="wiz-speech wiz-speech-env" data-env="solar">💬 "배터리 접속부 감전이 항시 노출되어 있으니 반드시 안전거리를 확보하고 작업하십시오."</div>
+      </div>
+      <div class="wiz-extra" data-env="factory">
+        <div class="wiz-extra-h">🏭 공장·산업 추가</div>
+        <ul><li>정전 시 자동 재기동 방지 — 모든 동력반 잠금 필수</li><li>위험물·인화성 물질 저장소 인근 작업 시 추가 안전 조치</li><li>천장 크레인·호이스트 이동 중지 및 고정 확인</li></ul>
+      </div>
+      <div class="wiz-extra" data-env="apt">
+        <div class="wiz-extra-h">🏢 아파트·공동 추가</div>
+        <ul><li>지하 주차장 환기팬·방화셔터 정지 확인</li><li>소방 연동 차단 — 소방안전관리자 사전 통보 필수</li></ul>
+      </div>
+      <div class="wiz-extra" data-env="solar">
+        <div class="wiz-extra-h">☀️ 태양광 추가</div>
+        <ul><li>패널 음영 처리 전 DC 전압 최대 1,000V 이상 상시 발생</li><li>인버터 차단 후 DC 접속함 개방 시 잔류전압 방전 필수</li><li>지붕형: 낙하·미끄럼 위험 — 안전대 착용 필수</li><li>DC 아크는 교류보다 소호 어려움 — 절연장갑 필수</li></ul>
+      </div>
+    </div>
+    <div class="wiz-nav">
+      <label class="wiz-btn wiz-prev wiz-nav-common" for="wiz-common-t2">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-factory" for="wiz-factory-t2">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-apt" for="wiz-apt-t2">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-solar" for="wiz-solar-t2">◀ 이전</label>
+      <label class="wiz-btn wiz-next wiz-nav-common" for="wiz-common-t4">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-factory" for="wiz-factory-t4">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-apt" for="wiz-apt-t4">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-solar" for="wiz-solar-t4">다음 ▶</label>
+    </div>
+  </div>
+
+  <div class="wiz-slide" data-step="t4">
+    <div class="wiz-top">
+      <span class="wiz-progress">STEP 5 / 9</span>
+      <div class="wiz-env-switch">
+        <label class="wiz-env-btn" for="wiz-common-t0"><span class="wiz-env-ic">📋</span><span class="wiz-env-tx">공통</span></label>
+        <label class="wiz-env-btn" for="wiz-factory-t0"><span class="wiz-env-ic">🏭</span><span class="wiz-env-tx">공장</span></label>
+        <label class="wiz-env-btn" for="wiz-apt-t0"><span class="wiz-env-ic">🏢</span><span class="wiz-env-tx">아파트</span></label>
+        <label class="wiz-env-btn" for="wiz-solar-t0"><span class="wiz-env-ic">☀️</span><span class="wiz-env-tx">태양광</span></label>
+      </div>
+      <label class="wiz-exit" for="wiz-list">✕ 목록으로</label>
+    </div>
+    <div class="wiz-body">
+      <h2 class="wiz-title">STEP 4 — 안전장구 착용 및 출입통제</h2>
+      <p class="wiz-sub">미착용자 수전실 출입 불가</p>
+      <div class="wiz-speech-block">
+      <div class="wiz-speech">💬 "안전장구를 착용하지 않은 분은 수전실 출입이 불가합니다. 구획벨트로 통제합니다."</div>
+      <div class="wiz-speech">💬 "전기안전관리자님은 안전장구 착용 및 전기안전관리자 조끼 착용 후 현장에 들어오십시오."</div>
+      <div class="wiz-speech wiz-speech-env" data-env="solar">💬 "지붕형 시공의 경우 반드시 안전대를 착용하시고, 미끄럼방지 안전화를 확인해 주십시오."</div>
+      </div>
+      <div class="wiz-extra" data-env="factory">
+        <div class="wiz-extra-h">🏭 공장·산업 추가</div>
+        <p>방진마스크, 내화학 장갑 (위험물 취급 구역 해당 시)</p>
+      </div>
+      <div class="wiz-extra" data-env="solar">
+        <div class="wiz-extra-h">☀️ 태양광 추가</div>
+        <p>지붕형: 안전대 착용 필수 / UV차단 장갑 / 미끄럼방지 안전화</p>
+      </div>
+    </div>
+    <div class="wiz-nav">
+      <label class="wiz-btn wiz-prev wiz-nav-common" for="wiz-common-t3">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-factory" for="wiz-factory-t3">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-apt" for="wiz-apt-t3">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-solar" for="wiz-solar-t3">◀ 이전</label>
+      <label class="wiz-btn wiz-next wiz-nav-common" for="wiz-common-t5">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-factory" for="wiz-factory-t5">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-apt" for="wiz-apt-t5">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-solar" for="wiz-solar-t5">다음 ▶</label>
+    </div>
+  </div>
+
+  <div class="wiz-slide" data-step="t5">
+    <div class="wiz-top">
+      <span class="wiz-progress">STEP 6 / 9</span>
+      <div class="wiz-env-switch">
+        <label class="wiz-env-btn" for="wiz-common-t0"><span class="wiz-env-ic">📋</span><span class="wiz-env-tx">공통</span></label>
+        <label class="wiz-env-btn" for="wiz-factory-t0"><span class="wiz-env-ic">🏭</span><span class="wiz-env-tx">공장</span></label>
+        <label class="wiz-env-btn" for="wiz-apt-t0"><span class="wiz-env-ic">🏢</span><span class="wiz-env-tx">아파트</span></label>
+        <label class="wiz-env-btn" for="wiz-solar-t0"><span class="wiz-env-ic">☀️</span><span class="wiz-env-tx">태양광</span></label>
+      </div>
+      <label class="wiz-exit" for="wiz-list">✕ 목록으로</label>
+    </div>
+    <div class="wiz-body">
+      <h2 class="wiz-title">STEP 5 — 안전표지 및 LOTO</h2>
+      <p class="wiz-sub">잠금장치 및 위험표지판 부착</p>
+      <div class="wiz-speech-block">
+      <div class="wiz-speech">💬 "수전개폐기 큐비클에 잠금장치와 위험표지판을 부착합니다."</div>
+      <div class="wiz-speech">💬 "잠금장치가 부착된 큐비클은 제 허가 없이는 절대 개방하시면 안 됩니다."</div>
+      <div class="wiz-speech wiz-speech-env" data-env="solar">💬 "DC 접속함과 인버터 차단기 잠금 및 'DC 위험 고전압' 표지를 부착하겠습니다."</div>
+      </div>
+      <div class="wiz-extra" data-env="solar">
+        <div class="wiz-extra-h">☀️ 태양광 추가</div>
+        <p>DC 접속함 잠금 + 인버터 차단기 잠금 + "DC 위험 고전압" 표지 부착</p>
+      </div>
+    </div>
+    <div class="wiz-nav">
+      <label class="wiz-btn wiz-prev wiz-nav-common" for="wiz-common-t4">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-factory" for="wiz-factory-t4">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-apt" for="wiz-apt-t4">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-solar" for="wiz-solar-t4">◀ 이전</label>
+      <label class="wiz-btn wiz-next wiz-nav-common" for="wiz-common-t6">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-factory" for="wiz-factory-t6">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-apt" for="wiz-apt-t6">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-solar" for="wiz-solar-t6">다음 ▶</label>
+    </div>
+  </div>
+
+  <div class="wiz-slide" data-step="t6">
+    <div class="wiz-top">
+      <span class="wiz-progress">STEP 7 / 9</span>
+      <div class="wiz-env-switch">
+        <label class="wiz-env-btn" for="wiz-common-t0"><span class="wiz-env-ic">📋</span><span class="wiz-env-tx">공통</span></label>
+        <label class="wiz-env-btn" for="wiz-factory-t0"><span class="wiz-env-ic">🏭</span><span class="wiz-env-tx">공장</span></label>
+        <label class="wiz-env-btn" for="wiz-apt-t0"><span class="wiz-env-ic">🏢</span><span class="wiz-env-tx">아파트</span></label>
+        <label class="wiz-env-btn" for="wiz-solar-t0"><span class="wiz-env-ic">☀️</span><span class="wiz-env-tx">태양광</span></label>
+      </div>
+      <label class="wiz-exit" for="wiz-list">✕ 목록으로</label>
+    </div>
+    <div class="wiz-body">
+      <h2 class="wiz-title">STEP 6 — 작업중지 권한 고지</h2>
+      <p class="wiz-sub">안전 미확보 시 즉시 중지</p>
+      <div class="wiz-speech-block">
+      <div class="wiz-speech">💬 "안전이 확보되지 않는다고 판단되면 작업책임자인 제가 즉시 작업을 중지시킬 수 있습니다."</div>
+      <div class="wiz-speech">💬 "작업 중지 시 안전 확보 후 재개하거나, 불가능할 경우 일정을 변경합니다."</div>
+      </div>
+    </div>
+    <div class="wiz-nav">
+      <label class="wiz-btn wiz-prev wiz-nav-common" for="wiz-common-t5">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-factory" for="wiz-factory-t5">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-apt" for="wiz-apt-t5">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-solar" for="wiz-solar-t5">◀ 이전</label>
+      <label class="wiz-btn wiz-next wiz-nav-common" for="wiz-common-t7">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-factory" for="wiz-factory-t7">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-apt" for="wiz-apt-t7">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-solar" for="wiz-solar-t7">다음 ▶</label>
+    </div>
+  </div>
+
+  <div class="wiz-slide" data-step="t7">
+    <div class="wiz-top">
+      <span class="wiz-progress">STEP 8 / 9</span>
+      <div class="wiz-env-switch">
+        <label class="wiz-env-btn" for="wiz-common-t0"><span class="wiz-env-ic">📋</span><span class="wiz-env-tx">공통</span></label>
+        <label class="wiz-env-btn" for="wiz-factory-t0"><span class="wiz-env-ic">🏭</span><span class="wiz-env-tx">공장</span></label>
+        <label class="wiz-env-btn" for="wiz-apt-t0"><span class="wiz-env-ic">🏢</span><span class="wiz-env-tx">아파트</span></label>
+        <label class="wiz-env-btn" for="wiz-solar-t0"><span class="wiz-env-ic">☀️</span><span class="wiz-env-tx">태양광</span></label>
+      </div>
+      <label class="wiz-exit" for="wiz-list">✕ 목록으로</label>
+    </div>
+    <div class="wiz-body">
+      <h2 class="wiz-title">STEP 7 — 복전 및 원상복구</h2>
+      <p class="wiz-sub">임의 전원 투입 절대 금지</p>
+      <div class="wiz-speech-block">
+      <div class="wiz-speech">💬 "복전은 반드시 저의 지시에 따라 진행하며, 임의로 전원을 투입하시면 절대 안 됩니다."</div>
+      <div class="wiz-speech">💬 "복전 전 검사장비 및 단락접지용구 완전 철거 확인 후 안전조치 완료 확인 시 복전 절차를 진행합니다."</div>
+      <div class="wiz-speech wiz-speech-env" data-env="factory">💬 "동력반 복전 전 연동 기계설비 재기동 준비 상태를 확인 후 순차 투입합니다."</div>
+      <div class="wiz-speech wiz-speech-env" data-env="solar">💬 "인버터 투입 후 DC 접속함을 순서대로 투입하겠으며, 계통 연계 상태를 확인한 후 최종 투입합니다."</div>
+      </div>
+      <div class="wiz-extra" data-env="factory">
+        <div class="wiz-extra-h">🏭 공장·산업 추가</div>
+        <p>동력반 복전 전 연동 기계설비 재기동 준비 상태 확인 후 순차 투입</p>
+      </div>
+      <div class="wiz-extra" data-env="solar">
+        <div class="wiz-extra-h">☀️ 태양광 추가</div>
+        <p>인버터 투입 → DC 접속함 투입 순서 준수 / 계통 연계 확인 후 최종 투입</p>
+      </div>
+    </div>
+    <div class="wiz-nav">
+      <label class="wiz-btn wiz-prev wiz-nav-common" for="wiz-common-t6">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-factory" for="wiz-factory-t6">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-apt" for="wiz-apt-t6">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-solar" for="wiz-solar-t6">◀ 이전</label>
+      <label class="wiz-btn wiz-next wiz-nav-common" for="wiz-common-t8">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-factory" for="wiz-factory-t8">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-apt" for="wiz-apt-t8">다음 ▶</label>
+      <label class="wiz-btn wiz-next wiz-nav-solar" for="wiz-solar-t8">다음 ▶</label>
+    </div>
+  </div>
+
+  <div class="wiz-slide" data-step="t8">
+    <div class="wiz-top">
+      <span class="wiz-progress">STEP 9 / 9</span>
+      <div class="wiz-env-switch">
+        <label class="wiz-env-btn" for="wiz-common-t0"><span class="wiz-env-ic">📋</span><span class="wiz-env-tx">공통</span></label>
+        <label class="wiz-env-btn" for="wiz-factory-t0"><span class="wiz-env-ic">🏭</span><span class="wiz-env-tx">공장</span></label>
+        <label class="wiz-env-btn" for="wiz-apt-t0"><span class="wiz-env-ic">🏢</span><span class="wiz-env-tx">아파트</span></label>
+        <label class="wiz-env-btn" for="wiz-solar-t0"><span class="wiz-env-ic">☀️</span><span class="wiz-env-tx">태양광</span></label>
+      </div>
+      <label class="wiz-exit" for="wiz-list">✕ 목록으로</label>
+    </div>
+    <div class="wiz-body">
+      <h2 class="wiz-title">STEP 8 — 기타 금지사항</h2>
+      <p class="wiz-sub">검사 중 별도 작업 절대 금지</p>
+      <div class="wiz-speech-block">
+      <div class="wiz-speech">💬 "검사 중 청소 등 별도 작업은 검사 종료 후 안전조치 확인 후 실시해 주십시오."</div>
+      <div class="wiz-speech">💬 "이상현상 발생 시 즉시 검사자에게 보고해 주십시오."</div>
+      <div class="wiz-speech">💬 "복전 후 차단기 원상복구, 전기설비 사용 이상 유무를 안전관리자님께서는 확인해 주시기 바랍니다."</div>
+      <div class="wiz-speech wiz-speech-env" data-env="apt">💬 "입주민 민원 응대를 위한 방재실 상주 관리자가 배치되어 있는지 확인해 주십시오."</div>
+      </div>
+      <div class="wiz-extra" data-env="apt">
+        <div class="wiz-extra-h">🏢 아파트·공동 추가</div>
+        <p>입주민 민원 응대를 위한 방재실 상주 관리자 배치 권고</p>
+      </div>
+    </div>
+    <div class="wiz-nav">
+      <label class="wiz-btn wiz-prev wiz-nav-common" for="wiz-common-t7">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-factory" for="wiz-factory-t7">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-apt" for="wiz-apt-t7">◀ 이전</label>
+      <label class="wiz-btn wiz-prev wiz-nav-solar" for="wiz-solar-t7">◀ 이전</label>
+      <label class="wiz-btn wiz-next wiz-finish" for="wiz-list">✓ 완료 · 목록으로</label>
+    </div>
+  </div>
+</div>
+</body>
+</html>
